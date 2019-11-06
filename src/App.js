@@ -7,6 +7,9 @@ import visualizeExercise from './createComponent/visualizeExercise.js'
 import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
+import focusSessionForm from './createComponent/focusSessionForm'
+import focusSessionAgenda from './createComponent/focusSessionAgenda'
+import focusSessionResult from './createComponent/focusSessionResult'
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/sessionCreate" component={SessionCreate} />
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
+          <Route path="/focusSessionForm" component={focusSessionForm} />
+          <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
+          <Route path="/focusSessionResult" component={focusSessionResult} />
       </Router>
     </div>
   );
