@@ -81,38 +81,19 @@ class ExcerciseCreate extends React.Component {
     return (
       <div className="App">
         <body>
-        <section class="mbr-section content5 cid-rGopDLiVVQ" id="content5-1">
 
-          <div class="container">
-              <div class="media-container-row">
-                  <div class="title col-12 col-md-8">
-                      <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1">CREATE AN EXERCISE</h2>
-
-
-
-                  </div>
-              </div>
-          </div>
-      </section>
 
         <section class="mbr-section form1 cid-rGoqoMJvGK mbr-parallax-background" id="form1-3">
 
+        
 
 
             <div class="mbr-overlay" style={{opacity: 0.7, backgroundColor: "#c1c1c1"}} ></div>
-
-
+            
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="title col-12 col-lg-8">
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="container">
-                <div class="row justify-content-center">
+                <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1" >CREATE AN EXERCISE</h2>
+            
                     <div class="media-container-column col-lg-8" data-form-type="formoid">
 
                         <form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler">

@@ -8,6 +8,8 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 import '../assets/mobirise/css/mbr-additional.css';
+import Background from '../assets/images/bk_hp.jpg';
+
 
 class Homepage extends React.Component {
 
@@ -16,16 +18,16 @@ render(){
         <div className="App">
 		<body>
 		
-		<section class=" mbr-fullscreen" style="padding-top: 60px; padding-bottom: 45px; background-image: url('../assets/images/bk_hp.jpg');">
-		     <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(35, 35, 35);">
+		<section class=" mbr-fullscreen" style={{ backgroundImage: `url(${Background})` }}>
+		     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
 
              </div>
 		    
 		            <div class="container align-center">
 		                <div class="mbr-white centerize">
-		                        <a class="btn btn-white-outline" href="focus_session_form.html">WORKOUT</a> 
+		                        <a class="btn btn-white-outline" href="workout">WORKOUT</a> 
 		                        <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
-		                        <a class="btn btn-white-outline" href="performance_page.html">DASHBOARD</a>
+		                        <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
 		                </div>
 		    </div>    
 		</section>
