@@ -7,6 +7,9 @@ import visualizeExercise from './createComponent/visualizeExercise.js'
 import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
+import CoachHome from './createComponent/CoachHome.js';
+import ProgramTemplates from './createComponent/ProgramTemplates';
+import Customers from './createComponent/Customers';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/sessionCreate" component={SessionCreate} />
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
+          <Route path="/coachHome" component={CoachHome} />
+          <Route path="/ProgramTemplates" component={ProgramTemplates} />
+          <Route path="/Customers" component={Customers} />
       </Router>
     </div>
   );
