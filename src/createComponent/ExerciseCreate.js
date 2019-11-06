@@ -83,10 +83,6 @@ class ExcerciseCreate extends React.Component {
         <body>
         <section class="mbr-section content5 cid-rGopDLiVVQ" id="content5-1">
 
-
-
-
-
           <div class="container">
               <div class="media-container-row">
                   <div class="title col-12 col-md-8">
