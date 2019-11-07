@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios'
+
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -12,8 +14,49 @@ import Background from '../assets/images/PtoC-bk.jpg';
 
 
 class AssignPtoC extends React.Component {
+    state = {
+        customers: [],
+        programs: []
+    }
+    ///////////
+    componentDidMount(){
+        axios.get('http://localhost:8080/customer/getAllCustomers')
+        .then(res => {
+            const customers = res.data;
+            this.setState({ customers });
+            }
+        )
+        axios.get('http://localhost:8080/program/getAllPrograms')
+        .then(res => {
+            const programs = res.data;
+            this.setState({ programs });
+          }
+        )
+}  
 
-render(){
+
+render() {
+    var optionsCustomer = [];
+    this.state.customers.map((Customer) => {
+          optionsCustomer.push(
+
+        <option>
+          {Customer.first_name} {Customer.last_name}
+        </option>
+          )
+        }
+    );
+
+    var optionsProgram = [];
+    this.state.programs.map((Program) => {
+    optionsProgram.push(
+        <option>
+        {Program.programme_} {Program.title}
+        </option>
+      
+          )
+        }
+    );
     return (
         <div>
             <body>
@@ -29,43 +72,20 @@ render(){
             <h2 class="mbr-bold mbr-white  align-center display-1">Assign a Program to a Customer</h2> 
         </div>
         <br/>
-		<div class="custom-select container align-center" style={{width:"200px", marginTop:"100px",  height: "100%"}}>
+		<div class="custom-select container align-center" style={{width:"50%", marginTop:"100px",  height: "100%"}}>
 		  	
               <select>
-		  	  	<option value="0">Select a customer</option>
-		  	  	<option value="1">Audi</option>
-                <option value="2">BMW</option>
-                <option value="3">Citroen</option>
-                <option value="4">Ford</option>
-                <option value="5">Honda</option>
-                <option value="6">Jaguar</option>
-                <option value="7">Land Rover</option>
-                <option value="8">Mercedes</option>
-                <option value="9">Mini</option>
-                <option value="10">Nissan</option>
-                <option value="11">Toyota</option>
-                <option value="12">Volvo</option>
+
+		  	  	{optionsCustomer}
+		  	  	
 
 		  	</select>
 		</div>
 		<br/>
-		<div class="custom-select container align-center" style={{width:"200px", marginTop:"100px", height: "10%"}}>
+		<div class="custom-select container align-center" style={{width:"50%", marginTop:"100px", height: "10%"}}>
 		  	
-        <select>
-		  	  	<option value="0">Select a program:</option>
-		  	  	<option value="1">Audi</option>
-                <option value="2">BMW</option>
-                <option value="3">Citroen</option>
-                <option value="4">Ford</option>
-                <option value="5">Honda</option>
-                <option value="6">Jaguar</option>
-                <option value="7">Land Rover</option>
-                <option value="8">Mercedes</option>
-                <option value="9">Mini</option>
-                <option value="10">Nissan</option>
-                <option value="11">Toyota</option>
-                <option value="12">Volvo</option>
-
+            <select>
+                {optionsProgram}
 		  	</select>
 		</div>
         </div>
