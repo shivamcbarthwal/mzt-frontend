@@ -8,7 +8,7 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 import '../assets/mobirise/css/mbr-additional.css';
-import Background from '../assets/images/bk_hp.jpg';
+import Background from '../assets/images/PtoC-bk.jpg';
 
 
 class AssignPtoC extends React.Component {
@@ -18,12 +18,18 @@ render(){
         <div>
             <body>
                 
-		
-        <section class=" mbr-fullscreen centerize align-center" style={{ backgroundImage: `url(${Background})` }}>
-		     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
-             </div>
-            
-		<div class="custom-select container align center" style={{width:"200px", marginTop:"100px",  height: "100%"}}>
+       
+        <section class="mbr-fullscreen centerize align-center" style={{ backgroundImage: `url(${Background})` }}>
+       
+         <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
+         </div>
+
+        <div class="container">
+        <div class="container">
+            <h2 class="mbr-bold mbr-white  align-center display-1">Assign a Program to a Customer</h2> 
+        </div>
+        <br/>
+		<div class="custom-select container align-center" style={{width:"200px", marginTop:"100px",  height: "100%"}}>
 		  	
               <select>
 		  	  	<option value="0">Select a customer</option>
@@ -43,7 +49,7 @@ render(){
 		  	</select>
 		</div>
 		<br/>
-		<div class="custom-select container align center" style={{width:"200px", marginTop:"100px", height: "10%"}}>
+		<div class="custom-select container align-center" style={{width:"200px", marginTop:"100px", height: "10%"}}>
 		  	
         <select>
 		  	  	<option value="0">Select a program:</option>
@@ -62,7 +68,7 @@ render(){
 
 		  	</select>
 		</div>
- 
+        </div>
    
 		</section>
 		
