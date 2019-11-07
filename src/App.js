@@ -10,6 +10,7 @@ import editSession from './createComponent/editSession.js'
 import Homepage from './createComponent/Homepage.js'
 import dashboard from './createComponent/dashboard.js'
 import workout from './createComponent/workout.js'
+import assignPtoC from './createComponent/AssignPtoC.js'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/homepage" component={Homepage} />
           <Route path="/dashboard" component={dashboard} />
           <Route path="/workout" component={workout} />
+          <Route path="/assignPtoC" component={assignPtoC} />
       </Router>
     </div>
   );
