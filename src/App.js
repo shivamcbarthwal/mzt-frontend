@@ -11,6 +11,12 @@ import Homepage from './createComponent/Homepage.js'
 import dashboard from './createComponent/dashboard.js'
 import workout from './createComponent/workout.js'
 import assignPtoC from './createComponent/AssignPtoC.js'
+import CoachHome from './createComponent/CoachHome.js';
+import ProgramTemplates from './createComponent/ProgramTemplates';
+import Customers from './createComponent/Customers';
+import focusSessionForm from './createComponent/focusSessionForm'
+import focusSessionAgenda from './createComponent/focusSessionAgenda'
+import focusSessionResult from './createComponent/focusSessionResult'
 
 function App() {
   return (
@@ -21,10 +27,19 @@ function App() {
           <Route path="/sessionCreate" component={SessionCreate} />
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
+<<<<<<< HEAD
           <Route path="/homepage" component={Homepage} />
           <Route path="/dashboard" component={dashboard} />
           <Route path="/workout" component={workout} />
           <Route path="/assignPtoC" component={assignPtoC} />
+=======
+          <Route path="/coachHome" component={CoachHome} />
+          <Route path="/ProgramTemplates" component={ProgramTemplates} />
+          <Route path="/Customers" component={Customers} />
+          <Route path="/focusSessionForm" component={focusSessionForm} />
+          <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
+          <Route path="/focusSessionResult" component={focusSessionResult} />
+>>>>>>> 55d18f3dafc8c33735b24908c19f76a7a12b47f6
       </Router>
     </div>
   );

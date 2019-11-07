@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -26,6 +26,7 @@ componentDidMount(){
 }
 
 render() {
+  const { exercises } = this.state.exercises;
   var optionsExercise = [];
   this.state.exercises.map((exerciseId) => {
     optionsExercise.push(
@@ -47,16 +48,14 @@ render() {
                               </div>
                               <div class="bottom-line">
                                 <p class="mbr-text mbr-fonts-style display-7">{exerciseId.description}</p>
-                                  </div>
-                                  </div>
+                              </div>
                             </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                </div>
-                </div>
-                </div>
-
-              )
-  });
+              )});
   return (
     <body>
 
