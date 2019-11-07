@@ -23,15 +23,12 @@ function App() {
           <Route path="/sessionCreate" component={SessionCreate} />
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
-<<<<<<< HEAD
           <Route path="/coachHome" component={CoachHome} />
           <Route path="/ProgramTemplates" component={ProgramTemplates} />
           <Route path="/Customers" component={Customers} />
-=======
           <Route path="/focusSessionForm" component={focusSessionForm} />
           <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
->>>>>>> 8a985b31066e044f2232b37360a43bffeb5471fe
       </Router>
     </div>
   );
