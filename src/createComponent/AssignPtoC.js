@@ -21,7 +21,7 @@ class AssignPtoC extends React.Component {
         program:{
             program_template_id:"",
             customer_id: "",
-            coach_id: "5dc2f70414b9e52a30d6620e"//get coach
+            coach_id: ""//get coach
         }        
     }
     /////Get Customers and Programmes templates
@@ -39,7 +39,7 @@ class AssignPtoC extends React.Component {
           }
         )
 
-        axios.get('http://localhost:8080/coach/getAllCoach')
+        axios.get('http://localhost:8080/coach/getAllCoaches')
         .then(res => {
             const Coach = res.data;
             this.setState({ Coach });
@@ -53,7 +53,6 @@ class AssignPtoC extends React.Component {
     this.setState({ program: {
       ...this.state.program,
       [name]: event.target.value,
-      title: event.target.value
 
     }});
     console.log(event.target);
@@ -94,7 +93,7 @@ render() {
     this.state.programsT.map((Program) => {
     optionsProgram.push(
         <option label={Program.title} >
-        {Program.program_template_id}
+            {Program.program_template_id}
         </option>
       
           )
@@ -104,8 +103,8 @@ render() {
     var optionsCoach = [];
     this.state.Coach.map((Coach) => {
     optionsCoach.push(
-        <option label={Coach.title} >
-        {Coach.coach_id}
+        <option label={Coach.name}>
+            {Coach.coach_id}
         </option>
       
           )
