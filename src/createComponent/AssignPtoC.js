@@ -17,6 +17,7 @@ class AssignPtoC extends React.Component {
     state = {
         customers: [],
         programsT: [], 
+        Coach:[],
         program:{
             program_template_id:"",
             customer_id: "",
@@ -35,6 +36,13 @@ class AssignPtoC extends React.Component {
         .then(res => {
             const programsT = res.data;
             this.setState({ programsT });
+          }
+        )
+
+        axios.get('http://localhost:8080/coach/getAllCoach')
+        .then(res => {
+            const Coach = res.data;
+            this.setState({ Coach });
           }
         )
     } 
@@ -92,6 +100,17 @@ render() {
           )
         }
     );
+
+    var optionsCoach = [];
+    this.state.Coach.map((Coach) => {
+    optionsCoach.push(
+        <option label={Coach.title} >
+        {Coach.coach_id}
+        </option>
+      
+          )
+        }
+    );
     return (
         <div>
             <body>
@@ -107,12 +126,18 @@ render() {
             <h2 class="mbr-bold mbr-white  align-center display-1">Assign a Program to a Customer</h2> 
         
         <br/>
+        <div class="custom-select container align-center" style={{ width:"50%", marginTop:"50px", height: "10%"}}>
+		  	
+            <select onChange={(e) => this.handleChange('coach_id', e)}>
+                {optionsCoach}
+		  	</select>
+		</div>
+        <br/>
 		<div class="custom-select container align-center" style={{width:"50%", marginTop:"50px",  height: "100%"}}>
 		  	
               <select onChange={(e) => this.handleChange('customer_id', e)}>
 
 		  	  	{optionsCustomer}
-		  	  	
 
 		  	</select>
 		</div>
@@ -128,7 +153,7 @@ render() {
         <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color:"#FFFFFF"}}>Starting date</label>
         <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width:"50%"}}/>
         <br/><br/>
-        <a class="align-center col-md-6 btn btn-orange-outline" style={{color:"#FFFFFF", backgroundColor:"#C4643B"}}>ASSIGN</a>
+        <a class="align-center col-md-6 btn btn-orange-outline" style={{color:"#FFFFFF", backgroundColor:"#C4643B"}} onClick={this.handleSubmit}>ASSIGN</a>
         </div>
         
 		</section>
