@@ -11,7 +11,7 @@ import '../assets2/theme/css/style.css'
 import '../assets2/mobirise/css/mbr-additional.css'
 import '../assets2/mobirise/css/mbr-additional.css'
 var Logo = require('../assets2/images/logo-mzt.png');
-const cust_id = '5db84e5b006e1f170c40bd7d'
+const cust_id = '5da86562f964d02c2c679155'
 
 class focusSessionResult extends React.Component {
   state = {
