@@ -16,9 +16,19 @@ import Background from '../assets/images/PtoC-bk.jpg';
 class AssignPtoC extends React.Component {
     state = {
         customers: [],
-        programs: []
+        programsT: [], 
+        program:{
+            program_id: "",
+            customer: "",
+            sessions: "",
+            description: "",
+            programSDate: "",
+            programEDate: "",
+            coach_id: ""
+        }
+        
     }
-    ///////////
+    /////Get Customers and Programmes
     componentDidMount(){
         axios.get('http://localhost:8080/customer/getAllCustomers')
         .then(res => {
@@ -28,12 +38,41 @@ class AssignPtoC extends React.Component {
         )
         axios.get('http://localhost:8080/program/getAllPrograms')
         .then(res => {
-            const programs = res.data;
-            this.setState({ programs });
+            const programsT = res.data;
+            this.setState({ programsT });
           }
         )
-}  
+    } 
 
+    // Input Change Handler method to take form inputs
+    handleChange = (name, event) => {
+    console.log(this.state.exercise);
+    this.setState({ program: {
+      ...this.state.program,
+      [name]: event.target.value
+
+    }});
+    console.log(event.target);
+    };
+
+    handleSubmit = async event => {
+        console.log('Testing')
+        event.preventDefault();
+        const { program } = this.state;
+        const response = await fetch(`http://localhost:8080/program/addProgram`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(program) // body data type must match "Content-Type" header
+          });
+          return await response.json(); // parses JSON response into native JavaScript objects
+        }
+
+       
+    
 
 render() {
     var optionsCustomer = [];
@@ -48,10 +87,10 @@ render() {
     );
 
     var optionsProgram = [];
-    this.state.programs.map((Program) => {
+    this.state.programsT.map((Program) => {
     optionsProgram.push(
         <option>
-        {Program.programme_} {Program.title}
+        {Program.title} 
         </option>
       
           )
@@ -68,13 +107,13 @@ render() {
          </div>
 
         <div class="container">
-        <div class="container">
+        
             <h2 class="mbr-bold mbr-white  align-center display-1">Assign a Program to a Customer</h2> 
-        </div>
+        
         <br/>
-		<div class="custom-select container align-center" style={{width:"50%", marginTop:"100px",  height: "100%"}}>
+		<div class="custom-select container align-center" style={{width:"50%", marginTop:"50px",  height: "100%"}}>
 		  	
-              <select>
+              <select onChange={(e) => this.handleChange('customer', e)}>
 
 		  	  	{optionsCustomer}
 		  	  	
@@ -82,16 +121,21 @@ render() {
 		  	</select>
 		</div>
 		<br/>
-		<div class="custom-select container align-center" style={{width:"50%", marginTop:"100px", height: "10%"}}>
+		<div class="custom-select container align-center" style={{ width:"50%", marginTop:"50px", height: "10%"}}>
 		  	
-            <select>
+            <select onChange={(e) => this.handleChange('program', e)}>
                 {optionsProgram}
 		  	</select>
 		</div>
+        
+        <br/><br/><br/>
+        <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color:"#FFFFFF"}}>Starting date</label>
+        <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width:"50%"}}/>
+        <br/><br/>
+        <a class="align-center col-md-6 btn btn-orange-outline" style={{color:"#FFFFFF", backgroundColor:"#C4643B"}}>ASSIGN</a>
         </div>
-   
+        
 		</section>
-		
 		  <script src="assets/web/assets/jquery/jquery.min.js"></script>
 		  <script src="assets/popper/popper.min.js"></script>
 		  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
