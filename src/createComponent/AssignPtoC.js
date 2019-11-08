@@ -18,17 +18,12 @@ class AssignPtoC extends React.Component {
         customers: [],
         programsT: [], 
         program:{
-            program_id: "",
-            customer: "",
-            sessions: "",
-            description: "",
-            programSDate: "",
-            programEDate: "",
-            coach_id: ""
-        }
-        
+            program_template_id:"",
+            customer_id: "",
+            coach_id: "5dc2f70414b9e52a30d6620e"//get coach
+        }        
     }
-    /////Get Customers and Programmes
+    /////Get Customers and Programmes templates
     componentDidMount(){
         axios.get('http://localhost:8080/customer/getAllCustomers')
         .then(res => {
@@ -49,7 +44,8 @@ class AssignPtoC extends React.Component {
     console.log(this.state.exercise);
     this.setState({ program: {
       ...this.state.program,
-      [name]: event.target.value
+      [name]: event.target.value,
+      title: event.target.value
 
     }});
     console.log(event.target);
@@ -59,7 +55,7 @@ class AssignPtoC extends React.Component {
         console.log('Testing')
         event.preventDefault();
         const { program } = this.state;
-        const response = await fetch(`http://localhost:8080/program/addProgram`, {
+        const response = await fetch(`http://localhost:8080/program/assignProgramTemplate`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
               'Accept': 'application/json',
@@ -79,8 +75,8 @@ render() {
     this.state.customers.map((Customer) => {
           optionsCustomer.push(
 
-        <option>
-          {Customer.first_name} {Customer.last_name}
+        <option label={Customer.first_name}>
+          {Customer.customer_id} 
         </option>
           )
         }
@@ -89,8 +85,8 @@ render() {
     var optionsProgram = [];
     this.state.programsT.map((Program) => {
     optionsProgram.push(
-        <option>
-        {Program.title} 
+        <option label={Program.title} >
+        {Program.program_template_id}
         </option>
       
           )
@@ -113,7 +109,7 @@ render() {
         <br/>
 		<div class="custom-select container align-center" style={{width:"50%", marginTop:"50px",  height: "100%"}}>
 		  	
-              <select onChange={(e) => this.handleChange('customer', e)}>
+              <select onChange={(e) => this.handleChange('customer_id', e)}>
 
 		  	  	{optionsCustomer}
 		  	  	
@@ -123,7 +119,7 @@ render() {
 		<br/>
 		<div class="custom-select container align-center" style={{ width:"50%", marginTop:"50px", height: "10%"}}>
 		  	
-            <select onChange={(e) => this.handleChange('program', e)}>
+            <select onChange={(e) => this.handleChange('program_template_id', e)}>
                 {optionsProgram}
 		  	</select>
 		</div>
