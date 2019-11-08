@@ -36,7 +36,7 @@ class AssignPtoC extends React.Component {
             this.setState({ customers });
             }
         )
-        axios.get('http://localhost:8080/program/getAllPrograms')
+        axios.get('http://localhost:8080/programTemplate/getAllProgramTemps')
         .then(res => {
             const programsT = res.data;
             this.setState({ programsT });
