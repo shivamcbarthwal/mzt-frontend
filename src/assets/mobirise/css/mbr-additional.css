@@ -409,6 +409,24 @@ body {
   background-color: #333333 !important;
   border-color: #333333 !important;
 }
+
+
+.btn-orange-outline,
+.btn-orange-outline:active,
+.btn-orange-outline.active {
+  background: none;
+  border-color: #C4643B;
+  color: #C4643B;
+}
+.btn-orange-outline:hover,
+.btn-orange-outline:focus,
+.btn-orange-outline.focus {
+  color: #C4643B;
+  background-color: #C4643B;
+  border-color: #C4643B;
+}
+
+
 .btn-white-outline,
 .btn-white-outline:active,
 .btn-white-outline.active {

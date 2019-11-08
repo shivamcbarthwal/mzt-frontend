@@ -30,9 +30,9 @@ render() {
   var optionsExercise = [];
   this.state.exercises.map((exerciseId) => {
     optionsExercise.push(
-      <div class="card col-12 pb-5"><br /><br />< br/>
-          <div class="card-wrapper media-container-row media-container-row">
-              <div class="card-box">
+      <div class="card col-12 pb-5" >
+          <div class="card-wrapper media-container-row media-container-row" >
+              <div class="card-box" style={{backgroundColor:"#2b2b2b" , height:"60%"}} >
                   <div class="row">
                       <div class="col-12 col-md-2">
 
@@ -58,37 +58,20 @@ render() {
               )});
   return (
     <body>
-      <section class="mbr-section content5 cid-rGoydIydOP" id="content5-9">
-
-
-
-
-
-        <div class="container">
-            <div class="media-container-row">
-                    <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">
-                        Exercises
-                    </h2>
-
-            </div>
-        </div>
-    </section>
-
-
 
     <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
         <div class="mbr-overlay" style= {{ opacity: 0.6, backgroundColor: "#635a51" }} >
         </div>
         <div class="container">
+        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Exercises</h2> <br/>
         	<div>
-        	<a class="align-center col-md-4 btn btn-white-outline display-4" href='/exercisesCreate' style={{color:"#000000", backgroundColor:"#ffffff"}}>
-                CREATE AN EXERCISE
-            </a>
-            <br /><br /><br />
-            <label class="form-control-label mbr-fonts-style display-4" style={{color:"#ffffff"}}>Search</label>
-            <input class="form-control display-4 col-md-4" default="search" />
-          	</div>
-
+        	  <a class="align-center col-md-6 btn btn-orange-outline " href='/exercisesCreate' style={{color:"#FFFFFF", backgroundColor:"#C4643B"}}>
+              CREATE AN EXERCISE</a>
+              <label class="form-control-label mbr-fonts-style " style={{color:"#ffffff", fontWeight:"bold"}}>Search :  </label>
+              
+              <input class="col-md-4" default="search" />
+          </div>
+          <br /><br/>
             {optionsExercise}
 
         </div>
