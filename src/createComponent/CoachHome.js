@@ -65,7 +65,7 @@ export default class CoachHome extends Component {
                     <br /><br /><br />
                             <a class="btn btn-white-outline" href="ProgramTemplates">PROGRAM TEMPLATES <span class="badge badge-light mbr-white display-7" style={{backgroundColor:"#ff0000"}}> </span></a> 
  
-                            <a class="btn btn-white-outline" href="Customers">CUSTOMERS</a>
+                            <a class="btn btn-white-outline" href="customerList">CUSTOMERS</a>
                     </div>
         </div>    
     </section>

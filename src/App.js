@@ -9,10 +9,12 @@ import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
 import CoachHome from './createComponent/CoachHome.js';
 import ProgramTemplates from './createComponent/ProgramTemplates';
-import Customers from './createComponent/Customers';
+import CustomerModal from './createComponent/Customer/CustomerModal';
 import focusSessionForm from './createComponent/focusSessionForm'
 import focusSessionAgenda from './createComponent/focusSessionAgenda'
 import focusSessionResult from './createComponent/focusSessionResult'
+import Customer from './createComponent/Customer/Customer';
+
 
 function App() {
   return (
@@ -25,10 +27,11 @@ function App() {
           <Route path="/editSession" component={editSession} />
           <Route path="/coachHome" component={CoachHome} />
           <Route path="/ProgramTemplates" component={ProgramTemplates} />
-          <Route path="/Customers" component={Customers} />
+          <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
           <Route path="/focusSessionForm" component={focusSessionForm} />
           <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
+          <Route path="/customerList" component={Customer} />
       </Router>
     </div>
   );
