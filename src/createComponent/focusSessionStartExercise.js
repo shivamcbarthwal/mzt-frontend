@@ -39,11 +39,11 @@ class focusSessionStartExercise extends React.Component {
     });
   };
   componentDidMount(){
-     axios.get(`http://localhost:8080/exercise/getAllExercises`)
+     axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
      .then(res => {
          const exercises = res.data;
-         console.log(res.data);
          this.setState({ exercises });
+         console.log(exercises);
        }
      )
   }
@@ -61,7 +61,7 @@ class focusSessionStartExercise extends React.Component {
             <div class="row justify-content-md-center">
                 <div class="mbr-white col-md-10">
                     <h1 class="mbr-text pb-3 mbr-fonts-style display-5">
-                       <br /> {exercises[exerciseN].name}
+                       <br /> {exercises[exerciseN].sessions[exerciseN].program_template_id}
                     </h1>
                     <p class="mbr-text pb-3 mbr-fonts-style display-5">
                         <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />

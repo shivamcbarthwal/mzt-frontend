@@ -18,7 +18,7 @@ import focusSessionForm from './createComponent/focusSessionForm'
 import focusSessionAgenda from './createComponent/focusSessionAgenda'
 import focusSessionResult from './createComponent/focusSessionResult'
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
-import listOfSessions from './createComponent/listOfSessions'
+import listOfSessions from './createComponent/listOfSessions/listOfSessions'
 
 function App() {
   return (

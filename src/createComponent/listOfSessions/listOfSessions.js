@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets2/bootstrap/css/bootstrap.min.css';
-import '../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets2/tether/tether.min.css'
-import '../assets2/dropdown/css/style.css'
-import '../assets2/theme/css/style.css'
-import '../assets2/mobirise/css/mbr-additional.css'
-import '../assets2/mobirise/css/mbr-additional.css'
-var Logo = require('../assets2/images/logo-mzt.png');
+import '../../assets2/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets2/bootstrap/css/bootstrap.min.css';
+import '../../assets2/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets2/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets2/tether/tether.min.css'
+import '../../assets2/dropdown/css/style.css'
+import '../../assets2/theme/css/style.css'
+import '../../assets2/mobirise/css/mbr-additional.css'
+import '../../assets2/mobirise/css/mbr-additional.css'
+import './listOfSessions.css'
+//import Background from '../../assets2/images/allSessions.jpeg';
+var Logo = require('../../assets2/images/logo-mzt.png');
 const cust_id = '5da86562f964d02c2c679155'
 
 class listOfSessions extends React.Component {
@@ -88,19 +90,15 @@ class listOfSessions extends React.Component {
       <section class="engine"><a href="https://mobirise.info/c">free website builder</a></section>
       <section class="services5 cid-rHe57AJS6O mbr-parallax-background" id="services5-f">
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
           <div class="mbr-overlay" style={{opacity: 0.5, backgroundColor: "#232323"}}>
           </div>
           <div class="container">
               <div class="row">
                   <div class="title pb-5 col-12">
-                      <h2 class="align-left mbr-fonts-style m-0 display-1"><strong>
+                      <h2 class="align-left mbr-fonts-style m-0 display-1" style={{color: "#ffffff"}}><strong>
                           Product List
                       </strong></h2>
-                      <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">
+                      <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5" style={{color: "#ffffff"}}>
                           Subtitle
                       </h3>
                   </div>
