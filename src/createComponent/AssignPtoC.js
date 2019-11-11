@@ -83,7 +83,7 @@ render() {
           optionsCustomer.push(
 
         <option label={Customer.first_name}>
-          {Customer.customer_id} 
+          {Customer._id} 
         </option>
           )
         }
@@ -93,18 +93,21 @@ render() {
     this.state.programsT.map((Program) => {
     optionsProgram.push(
         <option label={Program.title} >
-            {Program.program_template_id}
+            {Program._id}
+            
         </option>
       
           )
         }
+        
     );
+    
 
     var optionsCoach = [];
     this.state.Coach.map((Coach) => {
     optionsCoach.push(
         <option label={Coach.name}>
-            {Coach.coach_id}
+            {Coach._id}
         </option>
       
           )

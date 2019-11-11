@@ -17,6 +17,7 @@ import Customers from './createComponent/Customers';
 import focusSessionForm from './createComponent/focusSessionForm'
 import focusSessionAgenda from './createComponent/focusSessionAgenda'
 import focusSessionResult from './createComponent/focusSessionResult'
+import visualizeProgram from './createComponent/VisualizeProgram'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/focusSessionForm" component={focusSessionForm} />
           <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
+          <Route path="/visualizeProgram" component={visualizeProgram} />
       </Router>
     </div>
   );
