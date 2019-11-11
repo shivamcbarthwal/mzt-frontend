@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import clsx from 'clsx';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import PropTypes from 'prop-types';
 // import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -97,6 +98,10 @@ class CustomerModal extends Component {
   
     }
 
+    handleClickAssignProgram = () => {
+        this.props.history.push('/assignPtoC');
+    }
+
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -137,8 +142,7 @@ class CustomerModal extends Component {
             return (
 
 <body>
-  <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>
-    
+  <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>  
     <div class="container">
         <div class="row">
             
@@ -187,108 +191,7 @@ class CustomerModal extends Component {
                     </div>
                 </div>
                 : null}
-{/*             
-            <div class="card px-3 col-12">
-                <div class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Watch 2
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                $500
-                            </p>
-                        </div>
-                        <div class="bottom-line">
-                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card px-3 col-12">
-                <div class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Watch 3
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                $600
-                            </p>
-                        </div>
-                        <div class="bottom-line">
-                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card px-3 col-12">
-                <div class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Watch 4
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                $700
-                            </p>
-                        </div>
-                        <div class="bottom-line">
-                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card px-3 col-12">
-                <div class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Watch 5
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                $800
-                            </p>
-                        </div>
-                        <div class="bottom-line">
-                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-            
-            {/* <div class="card px-3 col-12">
-                <div class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Watch 6
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                $900
-                            </p>
-                        </div>
-                        <div class="bottom-line">
-                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-          
-            
+       
         </div>
         
         <div>
@@ -327,15 +230,12 @@ class CustomerModal extends Component {
           />
                         
           </Snackbar>
-          
-
-
+          { !program ? 
+          <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickAssignProgram}> Assign Program</button>  
+          : null}  
           </div>
     </div>
 </section>
-
-
-
 
   <section class="engine"><a href="https://mobirise.info/y">html site templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
