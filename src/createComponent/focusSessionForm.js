@@ -8,31 +8,31 @@ import '../assets2/dropdown/css/style.css'
 import '../assets2/theme/css/style.css'
 import '../assets2/mobirise/css/mbr-additional.css'
 import '../assets2/mobirise/css/mbr-additional.css'
+import Background from '../assets/images/cardio-fitness-player.jpg';
 var Logo = require('../assets2/images/logo-mzt.png');
 
 
 class focusSessionForm extends React.Component {
   state = {
-    exercise: {
-      name: '',
-      description: '',
-      exercise_type: '',
-      set_break: '',
-      sets: '',
-      repetition: '',
-      exercise_est_duration: '',
-      muscles_targeted: '',
-      equipement_required: '',
-      exercise_tag: ["Later", "Impossible", "NA"]
+    measurements: {
+        measurement_id: '5dc8bcb6baa6b530e881f0c3',
+        customer_id: '5db84e5b006e1f170c40bd7d',
+        weight: '',
+        height: '',
+        chest: '',
+        arms: '',
+        hips: '',
+        thigh: '',
+        waist: ''
     }
   }
 
   // Input Change Handler method to take form inputs
 
   handleChange = (name, event) => {
-    console.log(this.state.exercise);
-    this.setState({ exercise: {
-      ...this.state.exercise,
+    console.log(this.state.measurements);
+    this.setState({ measurements: {
+      ...this.state.measurements,
       [name]: event.target.value
 
     }});
@@ -45,7 +45,7 @@ class focusSessionForm extends React.Component {
     console.log('Testing')
     event.preventDefault();
     const { exercise } = this.state;
-    const response = await fetch(`http://localhost:8080/exercise/addExercise`, {
+    const response = await fetch(`http://localhost:8080/customer/updateMeasurement`, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
           'Accept': 'application/json',
@@ -71,8 +71,6 @@ class focusSessionForm extends React.Component {
     const { classes } = this.props;
     const { exercise } = this.state;
     return (
-
-
       <body>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -130,7 +128,7 @@ class focusSessionForm extends React.Component {
       </section>
 
           <section class="mbr-section form1 cid-rFxS6PmLUN mbr-parallax-background" id="form1-2">
-          <div class="mbr-overlay" style={{opacity: 0.9, backgroundColor: '#c1c1c1' }}>
+          <div class="mbr-overlay" style={{opacity: 0.9, backgroundColor: '#c1c1c1', backgroundImage:  `url(${Background})` }}>
           </div>
           <div class="container">
               <br/>
@@ -157,30 +155,34 @@ class focusSessionForm extends React.Component {
                           <div class="dragArea row">
                               <div data-for="message" class="col-md-12  form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Weight</label>
-                                  <input data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" />
+                                  <input data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('weight', e)} />
+                              </div>
+                              <div data-for="message" class="col-md-12  form-group">
+                                  <label for="message" class="form-control-label mbr-fonts-style display-7">Height</label>
+                                  <input data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('height', e)} />
                               </div>
                               <div data-for="message" class="col-md-12  form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Arms</label>
-                                  <input data-form-field="Message" class="form-control display-7" id="phone-form1-2" />
+                                  <input data-form-field="Message" class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('arms', e)} />
                               </div>
                               <div data-for="message" class="col-md-12 form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Hips</label>
-                                  <input data-form-field="Message" class="form-control display-7" id="messame-form1-2" />
+                                  <input data-form-field="Message" class="form-control display-7" id="messame-form1-2" onChange={(e) => this.handleChange('hips', e)} />
                               </div>
                               <div data-for="message" class="col-md-12 form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Chest</label>
-                                  <input data-form-field="Message" class="form-control display-7" id="message-form1-2" />
+                                  <input data-form-field="Message" class="form-control display-7" id="message-form1-2" onChange={(e) => this.handleChange('chest', e)} />
                               </div>
                               <div data-for="message" class="col-md-12 form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Waist</label>
-                                  <input type="text" name="text" data-form-field="Message" class="form-control display-7" id="message-form1-2" />
+                                  <input type="text" name="text" data-form-field="Message" class="form-control display-7" id="message-form1-2" onChange={(e) => this.handleChange('waist', e)} />
                               </div>
                               <div data-for="message" class="col-md-12 form-group">
-                                  <label for="message" class="form-control-label mbr-fonts-style display-7">Legs</label>
-                                  <input type="text" name="text" data-form-field="Message" class="form-control display-7" id="message-form1-2" />
+                                  <label for="message" class="form-control-label mbr-fonts-style display-7">Thigh</label>
+                                  <input type="text" name="text" data-form-field="Message" class="form-control display-7" id="message-form1-2" onChange={(e) => this.handleChange('thigh', e)} />
                               </div>
                               <div class="mbr-section-btn">
-                                  <a class="btn btn-md btn-primary btn-lg display-4" href="focus_session_agenda.html">Let's Get Started!</a>
+                                  <a class="btn btn-md btn-primary btn-lg display-4" href="focus_session_agenda.html" onClick={this.handleSubmit}>Let's Get Started!</a>
                                   <a class="btn btn-md btn-secondary display-6" href="homepage.html">Back</a>
                               </div>
                           </div>

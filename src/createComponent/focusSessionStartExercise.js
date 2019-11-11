@@ -31,19 +31,27 @@ class focusSessionStartExercise extends React.Component {
     });
   };
 
-  toggleNext = () =>{
-    this.setState({
-      onExercise: !this.state.onExercise,
-      offInfo: !this.state.offInfo,
-      exerciseN: this.state.exerciseN+1
-    });
+  toggleNext = () => {
+    const { exercises, exerciseN } = this.state;
+    if (exercises.length === exerciseN + 1) {
+      this.props.history.push("/focusSessionResult")
+    } else {
+      this.setState({
+        onExercise: !this.state.onExercise,
+        offInfo: !this.state.offInfo,
+        exerciseN: this.state.exerciseN+1
+      });
+    }
   };
   componentDidMount(){
-     axios.get(`http://localhost:8080/exercise/getAllExercises`)
+    console.log("Query", this.props.location);
+    const index = Number(this.props.location.search.slice(1).split("=")[1]);
+    console.log("Index", index);
+     axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
      .then(res => {
-         const exercises = res.data;
-         console.log(res.data);
-         this.setState({ exercises });
+         const program = res.data[0];
+         this.setState({ exercises: program.sessions[index].exercises });
+         console.log(program);
        }
      )
   }
@@ -66,7 +74,7 @@ class focusSessionStartExercise extends React.Component {
                     <p class="mbr-text pb-3 mbr-fonts-style display-5">
                         <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                         <span style={{marginLeft:'1em'}}>
-                            {exercises[exerciseN].exercise_est_duration} min
+                            {exercises[exerciseN].repetition} min
                         </span>
                     </p>
                     <p class="mbr-text pb-3 mbr-fonts-style display-5">
