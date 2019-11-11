@@ -10,6 +10,7 @@ import '../assets/dropdown/css/style.css'
 import '../assets/theme/css/style.css'
 import '../assets/mobirise/css/mbr-additional.css'
 import '../assets/mobirise/css/mbr-additional.css'
+import Background from '../assets/images/prog_bk.jpg';
 
 class visualizeProgram extends Component {
    state = {
@@ -59,7 +60,7 @@ render() {
   return (
     <body>
 
-    <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
+    <section class=" mbr-parallax-background" id="services6-7">
         <div class="mbr-overlay" style= {{ opacity: 0.6, backgroundColor: "#635a51" }} >
         </div>
         <div class="container">
