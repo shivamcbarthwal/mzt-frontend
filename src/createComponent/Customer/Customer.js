@@ -34,13 +34,6 @@ export default class Customer extends Component {
         this.setState({ customers });
       }
     )
-
-    axios.get('http://localhost:8080/customer/getAllCustomers')
-    .then(res => {
-        const customers = res.data;
-        this.setState({ customers });
-      }
-    )
  }
     render() {
         var optionsCustomer = [];
