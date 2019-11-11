@@ -63,7 +63,7 @@ export default class CoachHome extends Component {
                 <div class="container align-center">
                     <div class="mbr-white centerize">
                     <br /><br /><br />
-                            <a class="btn btn-white-outline" href="ProgramTemplates">PROGRAM TEMPLATES </a> 
+                            <a class="btn btn-white-outline" href="visualizeProgram">PROGRAMS </a> 
  
                             <a class="btn btn-white-outline" href="customerList">CUSTOMERS</a>
                     </div>

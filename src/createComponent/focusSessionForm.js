@@ -15,7 +15,7 @@ var Logo = require('../assets2/images/logo-mzt.png');
 class focusSessionForm extends React.Component {
   state = {
     measurements: {
-        measurement_id: '5dc8bcb6baa6b530e881f0c3',
+        measurement_date: '2019-11-10T23:14:36.673+00:00',
         customer_id: '5db84e5b006e1f170c40bd7d',
         weight: '',
         height: '',
@@ -153,6 +153,14 @@ class focusSessionForm extends React.Component {
                               </div>
                           </div>
                           <div class="dragArea row">
+                              <div data-for="message" class="col-md-12  form-group">
+                                  <label for="message" class="form-control-label mbr-fonts-style display-7">customer</label>
+                                  <input data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('customer_id', e)} />
+                              </div>
+                              <div data-for="message" class="col-md-12  form-group">
+                                  <label for="message" class="form-control-label mbr-fonts-style display-7">measurements</label>
+                                  <input type="text" data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('measurement_date', e)} />
+                              </div>
                               <div data-for="message" class="col-md-12  form-group">
                                   <label for="message" class="form-control-label mbr-fonts-style display-7">Weight</label>
                                   <input data-form-field="Message" required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('weight', e)} />

@@ -36,7 +36,7 @@ function App() {
           <Route path="/dashboard" component={dashboard} />
           <Route path="/workout" component={workout} />
           <Route path="/assignPtoC" component={assignPtoC} />
-          <Route path="/coachHome" component={CoachHome} />
+          <Route exact path="/" component={CoachHome} />
           <Route path="/ProgramTemplates" component={ProgramTemplates} />
           <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
           <Route path="/focusSessionForm" component={focusSessionForm} />

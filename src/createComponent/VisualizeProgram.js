@@ -44,11 +44,11 @@ render() {
                       <div class="col-12 col-md-10">
                           <div class="wrapper">
                               <div class="top-line pb-3">
-                                <h4 class="card-title mbr-fonts-style display-5">{program.title}</h4>
-                                <p class="mbr-text cost mbr-fonts-style m-0 display-5">&nbsp;</p>
+                                <h4 class="card-title mbr-fonts-style display-5" style={{color:"#FFFFFF"}}>{program.title}</h4>
+                                
                               </div>
                               <div class="bottom-line">
-                                <p class="mbr-text mbr-fonts-style display-7">{program.description}</p>
+                                <p class="mbr-text mbr-fonts-style display-7" style={{color:"#FFFFFF"}}>{program.description}</p>
                               </div>
                             </div>
                         </div>

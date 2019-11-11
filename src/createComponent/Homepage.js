@@ -25,7 +25,7 @@ render(){
 		    
 		            <div class="container align-center">
 		                <div class="mbr-white centerize">
-		                        <a class="btn btn-white-outline" href="workout">WORKOUT</a> 
+		                        <a class="btn btn-white-outline" href="listOfSessions">WORKOUT</a> 
 		                        <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
 		                        <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
 		                </div>

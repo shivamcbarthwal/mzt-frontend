@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
@@ -71,7 +72,9 @@ class AssignPtoC extends React.Component {
             },
             body: JSON.stringify(program) // body data type must match "Content-Type" header
           });
+          this.props.history.push('/customerList');
           return await response.json(); // parses JSON response into native JavaScript objects
+          
         }
 
        
