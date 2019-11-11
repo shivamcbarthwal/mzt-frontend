@@ -102,6 +102,10 @@ class CustomerModal extends Component {
         this.props.history.push('/assignPtoC');
     }
 
+    handleClickBack = () => {
+      this.props.history.push('/customerList');
+    }
+
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -233,6 +237,9 @@ class CustomerModal extends Component {
           { !program ? 
           <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickAssignProgram}> Assign Program</button>  
           : null}  
+          </div>
+          <div class="align-right">
+          <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
           </div>
     </div>
 </section>

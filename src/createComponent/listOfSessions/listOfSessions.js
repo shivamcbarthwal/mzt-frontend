@@ -30,6 +30,9 @@ class listOfSessions extends React.Component {
      )
   }
 
+  handleClickBack = () => {
+    this.props.history.push('/Homepage');
+}
   render() {
     const { program, exerciseN} = this.state;
     var optionsSession = [];
@@ -125,6 +128,12 @@ class listOfSessions extends React.Component {
                   </div>
                   {optionsSession}
               </div>
+              <div class="align-right">
+                <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
+                    <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+                    Back
+                </button>
+                </div>
           </div>
       </section>
 

@@ -21,7 +21,9 @@ import visualizeProgram from './createComponent/VisualizeProgram'
 import Customer from './createComponent/Customer/Customer';
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import listOfSessions from './createComponent/listOfSessions/listOfSessions'
-
+import createProgramT from './createComponent/createProgramT';
+import AssignEtoS from './createComponent/AssignEtoS';
+import AssignStoP from './createComponent/AssignStoP';
 
 function App() {
   return (
@@ -46,6 +48,9 @@ function App() {
           <Route path="/customerList" component={Customer} />
           <Route path="/focusSessionStartExercise/:sessionID" component={focusSessionStartExercise} />
           <Route path="/listOfSessions" component={listOfSessions} />
+          <Route path="/createProgramT" component={createProgramT} />
+          <Route path="/AssignEtoS" component={AssignEtoS} />
+          <Route path="/AssignStoP" component={AssignStoP} />
       </Router>
     </div>
   );

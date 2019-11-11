@@ -26,6 +26,10 @@ export default class Customer extends Component {
     state = {
         customers: []
     }
+
+    handleClickBack = () => {
+        this.props.history.push('/');
+    }
  
  componentDidMount(){
     axios.get('http://localhost:8080/customer/getAllCustomers')
@@ -71,6 +75,9 @@ export default class Customer extends Component {
                 
             </div>
             {optionsCustomer}
+        </div>
+        <div class="align-right">
+          <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
         </div>
     </div>
 </section>
