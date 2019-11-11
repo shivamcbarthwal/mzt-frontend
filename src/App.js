@@ -42,7 +42,7 @@ function App() {
           <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
           <Route path="/customerList" component={Customer} />
-          <Route path="/focusSessionStartExercise" component={focusSessionStartExercise} />
+          <Route path="/focusSessionStartExercise/:sessionID" component={focusSessionStartExercise} />
           <Route path="/listOfSessions" component={listOfSessions} />
       </Router>
     </div>

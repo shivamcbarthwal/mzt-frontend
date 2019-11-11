@@ -18,7 +18,7 @@ class focusSessionAgenda extends React.Component {
     exercises: [],
     Measurements: null,
     heartRates: {
-      customer_id: '',
+      customer_id: '5db84e5b006e1f170c40bd7d',
       heartRate1: '',
       heartRate2: '',
       heartRate3: '',
@@ -32,7 +32,7 @@ class focusSessionAgenda extends React.Component {
     }
   }
   componentDidMount(){
-     axios.get('http://localhost:8080/exercise/getAllExercises')
+     axios.get('http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155')
      .then(res => {
          const exercises = res.data;
          this.setState({ exercises });
@@ -86,11 +86,11 @@ class focusSessionAgenda extends React.Component {
       optionsMeasurement2.push("Previous: " + measurements[measurements.length-1].heartRate2);
       optionsMeasurement3.push("Previous: " + measurements[measurements.length-1].heartRate3);
     }
-
+    //!!!!!!!!!!!!!!! NEED TO CREATE A LOOP
     const { exercises } = this.state.exercises;
     var optionsExercise = [];
     this.state.exercises.map((exerciseId) => {
-      optionsExercise.push(<li>{exerciseId.exercise_est_duration} min: {exerciseId.name}</li>)
+      optionsExercise.push(<li>{exerciseId.sessions[0].exercises[0].exercise_est_duration} min: {exerciseId.sessions[0].exercises[0].name}</li>)
     });
 
     return (
@@ -157,10 +157,6 @@ class focusSessionAgenda extends React.Component {
                       <br /> Physical condition
                   </h3>
                   <form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="xBwRiT6nXeo2bF/dVu2/EBCkac7IluadHt0cFITc55G/p30tWqG8gXHl+mdGmsQsN5AatHpswIJCwifAAt0I4mc5f88/NG2BbOC/6ksvRyy5bygRgspSSl6a6sqj6PLA" />
-                  <div data-for="message" class="col-md-12  form-group">
-                     <label for="message" class="form-control-label mbr-fonts-style display-7">customer_id</label>
-                     <input data-form-field="Message" placeholder="" required="required" class="form-control display-7" id="name-form1-2" onChange={(e) => this.handleChange('customer_id', e)} />
-                  </div>
                        <div data-for="message" class="col-md-12  form-group">
                           <label for="message" class="form-control-label mbr-fonts-style display-7">Lay down for 5 min</label><br />
                           <label for="message" class="form-control-label mbr-fonts-style display-7">Heart Rate:</label>

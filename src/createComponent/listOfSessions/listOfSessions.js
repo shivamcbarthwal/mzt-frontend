@@ -11,31 +11,55 @@ import '../../assets2/theme/css/style.css'
 import '../../assets2/mobirise/css/mbr-additional.css'
 import '../../assets2/mobirise/css/mbr-additional.css'
 import './listOfSessions.css'
-//import Background from '../../assets2/images/allSessions.jpeg';
 var Logo = require('../../assets2/images/logo-mzt.png');
 const cust_id = '5da86562f964d02c2c679155'
 
 class listOfSessions extends React.Component {
   state = {
-    measurements: null
+    exerciseN: 1,
+    program: null
   }
 
   componentDidMount(){
-     axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById/${cust_id}`)
+     axios.get(`http://localhost:8080/program/getProgramByCustomerId/${cust_id}`)
      .then(res => {
-         const measurements = res.data;
+         const program = res.data[0];
          console.log(res.data);
-         this.setState({ measurements });
+         this.setState({ program });
        }
      )
   }
 
   render() {
-    const { measurements } = this.state;
-    var optionsMeasurement = [];
-    if (measurements) {
-      optionsMeasurement.push(measurements[measurements.length-1].dickson_metric);
+    const { program, exerciseN} = this.state;
+    var optionsSession = [];
+    console.log("program", program);
+    if (program) {
+        program.sessions.map((sessionId, i) => {
+      optionsSession.push(
+      <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/focusSessionStartExercise/${program._id}?sessionIndex=${i}`)} >
+      <div class="card-wrapper media-container-row media-container-row">
+          <div class="card-box">
+              <div class="top-line pb-3">
+                  <h4 class="card-title mbr-fonts-style display-5">
+                    {sessionId.name}
+                  </h4>
+                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                    {sessionId.session_status}
+                  </p>
+              </div>
+              <div class="bottom-line">
+                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
+                      Session type: {sessionId.session_type} <br/>
+                      Coach notes: {sessionId.session_coach_notes}
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>) 
     }
+    );
+}
     return (
       <body>
       <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
@@ -96,126 +120,10 @@ class listOfSessions extends React.Component {
               <div class="row">
                   <div class="title pb-5 col-12">
                       <h2 class="align-left mbr-fonts-style m-0 display-1" style={{color: "#ffffff"}}><strong>
-                          Product List
+                          Your sessions
                       </strong></h2>
-                      <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5" style={{color: "#ffffff"}}>
-                          Subtitle
-                      </h3>
                   </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 1
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $400
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 2
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $500
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 3
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $600
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 4
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $700
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 5
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $800
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="card px-3 col-12">
-                      <div class="card-wrapper media-container-row media-container-row">
-                          <div class="card-box">
-                              <div class="top-line pb-3">
-                                  <h4 class="card-title mbr-fonts-style display-5">
-                                      Watch 6
-                                  </h4>
-                                  <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                      $900
-                                  </p>
-                              </div>
-                              <div class="bottom-line">
-                                  <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, odit?
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+                  {optionsSession}
               </div>
           </div>
       </section>
