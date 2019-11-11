@@ -65,9 +65,9 @@ render() {
         <div class="container">
         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Programs</h2> <br/>
         	<div>
-        	  <a class="align-center col-md-2 btn btn-orange-outline " href='/exercisesCreate' style={{color:"#FFFFFF", backgroundColor:"#C4643B", fontSize:"80%"}}>
+        	  <a class="align-center col-md-2 btn btn-orange-outline " href='/assignPtoC' style={{color:"#FFFFFF", backgroundColor:"#C4643B", fontSize:"80%"}}>
               ASSIGN A PROGRAM</a>
-              <a class="align-center col-md-2 btn btn-orange-outline " href='/exercisesCreate' style={{color:"#FFFFFF", backgroundColor:"#C4643B", fontSize:"80%"}}>
+              <a class="align-center col-md-2 btn btn-orange-outline " href='/assignPtoC' style={{color:"#FFFFFF", backgroundColor:"#C4643B", fontSize:"80%"}}>
               CREATE A PROGRAM</a>
               <label class="form-control-label mbr-fonts-style " style={{color:"#ffffff", fontWeight:"bold"}}>Search :  </label>
               
