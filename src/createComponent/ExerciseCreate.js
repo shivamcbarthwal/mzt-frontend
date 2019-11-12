@@ -143,9 +143,10 @@ class ExcerciseCreate extends React.Component {
                                                 <div class="box col-md-4  form-group" >
                                                     <label class="form-control-label mbr-fonts-style display-7">Type</label> <br/>
                                                     <select onChange={(e) => this.handleChange('exercise_type', e)}>
-                                                        <option>Cardio</option>
-                                                        <option>Lift</option>
-                                                        <option>Full Body</option>
+                                                        <option>Aerobic</option>
+                                                        <option>Strength</option>
+                                                        <option>Flexibility</option>
+                                                        <option>Balance</option>
                                                     </select>
                                                 </div>
                 

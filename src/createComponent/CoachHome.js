@@ -8,8 +8,10 @@ import '../assets2/dropdown/css/style.css';
 import '../assets2/theme/css/style.css';
 import '../assets2/mobirise/css/mbr-additional.css';
 import '../assets2/mobirise/css/mbr-additional.css';
-        var Logo = require('../assets2/images/logo-mzt.png');
+
+var Logo = require('../assets2/images/logo-mzt.png');
 export default class CoachHome extends Component {
+    
 render() {
 return (
         <body>

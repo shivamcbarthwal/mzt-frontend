@@ -76,6 +76,7 @@ import '../assets/mobirise/css/mbr-additional.css'
                     },
                     body: JSON.stringify(session) // body data type must match "Content-Type" header
                 });
+                this.props.history.push('/visualizeSession');
                 return await response.json(); // parses JSON response into native JavaScript objects
             }
 

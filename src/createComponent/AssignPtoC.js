@@ -10,27 +10,26 @@ import '../assets/tether/tether.min.css';
 import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
-import '../assets/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/PtoC-bk.jpg';
 
 
 class AssignPtoC extends React.Component {
+    
     state = {
-        customers: [],
         programsT: [],
-        Coach: [],
+        customer:{},
         program: {
             program_template_id: "",
-            customer_id: "",
-            coach_id: ""//get coach
+            customer_id: this.props.match.params.custId,
+            coach_id: "5dc2f70414b9e52a30d6620e"//get coach
         }
     }
     /////Get Customers and Programmes templates
     componentDidMount() {
-        axios.get('http://localhost:8080/customer/getAllCustomers')
+        axios.get('http://localhost:8080/customer/getCustomerById/'+this.props.match.params.custId)
                 .then(res => {
-                    const customers = res.data;
-                    this.setState({customers});
+                    const customer = res.data;
+                    this.setState({customer});
                 }
                 )
         axios.get('http://localhost:8080/programTemplate/getAllProgramTemps')
@@ -39,17 +38,10 @@ class AssignPtoC extends React.Component {
                     this.setState({programsT});
                 }
                 )
-
-        axios.get('http://localhost:8080/coach/getAllCoaches')
-                .then(res => {
-                    const Coach = res.data;
-                    this.setState({Coach});
-                }
-                )
     }
 
     handleClickBack = () => {
-        this.props.history.push('/VisualizeProgram');
+        window.history.back();
     }
 
     // Input Change Handler method to take form inputs
@@ -58,14 +50,12 @@ class AssignPtoC extends React.Component {
         this.setState({program: {
                 ...this.state.program,
                 [name]: event.target.value,
-
             }});
         console.log(event.target);
     }
     ;
             handleSubmit = async event => {
-                console.log('Testing')
-                event.preventDefault();
+                console.log('Testing');
                 const {program} = this.state;
                 const response = await fetch(`http://localhost:8080/program/assignProgramTemplate`, {
                     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -76,46 +66,21 @@ class AssignPtoC extends React.Component {
                     },
                     body: JSON.stringify(program) // body data type must match "Content-Type" header
                 });
-                this.props.history.push('/CustomerDetail/' + program.customer_id);
-                return JSON.stringify(response); // parses JSON response into native JavaScript objects
+                window.location.href='/CustomersDetail/'+this.props.match.params.custId;
+                return await response.json; // parses JSON response into native JavaScript objects
 
             }
 
     render() {
-        var optionsCustomer = [];
-        this.state.customers.map((Customer) => {
-            optionsCustomer.push(
-                    <option label={Customer.first_name}>
-                        {Customer._id} 
-                    </option>
-                    )
-        }
-        );
-
         var optionsProgram = [];
         this.state.programsT.map((Program) => {
             optionsProgram.push(
                     <option label={Program.title} >
                         {Program._id}
-                    
                     </option>
-
                     )
-        }
-
-        );
-
-
-        var optionsCoach = [];
-        this.state.Coach.map((Coach) => {
-            optionsCoach.push(
-                    <option label={Coach.name}>
-                        {Coach._id}
-                    </option>
-
-                    )
-        }
-        );
+        });
+        var cust = this.state.customer;
         return (
                 <div>
                     <body>
@@ -123,49 +88,55 @@ class AssignPtoC extends React.Component {
                 
                         <section class="mbr-fullscreen centerize align-center" style={{backgroundImage: `url(${Background})`}}>
                 
-                            <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
-                            </div>
-                
-                            <div class="container">
-                
-                                <h2 class="mbr-bold mbr-white  align-center display-1">Assign a Program to a Customer</h2> 
-                
-                                <br/>
-                                <div class="custom-select container align-center" style={{width: "50%", marginTop: "50px", height: "10%"}}>
-                
-                                    <select onChange={(e) => this.handleChange('coach_id', e)}>
-                                        {optionsCoach}
-                                    </select>
+                            <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                            
+                            <div class="container align-center media-container-colomn">
+        <h2 class="mbr-bold mbr-white display-2">Assign a Program to {cust.first_name + " "+cust.last_name}</h2> 
+        <br/>
+        <div class="table-wrapper">
+        <div class="container scroll mbr-white display-4" style={{width: "50%"}}>
+                                    <table class="table">
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Age</td>
+                                            <td>{((new Date()).getFullYear()-(new Date(cust.dob)).getFullYear())}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Gender</td>
+                                            <td>{cust.gender}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Goal</td>
+                                            <td>{cust.goal}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Availability</td>
+                                            <td>{cust.availability}</td>
+                                        </tr>
+                                    </table>
+                                    
+                                </div>
                                 </div>
                                 <br/>
-                                <div class="custom-select container align-center" style={{width: "50%", marginTop: "50px", height: "100%"}}>
+                                <div class="custom-select container" style={{width: "50%"}}>
                 
-                                    <select onChange={(e) => this.handleChange('customer_id', e)}>
-                
-                                        {optionsCustomer}
-                
-                                    </select>
-                                </div>
-                                <br/>
-                                <div class="custom-select container align-center" style={{width: "50%", marginTop: "50px", height: "10%"}}>
-                
-                                    <select onChange={(e) => this.handleChange('program_template_id', e)}>
+                                    <select onChange={(e) => this.handleChange('program_template_id', e)} style={{width: "100%"}}>
                                         {optionsProgram}
                                     </select>
                                 </div>
-                
-                                <br/><br/><br/>
+                                <br/>
+                                <div>
                                 <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color: "#FFFFFF"}}>Starting date</label>
                                 <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width: "50%"}}/>
-                                <br/><br/>
-                                <a class="align-center col-md-6 btn btn-orange-outline" style={{color: "#FFFFFF", backgroundColor: "#C4643B"}} onClick = {this.handleSubmit}>ASSIGN</a>
+                            </div>
+                            <br/>
+                                <a class="col-md-6 btn btn-orange-outline" style={{color: "#FFFFFF", backgroundColor: "#C4643B"}} onClick = {this.handleSubmit}>ASSIGN</a>
                                 <div class="align-right">
                                     <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                         <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
                                         Back
                                     </button>
                                 </div>
-                            </div>
+                                </div>
                 
                         </section>
                         <script src="assets/web/assets/jquery/jquery.min.js"></script>

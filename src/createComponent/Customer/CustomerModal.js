@@ -95,11 +95,10 @@ class CustomerModal extends Component {
 
     showSpinner = () => {
         this.setState({ open: true});
-  
     }
 
     handleClickAssignProgram = () => {
-        this.props.history.push('/assignPtoC');
+        this.props.history.push('/AssignPtoC');
     }
 
     handleClickBack = () => {
@@ -142,20 +141,43 @@ class CustomerModal extends Component {
     // const { className, message, onClose, variant, ...other } = this.props;
     //    const Icon = variantIcon[variant];
         console.log(open);
-        if (customers)
+        if (customers){
+          
             return (
+              
 
-<body>
+<body onload="">
   <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>  
     <div class="container">
-        <div class="row">
-            
-            <div class="title pb-5 col-12">
-                <h2 class="align-left mbr-fonts-style m-0 display-1">
+        <div class="media-container-row">
+            <div class="title" style={{width: "50%"}}>
+                <h2 class="mbr-fonts-style m-0 display-1 text-center">
                 {customers.first_name} {customers.last_name}
                 </h2>
-                
             </div>
+            <div class="table-wrapper" style={{width: "50%"}}>
+            <div class="container scroll">
+                                    <table class="table">
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Age</td>
+                                            <td>{((new Date()).getFullYear()-(new Date(customers.dob)).getFullYear())}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Gender</td>
+                                            <td>{customers.gender}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Goal</td>
+                                            <td>{customers.goal}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Availability</td>
+                                            <td>{customers.availability}</td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                </div>
+                                </div>
             
             {program ?
                 <div class="card px-3 col-12">
@@ -175,76 +197,32 @@ class CustomerModal extends Component {
                                 </p>
                             </div>
                             <br />
+                            {program.sessions.map(session=>
                             <details>
-                            <summary>Sessions and Exercises</summary>
+    <summary>{session.name+ "   "+session.session_status}</summary>
                             <div class="card px-3 col-12">
                                 <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                {program.sessions.map(session=>
-                                    <div> <br />
-                                       <h4 class="card-title mbr-fonts-style display-5"> {session.name}</h4>
-                                       <br />
+                                    <div>
                                         {session.exercises.map(exercise=>
                                             <div>
                                                 {exercise.name}
-                                            </div>)}
-                                    </div>)}
+                                        </div>)}
+                                    </div>
                                 </p>
                             </div>
-                            </details>
+                            </details>)}
                         </div>
                     </div>
                 </div>
                 : null}
-       
-        </div>
-        
-        <div>
-            
-             
-            <Snackbar
-              anchorOrigin={{
-                vertical: 'center',
-                horizontal: 'center',
-              }}
-              open={this.state.open}
-              autoHideDuration={6000}
-              onClose={this.handleClose}
-            >
-            {/* <MySnackbarContentWrapper
-              variant="info"
-              className={classes.margin}
-              message="The customer does not have an active Program!"
-            /> */}
-
-            <SnackbarContent
-              className={clsx(classes["warning"], className)}
-              aria-describedby="client-snackbar"
-              variant="warning" 
-              message={
-              <span id="client-snackbar" className={classes.message}>
-                  <Icon className={clsx(classes.icon, classes.iconVariant)} />
-                  Customer doesn't have an active program
-              </span>
-              }
-              action={[
-              <IconButton key="close" aria-label="close" color="inherit" onClick={this.handleClose}>
-                  <CloseIcon className={classes.icon} />
-              </IconButton>,
-              ]}
-          />
-                        
-          </Snackbar>
-          { !program ? 
-          <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickAssignProgram}> Assign Program</button>  
-          : null}  
-          </div>
           <div class="align-right">
           <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
           </div>
     </div>
 </section>
-
+    
   <section class="engine"><a href="https://mobirise.info/y">html site templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="sort.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
@@ -253,7 +231,7 @@ class CustomerModal extends Component {
   
   
 </body>
-        )
+        )}
         else
             return null;
     }
