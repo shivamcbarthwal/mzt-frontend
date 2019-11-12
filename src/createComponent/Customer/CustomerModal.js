@@ -24,7 +24,7 @@ import Spinner from './Spinner';
 // import './assets/theme/css/style.css';
 // import './assets/mobirise/css/mbr-additional.css';
 // import './assets/mobirise/css/mbr-additional.css';
-
+import 'semantic-ui-css/semantic.min.css';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -146,7 +146,7 @@ class CustomerModal extends Component {
             return (
               
 
-<body onload="">
+<body>
   <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>  
     <div class="container">
         <div class="media-container-row">
@@ -155,27 +155,25 @@ class CustomerModal extends Component {
                 {customers.first_name} {customers.last_name}
                 </h2>
             </div>
-            <div class="table-wrapper" style={{width: "50%"}}>
-            <div class="container scroll">
+            <div style={{width: "50%"}}>
                                     <table class="table">
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Age</td>
-                                            <td>{((new Date()).getFullYear()-(new Date(customers.dob)).getFullYear())}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Gender</td>
-                                            <td>{customers.gender}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Goal</td>
-                                            <td>{customers.goal}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Availability</td>
-                                            <td>{customers.availability}</td>
-                                        </tr>
+                                        <thead>
+                                            <tr>
+                                                <th>Age</th>
+                                                <th>Gender</th>
+                                                <th>Goal</th>
+                                                <th>Availability</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{((new Date()).getFullYear()-(new Date(customers.dob)).getFullYear())}</td>
+                                                <td>{customers.gender}</td>
+                                                <td>{customers.goal}</td>
+                                                <td>{customers.availability}</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
-                                    </div>
                                 </div>
                                 </div>
             
@@ -199,7 +197,10 @@ class CustomerModal extends Component {
                             <br />
                             {program.sessions.map(session=>
                             <details>
-    <summary>{session.name+ "   "+session.session_status}</summary>
+    <summary class="media-container-row">
+        <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
+        <div class="align-right display-6" style={{width:'50%'}}>{session.session_status}</div>
+        </summary>
                             <div class="card px-3 col-12">
                                 <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
                                     <div>
