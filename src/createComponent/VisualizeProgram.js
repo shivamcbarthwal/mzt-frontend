@@ -36,8 +36,8 @@ class visualizeProgram extends Component {
         this.state.programs.map((program) => {
             optionsProgram.push(
                     <div class="card col-12 pb-5" >
-                        <div class="card-wrapper media-container-row media-container-row" >
-                            <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
+                        <div class="card-wrapper media-container-row" >
+                            <div class="card-box" style={{backgroundColor: "#2b2b2b"}} >
                                 <div class="row">
                                     <div class="col-12 col-md-2">
                     

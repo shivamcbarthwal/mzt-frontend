@@ -12,6 +12,7 @@ import '../assets2/mobirise/css/mbr-additional.css'
 import '../assets2/mobirise/css/mbr-additional.css'
 import Background from '../assets/images/bk_hp.jpg';
 
+
 var Logo = require('../assets2/images/logo-mzt.png');
 
 
@@ -23,7 +24,7 @@ class dashboard extends React.Component {
 
     render() {
         return (
-                <body>
+                <body onLoad="startTime()">
                     <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
                         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
                             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +37,19 @@ class dashboard extends React.Component {
                             </button>
                             <div class="menu-logo">
                                 <div class="navbar-brand">
-                                    <span class="navbar-logo">
-                                        <a href="https://mobirise.com">
+                                    <span class="navbar-logo" href="homepage">
+                                        <a href="homepage">
                                             <img src= {Logo}/>
                                         </a>
                                     </span>
-                                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="/Homepage">
+                                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="Homepage">
                                             MZT FITNESS</a></span>
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="/Homepage">
+                                        <a class="nav-link link text-white display-4" href="Homepage">
                                             <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                                             Home page
                                         </a>
@@ -74,10 +75,15 @@ class dashboard extends React.Component {
                 
                         </div>
                 
-                        <div class="container align-center">
-                            <div class="mbr-white centerize">
-                                <p class="">Dash Board</p>
+                        <div class=" align-center">
+                            
+                            <div class="card-box" style={{backgroundColor: "#FFFFFF", width:"50%", height:"200px"}}>
+                                <div class="card-body"> 
+                                <h5 class="card-title">Dikson Indicator graph</h5>  
+                                    <p>GRAPH</p>
+                                </div> 
                             </div>
+
                             <div class="align-right">
                                 <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                     <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
