@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -12,148 +11,128 @@ import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/PtoC-bk.jpg';
 
-
 class AssignPtoC extends React.Component {
-    
     state = {
         programsT: [],
-        customer:{},
+        customer: {},
         program: {
             program_template_id: "",
             customer_id: this.props.match.params.custId,
             coach_id: "5dc2f70414b9e52a30d6620e"//get coach
         }
     }
-    /////Get Customers and Programmes templates
+    // Get Customers and Programmes templates
     componentDidMount() {
         axios.get('http://localhost:8080/customer/getCustomerById/'+this.props.match.params.custId)
-                .then(res => {
-                    const customer = res.data;
-                    this.setState({customer});
-                }
-                )
+        .then(res => {
+            const customer = res.data;
+            this.setState({customer});
+        });
         axios.get('http://localhost:8080/programTemplate/getAllProgramTemps')
-                .then(res => {
-                    const programsT = res.data;
-                    this.setState({programsT});
-                }
-                )
-    }
-
+        .then(res => {
+            const programsT = res.data;
+            this.setState({programsT});
+        });
+    };
+    // Back to the previous page
     handleClickBack = () => {
         window.history.back();
-    }
-
+    };
     // Input Change Handler method to take form inputs
     handleChange = (name, event) => {
-        console.log(this.state.exercise);
-        this.setState({program: {
-                ...this.state.program,
-                [name]: event.target.value,
-            }});
-        console.log(event.target);
+        this.setState({
+                program: {
+                    ...this.state.program,
+                    [name]: event.target.value
+                }
+            });
+    };
+    // Submit the data to backend 
+    handleSubmit = async event => {
+        const {program} = this.state;
+        const response = await fetch(`http://localhost:8080/program/assignProgramTemplate`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(program) // body data type must match "Content-Type" header
+        });
+        window.location.href='/CustomersDetail/'+this.props.match.params.custId;
+        return await response.json; // parses JSON response into native JavaScript objects
     }
-    ;
-            handleSubmit = async event => {
-                console.log('Testing');
-                const {program} = this.state;
-                const response = await fetch(`http://localhost:8080/program/assignProgramTemplate`, {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                                // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: JSON.stringify(program) // body data type must match "Content-Type" header
-                });
-                window.location.href='/CustomersDetail/'+this.props.match.params.custId;
-                return await response.json; // parses JSON response into native JavaScript objects
-
-            }
-
     render() {
         var optionsProgram = [];
         this.state.programsT.map((Program) => {
             optionsProgram.push(
-                    <option label={Program.title} >
-                        {Program._id}
-                    </option>
-                    )
+                <option label={Program.title}>
+                    {Program._id}
+                </option>
+            );
         });
         var cust = this.state.customer;
         return (
-                <div>
-                    <body>
-                
-                
-                        <section class="mbr-fullscreen centerize align-center" style={{backgroundImage: `url(${Background})`}}>
-                
-                            <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
-                            
-                            <div class="container align-center media-container-colomn">
-        <h2 class="mbr-bold mbr-white display-2">Assign a Program to {cust.first_name + " "+cust.last_name}</h2> 
-        <br/>
-        <div class="table-wrapper">
-        <div class="container scroll mbr-white display-4" style={{width: "50%"}}>
-                                    <table class="table">
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Age</td>
-                                            <td>{((new Date()).getFullYear()-(new Date(cust.dob)).getFullYear())}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Gender</td>
-                                            <td>{cust.gender}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Goal</td>
-                                            <td>{cust.goal}</td>
-                                        </tr>
-                                        <tr class="body-item mbr-fonts-style display-7">
-                                            <td>Availability</td>
-                                            <td>{cust.availability}</td>
-                                        </tr>
-                                    </table>
-                                    
-                                </div>
-                                </div>
-                                <br/>
-                                <div class="custom-select container" style={{width: "50%"}}>
-                
-                                    <select onChange={(e) => this.handleChange('program_template_id', e)} style={{width: "100%"}}>
-                                        {optionsProgram}
-                                    </select>
-                                </div>
-                                <br/>
-                                <div>
-                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color: "#FFFFFF"}}>Starting date</label>
-                                <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width: "50%"}}/>
+            <body>
+                <section class="mbr-fullscreen centerize align-center" style={{backgroundImage: `url(${Background})`}}>
+                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                    <div class="container align-center media-container-colomn">
+                        <h2 class="mbr-bold mbr-white display-2">Assign a Program to {cust.first_name + " "+cust.last_name}</h2> 
+                        <br/>
+                        <div class="table-wrapper">
+                            <div class="container scroll mbr-white display-4" style={{width: "50%"}}>
+                                <table class="table">
+                                    <tr class="body-item mbr-fonts-style display-7">
+                                        <td>Age</td>
+                                        <td>{((new Date()).getFullYear()-(new Date(cust.dob)).getFullYear())}</td>
+                                    </tr>
+                                    <tr class="body-item mbr-fonts-style display-7">
+                                        <td>Gender</td>
+                                        <td>{cust.gender}</td>
+                                    </tr>
+                                    <tr class="body-item mbr-fonts-style display-7">
+                                        <td>Goal</td>
+                                        <td>{cust.goal}</td>
+                                    </tr>
+                                    <tr class="body-item mbr-fonts-style display-7">
+                                        <td>Availability</td>
+                                        <td>{cust.availability}</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <br/>
-                                <a class="col-md-6 btn btn-orange-outline" style={{color: "#FFFFFF", backgroundColor: "#C4643B"}} onClick = {this.handleSubmit}>ASSIGN</a>
-                                <div class="align-right">
-                                    <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
-                                        <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                        Back
-                                    </button>
-                                </div>
-                                </div>
-                
-                        </section>
-                        <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                        <script src="assets/popper/popper.min.js"></script>
-                        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                        <script src="assets/tether/tether.min.js"></script>
-                        <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                        <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                        <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                        <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                        <script src="assets/theme/js/script.js"></script>
-                
-                
-                    </body>
-                </div>
-                );
-    }
-}
+                        </div>
+                        <br/>
+                        <div class="custom-select container" style={{width: "50%"}}>
+                            <select onChange={(e) => this.handleChange('program_template_id', e)} style={{width: "100%"}}>
+                                {optionsProgram}
+                            </select>
+                        </div>
+                        <br/>
+                        <div>
+                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color: "#FFFFFF"}}>Starting date</label>
+                            <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width: "50%"}}/>
+                        </div>
+                        <br/>
+                        <a class="col-md-6 btn btn-orange-outline" style={{color: "#FFFFFF", backgroundColor: "#C4643B"}} onClick = {this.handleSubmit}>ASSIGN</a>
+                        <div class="align-right">
+                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
+                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <script src="assets/web/assets/jquery/jquery.min.js"></script>
+                <script src="assets/popper/popper.min.js"></script>
+                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+                <script src="assets/tether/tether.min.js"></script>
+                <script src="assets/smoothscroll/smooth-scroll.js"></script>
+                <script src="assets/dropdown/js/nav-dropdown.js"></script>
+                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+                <script src="assets/theme/js/script.js"></script>
+            </body>
+        );
+    };
+};
 
 export default AssignPtoC;
