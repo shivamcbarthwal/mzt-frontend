@@ -30,15 +30,7 @@ class visualizeProgram extends Component {
         var optionsProgram = [];
         this.state.programs.map((program) => {
             optionsProgram.push(
-                    <div class="card col-12 pb-5" >
-                        <div class="card-wrapper media-container-row" >
-                            <div class="card-box" style={{backgroundColor: "#2b2b2b"}} >
-                                <div class="row">
-                                    <div class="col-12 col-md-2">
                     
-                                        <div class="mbr-figure">
-                                            <img src="https://i.imgur.com/kYd3Yuk.png" alt="Mobirise" title="" />
-                                        </div>
                 <div class="card col-12 pb-5" >
                     <div class="card-wrapper media-container-row media-container-row" >
                         <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
@@ -84,7 +76,11 @@ class visualizeProgram extends Component {
                         {optionsProgram}
                     </div>
                     <div class="align-right">
-                        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
+                        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
+                            <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn">
+                            </span> 
+                            Back
+                        </button>
                     </div>
                 </section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>

@@ -20,8 +20,8 @@ class dashboard extends React.Component {
     }
     render() {
         return (
-                <body>
-                    <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
+            <body>
+                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
                         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
                             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <div class="hamburger">
@@ -39,11 +39,12 @@ class dashboard extends React.Component {
                                         </a>
                                     </span>
                                     <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="Homepage">
-                                            MZT FITNESS</a></span>
+                                            MZT FITNESS</a>
+                                    </span>
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                                     <li class="nav-item">
                                         <a class="nav-link link text-white display-4" href="Homepage">
                                             <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
@@ -63,16 +64,17 @@ class dashboard extends React.Component {
                                         </a>
                                     </li>
                                 </ul>
-                        </div>
+                             </div>
                       </nav>
                 </section>
                       
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
-                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
-                    <div class="container align-center">
-                        <div class="mbr-white centerize">
-                            <p class="">Dash Board</p>
-                        </div>
+                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
+                    </div>
+                    <div class="container ">
+                        
+
+    
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
