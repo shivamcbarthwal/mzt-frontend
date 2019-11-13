@@ -48,8 +48,8 @@ export default class Customer extends Component {
     render() {
         this.handleSort('status');
         var optionsCustomer = [];
-        const { column, customers, direction } = this.state;
-        customers.map((Customer) => {
+        const { column, direction } = this.state;
+        this.state.customers.map((Customer) => {
             if(Customer.status=="NONE"){
                 optionsCustomer.push(
                     <Table.Row>
@@ -125,5 +125,3 @@ export default class Customer extends Component {
         )
     }
 }
-
-export default Customer;
