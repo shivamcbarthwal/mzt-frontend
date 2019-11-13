@@ -37,7 +37,7 @@ class dashboard extends React.Component {
                             <div class="menu-logo">
                                 <div class="navbar-brand">
                                     <span class="navbar-logo">
-                                        <a href="https://mobirise.com">
+                                        <a>
                                             <img src= {Logo}/>
                                         </a>
                                     </span>
@@ -60,7 +60,7 @@ class dashboard extends React.Component {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="https://mobirise.com">
+                                        <a class="nav-link link text-white display-4" >
                                             <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                                             About Us
                                         </a>
@@ -70,10 +70,7 @@ class dashboard extends React.Component {
                         </nav>
                     </section>
                     <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
-                        <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
-                
-                        </div>
-                
+                        <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}></div>
                         <div class="container align-center">
                             <div class="mbr-white centerize">
                                 <p class="">Dash Board</p>
