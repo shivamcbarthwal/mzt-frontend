@@ -78,12 +78,12 @@ class listOfSessions extends React.Component {
               <div class="menu-logo">
                   <div class="navbar-brand">
                       <span class="navbar-logo">
-                          <a href="https://mobirise.com">
+                          <a href="homepage">
                               <img src={Logo} alt="Mobirise" title="" />
                           </a>
                       </span>
                       <span class="navbar-caption-wrap">
-                          <a class="navbar-caption text-white display-4" href="homepage.html">
+                          <a class="navbar-caption text-white display-4" href="homepage">
                               MZT FITNESS
                           </a>
                       </span>
