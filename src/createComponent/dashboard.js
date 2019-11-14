@@ -162,7 +162,15 @@ class dashboard extends React.Component {
 
             </div>
                     </div>
-                    
+                    <br/><br/>
+                    <div style={{opacity: 0,display:"inline-block"}} >
+                            <h1>SPACESP</h1>
+                    </div>
+                    <div class="card-box " style={{backgroundColor: "#FFFFFF",display:"inline-block", width: "500px",height:"150px"}} >
+                            <div class="row">
+                                        <h1 style={{marginLeft:"15px"}}>Reward section (Challenges)</h1>
+                            </div>
+                    </div>
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
