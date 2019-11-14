@@ -82,13 +82,12 @@ class Homepage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/notification/checkNotification`,
+        axios.get(`http://localhost:8080/notification/checkAllNotification`,
         {
             params: {
                 notify_for: "CUSTOMER",
                 customer_id: customer_Id,
-                coach_id: "5dc2f70414b9e52a30d6620e",
-                notify_type: "PROGRAM_ASSIGNED"
+                coach_id: "5dc2f70414b9e52a30d6620e"
             }
         })
         .then(res => {
