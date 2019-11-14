@@ -6,6 +6,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import PropTypes from 'prop-types';
 // import Button from '@material-ui/core/Button';
 import { SnackbarProvider, withSnackbar } from 'notistack';
+
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
@@ -51,7 +52,7 @@ const styles = theme => ({
       opacity: 0.9,
       marginRight: theme.spacing(1),
     },
-    message: {
+    msg: {
       display: 'flex',
       alignItems: 'center',
     },
@@ -75,7 +76,9 @@ class Homepage extends React.Component {
             //     message: `A new focus session has been validated`
             // }
         ],
-        open: false
+        open: false,
+        vertical: 'top',
+        horizontal: 'right'
     }
 
     componentDidMount() {
@@ -96,9 +99,10 @@ class Homepage extends React.Component {
 
     
     handleClickNotif = () => {
-        const { notifications } = this.state;
+        const { notifications, vertical, horizontal } = this.state;
         notifications.forEach(notification =>
             setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200));
+            
     };
 
     handleClose = () => {
