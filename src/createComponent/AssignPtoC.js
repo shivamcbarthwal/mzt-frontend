@@ -100,18 +100,18 @@ class AssignPtoC extends React.Component {
                                 </table>
                             </div>
                         </div>
-                        <br/>
+                        <div><br/></div>
                         <div class="custom-select container" style={{width: "50%"}}>
                             <select onChange={(e) => this.handleChange('program_template_id', e)} style={{width: "100%"}}>
                                 {optionsProgram}
                             </select>
                         </div>
-                        <br/>
+                        <div><br/></div>
                         <div>
                             <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7" style={{color: "#FFFFFF"}}>Starting date</label>
                             <input type="date" name="date" data-form-field="Starting Date" required="required" class="form-control display-7 centerize" id="name-form1-5" style={{width: "50%"}}/>
                         </div>
-                        <br/>
+                        <div><br/></div>
                         <a class="col-md-6 btn btn-orange-outline" style={{color: "#FFFFFF", backgroundColor: "#C4643B"}} onClick = {this.handleSubmit}>ASSIGN</a>
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
