@@ -17,7 +17,7 @@ var Logo = require('../../assets2/images/logo-mzt.png');
 
 class dashboard extends React.Component {
     state = {
-        customer:'5da86562f964d02c2c679155',
+        customer:'5dc53fb7717676384459fe63',
         programs: []
     };
     
@@ -25,7 +25,7 @@ class dashboard extends React.Component {
         this.props.history.push('/Homepage');
     }
     componentDidMount(){
-    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
+    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5dc53fb7717676384459fe63`)
         .then(res => {
             const programs = res.data;
             console.log(programs);
