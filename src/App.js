@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { SnackbarProvider } from 'notistack';
 import logo from './logo.svg';
 import './App.css';
 import ExerciseCreate from './createComponent/ExerciseCreate.js'
@@ -27,32 +28,34 @@ import AssignStoP from './createComponent/AssignStoP';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-          <Route path="/exerciseCreate" component={ExerciseCreate} />
-          <Route path="/visualizeExercise" component={visualizeExercise} />
-          <Route path="/sessionCreate" component={SessionCreate} />
-          <Route path="/visualizeSession" component={visualizeSession} />
-          <Route path="/editSession" component={editSession} />
-          <Route path="/homepage" component={Homepage} />
-          <Route path="/dashboard" component={dashboard} />
-          <Route path="/workout" component={workout} />
-          <Route path="/assignPtoC/:custId" component={assignPtoC} />
-          <Route exact path="/" component={CoachHome} />
-          <Route path="/ProgramTemplates" component={ProgramTemplates} />
-          <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
-          <Route path="/focusSessionForm" component={focusSessionForm} />
-          <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
-          <Route path="/focusSessionResult" component={focusSessionResult} />
-          <Route path="/visualizeProgram" component={visualizeProgram} />
-          <Route path="/customerList" component={Customer} />
-          <Route path="/focusSessionStartExercise/:sessionID" component={focusSessionStartExercise} />
-          <Route path="/listOfSessions" component={listOfSessions} />
-          <Route path="/createProgramT" component={createProgramT} />
-          <Route path="/AssignEtoS" component={AssignEtoS} />
-          <Route path="/AssignStoP" component={AssignStoP} />
-      </Router>
-    </div>
+    <SnackbarProvider maxSnack={3}>
+      <div className="App">
+        <Router>
+            <Route path="/exerciseCreate" component={ExerciseCreate} />
+            <Route path="/visualizeExercise" component={visualizeExercise} />
+            <Route path="/sessionCreate" component={SessionCreate} />
+            <Route path="/visualizeSession" component={visualizeSession} />
+            <Route path="/editSession" component={editSession} />
+            <Route path="/homepage" component={Homepage} />
+            <Route path="/dashboard" component={dashboard} />
+            <Route path="/workout" component={workout} />
+            <Route path="/assignPtoC/:custId" component={assignPtoC} />
+            <Route exact path="/" component={CoachHome} />
+            <Route path="/ProgramTemplates" component={ProgramTemplates} />
+            <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
+            <Route path="/focusSessionForm" component={focusSessionForm} />
+            <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
+            <Route path="/focusSessionResult" component={focusSessionResult} />
+            <Route path="/visualizeProgram" component={visualizeProgram} />
+            <Route path="/customerList" component={Customer} />
+            <Route path="/focusSessionStartExercise/:sessionID" component={focusSessionStartExercise} />
+            <Route path="/listOfSessions" component={listOfSessions} />
+            <Route path="/createProgramT" component={createProgramT} />
+            <Route path="/AssignEtoS" component={AssignEtoS} />
+            <Route path="/AssignStoP" component={AssignStoP} />
+        </Router>
+      </div>
+    </SnackbarProvider>
   );
 }
 
