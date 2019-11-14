@@ -15,10 +15,35 @@ import Background from '../assets/images/bk_hp.jpg';
 var Logo = require('../assets2/images/logo-mzt.png');
 
 class dashboard extends React.Component {
+
+    state = {
+        sessions: []
+    };
+    
+    componentDidMount() {
+        axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
+        .then(res => {
+            const sessions = res.data;
+            this.setState({sessions});
+        });
+    };
     handleClickBack = () => {
         this.props.history.push('/Homepage');
     }
+
+
     render() {
+        const {sessions} = this.state.sessions;
+        var optionsSession = [];
+        this.state.sessions.map((sessionId) => {
+            optionsSession.push(
+                <div class="card" style={{backgroundColor: "#FFFFFF", height:"200px", width:"80px"}}>
+                <p>sessionId.name</p>
+            </div>
+            );
+        });
+
+
         return (
             <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
@@ -73,6 +98,36 @@ class dashboard extends React.Component {
                     </div>
                     <div class="container ">
                         
+
+
+                    
+                    <div class="card-box col-4 " style={{backgroundColor: "#FFFFFF",display:"inline-block", height:"300px"}} >
+                            <div class="row">
+                                        <h1>Graph indicator</h1>
+                            </div>
+                    </div>
+                    <div style={{opacity: 0,display:"inline-block"}} >
+                            <h1>SPACESP</h1>
+                    </div>
+                    <div class="card-box col-3" style={{backgroundColor: "#2C2C2C",display:"inline-block"}} >
+                            <div class="row">
+                                <h1 style={{color:"#FFFFFF"}}>Details</h1>
+                                <h4 style={{color:"#FFFFFF"}}> personnal details of the customer</h4>
+                                
+                                {optionsSession}
+                                <div class="card" style={{opacity:"0"}}>
+                                    <p>Spa</p>
+                                </div>
+                                <div class="card" style={{backgroundColor: "#FFFFFF", height:"200px",width:"80px"}}>
+                                    <p>Session2</p>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    
+
+
+
 
     
                         <div class="align-right">
