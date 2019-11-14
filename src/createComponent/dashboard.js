@@ -10,15 +10,68 @@ import '../assets2/dropdown/css/style.css';
 import '../assets2/theme/css/style.css';
 import '../assets2/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/bk_hp.jpg';
-
-
+import CanvasJSReact from '../assets/canvas/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var Logo = require('../assets2/images/logo-mzt.png');
 
 class dashboard extends React.Component {
+    state = {
+        exerciseN: 1,
+        measurements: [],
+        dickson: []
+      }
     handleClickBack = () => {
         this.props.history.push('/Homepage');
     }
+    componentDidMount(){
+        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+        {
+            params: {
+                "customer_id":"5dc541fb717676384459fe66",
+                "program_id":"5dcbe4cfdeb2027f66d2c4c8"
+            }
+        })
+        .then(res => {
+            const measurements = res.data;
+            console.log("request",res.data);
+            this.setState({ measurements });
+          }
+        )
+     }
     render() {
+        const {measurements} = this.state;
+        var measurementsData = [];
+        if(measurements){
+            for (let i = 0; i < measurements.length; i++){
+                measurementsData.push({ x: i+1, y: measurements[i].dickson_metric});
+            }
+        }
+        console.log("data ",measurementsData);
+        const options = {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "dark1", // "light1", "dark1", "dark2"
+            title:{
+                text: "Dickson Indicator by Week of Focus Session"
+            },
+            axisY: {
+                title: "Dickson Indicator",
+                includeZero: false,
+                suffix: "%",
+                interval: 0.25
+            },
+            axisX: {
+                title: "Week of Focus Session",
+                prefix: "W",
+                interval: 1
+            },
+            data: [{
+                type: "line",
+                toolTipContent: "Week {x}: {y}%",
+                dataPoints: measurementsData
+            }]
+        }
+        console.log(options)
         return (
             <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
@@ -71,10 +124,13 @@ class dashboard extends React.Component {
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
                     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
                     </div>
-                    <div class="container ">
-                        
-
-    
+                    <div class="container">
+                        <div class="col-6 ">
+                        <CanvasJSChart options = {options} 
+                            /* onRef={ref => this.chart = ref} */
+                        />
+                        {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+                        </div>
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>

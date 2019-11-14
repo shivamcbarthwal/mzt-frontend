@@ -18,7 +18,7 @@ class Homepage extends React.Component {
                         <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
                         <div class="container align-center">
                             <div class="mbr-white centerize">
-                                <a class="btn btn-white-outline" href="listOfSessions">WORKOUT</a> 
+                                <a class="btn btn-white-outline" href="listOfPrograms">WORKOUT</a> 
                                 <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
                                 <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
                             </div>

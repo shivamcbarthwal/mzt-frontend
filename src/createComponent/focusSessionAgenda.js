@@ -10,9 +10,7 @@ import '../assets2/dropdown/css/style.css'
 import '../assets2/theme/css/style.css'
 import '../assets2/mobirise/css/mbr-additional.css'
 import '../assets2/mobirise/css/mbr-additional.css'
-import { throwStatement } from '@babel/types';
 var Logo = require('../assets2/images/logo-mzt.png');
-const cust_id = '5db84e5b006e1f170c40bd7d'
 
 class focusSessionAgenda extends React.Component {
     state = {
@@ -37,31 +35,36 @@ class focusSessionAgenda extends React.Component {
         console.log("Query", this.props.location);
         const index = Number(this.props.location.search.slice(1).split("=")[1]);
         console.log("Index", index);
-        axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
+        axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
             .then(res => {
-                const program = res.data[0];
+                const program = res.data;
                 const focus = this.state;
-                this.setState({exercises: program.sessions[index].exercises});
                 console.log("prog",program);
+                this.setState({exercises: program.sessions[index].exercises});
                 if (program.sessions[index].type === 'Weight loss'){
                     this.setState({focus: true});
                 }
                 console.log("focus",focus)
             }
         )
-        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById/${cust_id}`)
-            .then(res => {
-                const measurements = res.data;
-                console.log(res.data);
-                this.setState({measurements});
+        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+        {
+            params: {
+                "customer_id":"5dc541fb717676384459fe66",
+                "program_id":"5dcbe4cfdeb2027f66d2c4c8"
             }
+        })
+        .then(res => {
+            const measurements = res.data;
+            console.log(res.data);
+            this.setState({measurements});
+        }
         )
     }
 
     handleChange = (name, event) => {
         console.log(this.state.heartRates);
-        this.setState({
-            heartRates: {
+        this.setState({heartRates: {
                 ...this.state.heartRates,
                 [name]: event.target.value
 
@@ -129,55 +132,59 @@ class focusSessionAgenda extends React.Component {
         
 
         return (
-            <body>
-                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
-                    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <div class="hamburger">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                <body>
+                    <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
+                        <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <div class="hamburger">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </button>
+                            <div class="menu-logo">
+                                <div class="navbar-brand">
+                                    <span class="navbar-logo">
+                                        <a href="https://mobirise.com">
+                                            <img src={Logo} alt="Mobirise" title="" />
+                                        </a>
+                                    </span>
+                                    <span class="navbar-caption-wrap">
+                                        <a class="navbar-caption text-white display-4" href="homepage.html">
+                                            MZT FITNESS
+                                        </a>
+                                    </span>
+                                </div>
                             </div>
-                        </button>
-                        <div class="menu-logo">
-                            <div class="navbar-brand">
-                                <span class="navbar-logo">
-                                    <a href="https://mobirise.com">
-                                        <img src={Logo} alt="Mobirise" title="" />
-                                    </a>
-                                </span>
-                                <span class="navbar-caption-wrap">
-                          <a class="navbar-caption text-white display-4" href="homepage.html">
-                              MZT FITNESS
-                          </a>
-                      </span>
-                  </div>
-              </div>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                      <li class="nav-item">
-                          <a class="nav-link link text-white display-4" href="homepage.html">
-                              <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                              Home page
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link link text-white display-4" href="community_page.html">
-                              <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                              Community
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link link text-white display-4" href="https://mobirise.com">
-                              <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                              About Us
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </nav>
-      
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" href="homepage.html">
+                                            <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                            Home page
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" href="community_page.html">
+                                            <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                            Community
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" href="https://mobirise.com">
+                                            <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                            About Us
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </section>
+                
+                    <section class="header9 cid-rFCsMVPnbl mbr-fullscreen mbr-parallax-background" id="header9-e">
+                        <div class="mbr-overlay" style={{opacity: 0.8}}>
+                        </div>
                 
                         <div class="container">
                             <div class="mbr-white col-lg-8 col-md-12">
@@ -245,6 +252,7 @@ class focusSessionAgenda extends React.Component {
                                     </div>
                                     </div>)
                                     }
+                                </form>
                                 <h3 class="mbr-section align-left mbr-light pb-3 mbr-fonts-style display-6">
                                     <br /> Performance
                                 </h3>
@@ -257,40 +265,26 @@ class focusSessionAgenda extends React.Component {
                                     </ul>
                                 </div>
                                 <div class="mbr-section-btn align-left">
-                                    <a class="btn btn-md btn-primary btn-lg display-4" href="" onClick={this.handleSubmit}>Let's Get Started!</a>
+                                    <a class="btn btn-md btn-primary btn-lg display-4"  onClick={this.handleSubmit}>Let's Get Started!</a>
                                 </div>
-                            </form>
-                            <h3 class="mbr-section align-left mbr-light pb-3 mbr-fonts-style display-6">
-                                <br/> Performance
-                            </h3>
-                            <div class="mbr-section mbr-text-challenge counter-container col-12 col-md-12 display-5" style={{color: "#cccccc"}}>
-                                <h4 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-5">
-                                    You have 4 exercises today. <br />You don't need any material. <br />Do as much as you can for each exercise!
-                                </h4>
-                                <ul>
-                                    {optionsExercise}
-                                </ul>
-                            </div>
-                            <div class="mbr-section-btn align-left">
-                                <a class="btn btn-md btn-primary btn-lg display-4" href="focus_session_start_exercise.html" onClick={this.handleSubmit}>Let's Get Started!</a>
-                                <a class="btn btn-md btn-secondary display-4" href="homepage.html">Back</a>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                <script src="assets/parallax/jarallax.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>
-            </body>
-        );
-    };
-};
+                    </section>
+                
+                    <script src="assets/web/assets/jquery/jquery.min.js"></script>
+                    <script src="assets/popper/popper.min.js"></script>
+                    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+                    <script src="assets/tether/tether.min.js"></script>
+                    <script src="assets/smoothscroll/smooth-scroll.js"></script>
+                    <script src="assets/dropdown/js/nav-dropdown.js"></script>
+                    <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+                    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+                    <script src="assets/parallax/jarallax.min.js"></script>
+                    <script src="assets/theme/js/script.js"></script>
+                
+                </body>
+                );
+    }
+}
 
 export default focusSessionAgenda;

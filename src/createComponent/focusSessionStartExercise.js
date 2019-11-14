@@ -48,7 +48,7 @@ class focusSessionStartExercise extends React.Component {
       console.log("Query", this.props.location);
       const index = Number(this.props.location.search.slice(1).split("=")[1]);
       console.log("Index", index);
-      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.sessionID}`)
         .then(res => {
             const program = res.data;
             this.setState({exercises: program.sessions[index].exercises});
@@ -81,7 +81,7 @@ class focusSessionStartExercise extends React.Component {
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                     <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                     <span style={{marginLeft: '1em'}}>
-                                        {exercises[exerciseN].sets}
+                                        {exercises[exerciseN].sets} sets
                                     </span>
                                 </p>
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
