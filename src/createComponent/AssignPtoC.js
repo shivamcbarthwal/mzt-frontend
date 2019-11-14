@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
