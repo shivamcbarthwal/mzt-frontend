@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'semantic-ui-css/semantic.min.css';
+import { Table, Button } from 'semantic-ui-react';
+import _ from 'lodash';
 import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
@@ -13,8 +16,26 @@ import '../assets/mobirise/css/mbr-additional.css';
 
 class visualizeExercise extends Component {
     state = {
-        exercises: []
+        column: null,
+        exercises: [],
+        direction: null
     };
+    // Sort the table according to header
+    handleSort = (clickedColumn) => () => {
+        const { column, exercises, direction } = this.state;
+        if (column !== clickedColumn) {
+            this.setState({
+              column: clickedColumn,
+              exercises: _.sortBy(exercises, [clickedColumn]),
+              direction: 'ascending',
+            });
+            return;
+        }
+        this.setState({
+            exercises: exercises.reverse(),
+            direction: direction === 'ascending' ? 'descending' : 'ascending',
+        });
+    }
     handleClickBack = () => {
         this.props.history.push('/');
     };
@@ -25,54 +46,71 @@ class visualizeExercise extends Component {
             this.setState({exercises});
         });
     };
-    render() {
-        const {exercises} = this.state.exercises;
+    render() {  
+        this.handleSort('status');
         var optionsExercise = [];
-        this.state.exercises.map((exerciseId) => {
-            optionsExercise.push(
-                <div class="card col-12 pb-5" >
-                    <div class="card-wrapper media-container-row media-container-row" >
-                        <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
-                            <div class="row">
-                                <div class="col-12 col-md-2">
-                                    <div class="mbr-figure">
-                                        <img src="https://i.imgur.com/kYd3Yuk.png" alt="Mobirise" title="" />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-10">
-                                    <div class="wrapper">
-                                        <div class="top-line pb-3">
-                                            <h4 class="card-title mbr-fonts-style display-5">{exerciseId.name}</h4>
-                                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">&nbsp;</p>
-                                        </div>
-                                        <div class="bottom-line">
-                                            <p class="mbr-text mbr-fonts-style display-7">{exerciseId.description}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )
+        const { column, direction } = this.state;
+        this.state.exercises.map((Exercise) => {
+           optionsExercise.push(
+                <Table.Row>
+                    <Table.Cell><strong>{Exercise.name}</strong></Table.Cell>
+                    <Table.Cell>{Exercise.exercise_type}</Table.Cell>
+                    <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
+                    <Table.Cell>{Exercise.equipment_required}</Table.Cell>
+                    <Button primary size="small">Update</Button>
+                    <Button primary size="small">Delete</Button>
+                </Table.Row>
+            );
         });
         return (
             <body>
                 <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
-                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}} >
-                    </div>
+                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Exercises</h2> <br/>
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/ExerciseCreate' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                CREATE AN EXERCISE</a>
-                            <a class="align-center col-md-3 btn btn-orange-outline " href='/AssignEtoS' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                ASSIGN AN EXERCISE</a>
+                                NEW EXERCISE</a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
                             <input class="col-md-4" default="search" />
                         </div>
                         <br /><br/>
-                        {optionsExercise}
+                        <Table sortable celled fixed>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell
+                                      sorted={column === 'name' ? direction : null}
+                                      onClick={this.handleSort('name')}
+                                    >
+                                        NAME
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell
+                                      sorted={column == 'exercise_type' ? direction : null}
+                                      onClick={this.handleSort('exercise_type')}
+                                    >
+                                        TYPE
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell
+                                      sorted={column == 'muscles_targeted' ? direction : null}
+                                      onClick={this.handleSort('muscles_targeted')}
+                                    >
+                                        MUSCLES TARGETED
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell
+                                      sorted={column == 'equipment_required' ? direction : null}
+                                      onClick={this.handleSort('equipment_required')}
+                                    >
+                                        EQUIPEMENT REQUIRED
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell>
+                                        
+                                    </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body>
+                                {optionsExercise}
+                            </Table.Body>
+                        </Table>
                     </div>
                     <div class="align-right">
                         <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>

@@ -32,11 +32,6 @@ class visualizeSession extends Component {
                     <div class="card-wrapper media-container-row media-container-row" >
                         <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
                             <div class="row">
-                                <div class="col-12 col-md-2">
-                                    <div class="mbr-figure">
-                                        <img src="https://i.imgur.com/kYd3Yuk.png" alt="Mobirise" title="" />
-                                    </div>
-                                </div>
                                 <div class="col-12 col-md-10">
                                     <div class="wrapper">
                                         <div class="top-line pb-3">
@@ -63,10 +58,10 @@ class visualizeSession extends Component {
                         <br/>
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/SessionCreate' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                CREATE AN SESSION
+                                NEW SESSION
                             </a>
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/AssignStoP' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                ASSIGN AN SESSION
+                                ASSIGN SESSION
                             </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
                             <input class="col-md-4" default="search"/>
