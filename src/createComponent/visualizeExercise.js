@@ -57,8 +57,11 @@ class visualizeExercise extends Component {
                     <Table.Cell>{Exercise.exercise_type}</Table.Cell>
                     <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
-                    <Button primary size="small">Update</Button>
-                    <Button primary size="small">Delete</Button>
+                    <Table.Cell singleLine>
+                        <Button primary size="small">See details</Button>
+                        <Button primary size="small">Update</Button>
+                        <Button primary size="small">Delete</Button>
+                    </Table.Cell>
                 </Table.Row>
             );
         });
@@ -68,14 +71,16 @@ class visualizeExercise extends Component {
                     <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Exercises</h2> <br/>
+                            
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/ExerciseCreate' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 NEW EXERCISE</a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
                             <input class="col-md-4" default="search" />
+                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br /><br/>
-                        <Table sortable celled fixed>
+                        <Table sortable celled structured>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell
@@ -100,20 +105,18 @@ class visualizeExercise extends Component {
                                       sorted={column == 'equipment_required' ? direction : null}
                                       onClick={this.handleSort('equipment_required')}
                                     >
-                                        EQUIPEMENT REQUIRED
+                                        EQUIPEMENT
                                     </Table.HeaderCell>
                                     <Table.HeaderCell>
-                                        
+                                        OPERATIONS
                                     </Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
-                            <Table.Body>
+                            <Table.Body textAlign='center'>
                                 {optionsExercise}
                             </Table.Body>
                         </Table>
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
+                        <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
                 </section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>

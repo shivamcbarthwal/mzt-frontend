@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'semantic-ui-css/semantic.min.css';
+import { Table, Button } from 'semantic-ui-react';
+import _ from 'lodash';
 import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
@@ -14,6 +17,22 @@ class visualizeSession extends Component {
     state = {
         sessions: []
     };
+     // Sort the table according to header
+    handleSort = (clickedColumn) => () => {
+        const { column, sessions, direction } = this.state;
+        if (column !== clickedColumn) {
+            this.setState({
+              column: clickedColumn,
+              sessions: _.sortBy(sessions, [clickedColumn]),
+              direction: 'ascending',
+            });
+            return;
+        }
+        this.setState({
+            sessions: sessions.reverse(),
+            direction: direction === 'ascending' ? 'descending' : 'ascending',
+        });
+    }
     handleClickBack = () => {
         this.props.history.push('/');
     };
@@ -25,52 +44,63 @@ class visualizeSession extends Component {
         });
     };
     render() {
+        this.handleSort('status');
         var optionsSession = [];
-        this.state.sessions.map((sessionId) => {
+        const { column, direction } = this.state;
+        this.state.sessions.map((Session) => {   
             optionsSession.push(
-                <div class="card col-12 pb-5" >
-                    <div class="card-wrapper media-container-row media-container-row" >
-                        <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
-                            <div class="row">
-                                <div class="col-12 col-md-10">
-                                    <div class="wrapper">
-                                        <div class="top-line pb-3">
-                                            <h4 class="card-title mbr-fonts-style display-5">{sessionId.name}</h4>
-                                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">&nbsp;</p>
-                                        </div>
-                                        <div class="bottom-line">
-                                            <p class="mbr-text mbr-fonts-style display-7">{sessionId.session_type}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
+                <Table.Row>
+                    <Table.Cell><strong>{Session.name}</strong></Table.Cell>
+                    <Table.Cell>{Session.session_coach_notes}</Table.Cell>
+                    <Table.Cell>
+                        <Button primary size="small">See details</Button>
+                        <Button primary size="small">Update</Button>
+                        <Button primary size="small">Delete</Button>
+                    </Table.Cell>
+                </Table.Row>
+            );        
         });
         return (
             <body>
                 <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
                     <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
                     <div class="container">
-                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Session Templates</h2>
+                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Sessions</h2>
                         <br/>
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/SessionCreate' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 NEW SESSION
                             </a>
-                            <a class="align-center col-md-3 btn btn-orange-outline " href='/AssignStoP' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                ASSIGN SESSION
-                            </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
                             <input class="col-md-4" default="search"/>
+                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br/><br/>
-                        {optionsSession}
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
+                            <Table sortable celled structured>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell
+                                          sorted={column === 'name' ? direction : null}
+                                          onClick={this.handleSort('name')}
+                                        >
+                                            TITLE
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell
+                                          sorted={column == 'session_coach_notes' ? direction : null}
+                                          onClick={this.handleSort('session_coach_notes')}
+                                        >
+                                            DESCRIPTION
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>
+                                            OPERATIONS
+                                        </Table.HeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                                <Table.Body textAlign='center'>
+                                    {optionsSession}
+                                </Table.Body>
+                            </Table>
+                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
                 </section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>
