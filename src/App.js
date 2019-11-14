@@ -45,7 +45,7 @@ function App() {
           <Route path="/ProgramTemplates" component={ProgramTemplates} />
           <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
           <Route path="/focusSessionForm" component={focusSessionForm} />
-          <Route path="/focusSessionAgenda/:sessionID" component={focusSessionAgenda} />
+          <Route path="/focusSessionAgenda/:programID" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
           <Route path="/visualizeProgram" component={visualizeProgram} />
           <Route path="/customerList" component={Customer} />

@@ -12,7 +12,6 @@ import '../../assets2/mobirise/css/mbr-additional.css'
 import '../../assets2/mobirise/css/mbr-additional.css'
 import './listOfSessions.css'
 var Logo = require('../../assets2/images/logo-mzt.png');
-const cust_id = '5dc541fb717676384459fe66'
 
 class listOfSessions extends React.Component {
   state = {
