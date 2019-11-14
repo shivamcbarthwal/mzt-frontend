@@ -123,8 +123,7 @@ class Homepage extends React.Component {
                         <div class="container align-center">
                         <button class="btn btn-white-outline pull-right" onClick={this.handleClickNotif}>NOTIFICATIONS ({notifications.length})</button>
                             <div class="mbr-white centerize">
-                                <a class="btn btn-white-outline" href="listOfSessions">WORKOUT</a> 
-                                <br/>
+                                <a class="btn btn-white-outline" href="listOfPrograms">WORKOUT</a> 
                                 <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
                                 <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
                             </div>

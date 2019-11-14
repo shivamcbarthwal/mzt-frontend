@@ -9,7 +9,7 @@ import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
 import Homepage from './createComponent/Homepage.js'
-import dashboard from './createComponent/dashboard.js'
+import dashboard from './createComponent/Dashboard/dashboard.js'
 import workout from './createComponent/workout.js'
 import assignPtoC from './createComponent/AssignPtoC.js'
 import CoachHome from './createComponent/CoachHome.js';
@@ -45,7 +45,7 @@ function App() {
           <Route path="/ProgramTemplates" component={ProgramTemplates} />
           <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
           <Route path="/focusSessionForm" component={focusSessionForm} />
-          <Route path="/focusSessionAgenda/:sessionID" component={focusSessionAgenda} />
+          <Route path="/focusSessionAgenda/:programID" component={focusSessionAgenda} />
           <Route path="/focusSessionResult" component={focusSessionResult} />
           <Route path="/visualizeProgram" component={visualizeProgram} />
           <Route path="/customerList" component={Customer} />
