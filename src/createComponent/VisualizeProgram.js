@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'semantic-ui-css/semantic.min.css';
+import { Table, Button } from 'semantic-ui-react';
+import _ from 'lodash';
 import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
@@ -13,8 +16,26 @@ import Background from '../assets/images/prog_bk.jpg';
 
 class visualizeProgram extends Component {
     state = {
-        programs: []
+        column: null,
+        programs: [],
+        direction: null
     };
+    // Sort the table according to header
+    handleSort = (clickedColumn) => () => {
+        const { column, programs, direction } = this.state;
+        if (column !== clickedColumn) {
+            this.setState({
+              column: clickedColumn,
+              programs: _.sortBy(programs, [clickedColumn]),
+              direction: 'ascending',
+            });
+            return;
+        }
+        this.setState({
+            programs: programs.reverse(),
+            direction: direction === 'ascending' ? 'descending' : 'ascending',
+        });
+    }
     handleClickBack = () => {
         this.props.history.push('/');
     };
@@ -26,61 +47,76 @@ class visualizeProgram extends Component {
         });
     };
     render() {
-        const {programs} = this.state.programs;
+        this.handleSort('status');
         var optionsProgram = [];
-        this.state.programs.map((program) => {
+        const { column, direction } = this.state;
+        this.state.programs.map((Program) => {   
             optionsProgram.push(
-                    
-                <div class="card col-12 pb-5" >
-                    <div class="card-wrapper media-container-row media-container-row" >
-                        <div class="card-box" style={{backgroundColor: "#2b2b2b", height: "60%"}} >
-                            <div class="row">
-                                <div class="col-12 col-md-2">
-                                    <div class="mbr-figure">
-                                        <img src="https://i.imgur.com/kYd3Yuk.png" alt="Mobirise" title="" />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-10">
-                                    <div class="wrapper">
-                                        <div class="top-line pb-3">
-                                            <h4 class="card-title mbr-fonts-style display-5" style={{color: "#FFFFFF"}}>{program.title}</h4>
-                                        </div>
-                                        <div class="bottom-line">
-                                            <p class="mbr-text mbr-fonts-style display-7" style={{color: "#FFFFFF"}}>{program.description}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
+                <Table.Row>
+                    <Table.Cell><strong>{Program.title}</strong></Table.Cell>
+                    <Table.Cell>{Program.description}</Table.Cell>
+                    <Table.Cell>{Program.type}</Table.Cell>
+                    <Table.Cell>{Program.duration}</Table.Cell>
+                     <Table.Cell singleLine>       
+                    <Button primary size="small">See details</Button>
+                    <Button primary size="small">Update</Button>
+                    <Button primary size="small">Delete</Button>
+                    </Table.Cell>
+                </Table.Row>
+            );        
         });
         return (
             <body>
-                <section class=" mbr-parallax-background" id="services6-7">
+                <section class=" mbr-parallax-background mbr-fullscreen" id="services6-7">
                     <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
                     <div class="container">
-                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Program Templates</h2> <br/>
+                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Programs</h2> <br/>
                         <div>
-                            <a class="align-center col-md-2 btn btn-orange-outline " href='/assignPtoC' style={{color: "#FFFFFF", backgroundColor: "#C4643B", fontSize: "80%"}}>
-                                ASSIGN A PROGRAM TEMPLATE
-                            </a>
                             <a class="align-center col-md-2 btn btn-orange-outline " href='/createProgramT' style={{color: "#FFFFFF", backgroundColor: "#C4643B", fontSize: "80%"}}>
-                                CREATE A PROGRAM TEMPLATE
+                                NEW PROGRAM
                             </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
                             <input class="col-md-4" default="search" />
+                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br/><br/>
-                        {optionsProgram}
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
-                            <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn">
-                            </span> 
-                            Back
-                        </button>
+                            <Table sortable celled structured>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell
+                                          sorted={column === 'title' ? direction : null}
+                                          onClick={this.handleSort('tite')}
+                                        >
+                                            TITLE
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell
+                                          sorted={column == 'description' ? direction : null}
+                                          onClick={this.handleSort('description')}
+                                        >
+                                            DESCRIPTION
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell
+                                          sorted={column == 'type' ? direction : null}
+                                          onClick={this.handleSort('type')}
+                                        >
+                                            TYPE
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell
+                                          sorted={column == 'duration' ? direction : null}
+                                          onClick={this.handleSort('duration')}
+                                        >
+                                            DURATION
+                                        </Table.HeaderCell>
+                                        <Table.HeaderCell>
+                                            OPERATIONS
+                                        </Table.HeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                                <Table.Body textAlign='center'>
+                                    {optionsProgram}
+                                </Table.Body>
+                            </Table>
+                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
                 </section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>
