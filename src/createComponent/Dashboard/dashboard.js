@@ -166,160 +166,166 @@ class dashboard extends React.Component {
                 </section>
                 
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
-                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
-                    </div>
-                    
-                
-    
-    <div class="container">     
-                <h1 style={{color:"#FFFFFF", marginleft:"20px"}}> Dashboard </h1>
-                <h3 style={{color:"#FFFFFF", marginleft:"20px"}}> Let's see what is happening for you!</h3>
-                <br/><br/>
-    <div class="containerc">
-    <div class="cardc">
-      <div class="front">
-        <div class="contentfront">
-          <div class="month">
-            <table>
-              <tr class="orangeTr">
-                
-                <th>M</th>
-                <th>T</th>
-                <th>W</th>
-                <th>T</th>
-                <th>F</th>
-                <th>S</th>
-                <th>S</th>
-              </tr>
-              <tr class="whiteTr">
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-              </tr>
-              <tr class="whiteTr">
-              	<th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-              </tr>
-              <tr class="whiteTr">
-              	<th>11</th>
-                <th>12</th>
-                <th>13</th>
-                <th>14</th>
-                <th style={{fontWeight: "bold"}}>15</th>
-                <th>16</th>
-                <th>17</th>
-                
-              </tr>
-              <tr class="whiteTr">
-                <th>18</th>
-                <th>19</th>
-                <th>20</th>
-                <th>21</th>
-                <th>22</th>
-                <th>23</th>
-                <th>24</th>
-                
-              </tr>
-              <tr class="whiteTr">
-              	<th>25</th>
-                <th>26</th>
-                <th>27</th>
-                <th>28</th>
-                <th>29</th>
-                <th>30</th>
-                <th></th>
-                
-              </tr>
-            </table>
-          </div>
-          <div class="date">
-            <div class="datecont">
-              <div id="day">November</div>
-              <div id="month">Friday, 15th</div>
-              <i class="fa fa-pencil edit" aria-hidden="true"></i>
-              <br/> <br/> <br/> <br/>
-              <div id="month" style={{fontWeight:'bold'}}>> You have a session today</div>
-              <br/> <br/> 
-              <div id="month">> You have a session coming in 2 days</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="back">
-        
-      </div>
+    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
     </div>
-  </div>
-  </div>
-<div style={{width:"50px"}}>
-</div>
-                    <div class="container ">
-               <br/><br/><br/>
-                        <div class="col-6 ">
-                        <CanvasJSChart options = {options} 
-                            /* onRef={ref => this.chart = ref} */
-                        />
-                        {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-                        </div>
-                    <div class="card-box col-4 " style={{backgroundColor: "#FFFFFF",display:"inline-block", height:"300px"}} >
-                            <div class="row">
-                                        <h1>Graph indicator</h1>
-                            </div>
-                    </div>
-                    <div style={{opacity: 0,display:"inline-block"}} >
-                            <h1>SPA</h1>
-                    </div>
-                    <div class="card-box col-3" style={{backgroundColor: "#2C2C2C",display:"inline-block",width:"100%", }} >
-                            <div class="row">
-                                <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px', width:"100%"}}>Details</h1>
-                                <h4 style={{color:"#FFFFFF",marginLeft:'5px'}}> personnal details of the customer</h4>
-
-
-                {programList1.map((program) => {
-                    programLists.push(<div class="card" style={{backgroundColor: "#5FE164", height:"200px",width:"100%",marginLeft:'5px'}}>
-                                    <p style={{fontFamily:"bold", color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px'}}>SESSION IN PROGRESS</p>
-                                    <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{program.title}</p>
-                                </div>   
-                                )}) 
-            }
-            {programList2.map((program) => {
+    
+	     
+    
+        
+            
+    <div class="container"> 
+    <br/> <br/> <br/><br/> <br/> <br/> 
+    <div class="display-inline row"> 
+        <div>
+        <h1 style={{color:"#FFFFFF", marginleft:"20px"}}> Dashboard </h1>
+        <h3 style={{color:"#FFFFFF", marginleft:"20px"}}>> Let's see what is happening for you!</h3>
+        </div>
+        <br/><br/>
+    	<div class="containerc" style={{marginLeft:"250px"}}>
+    		<div class="cardc">
+      			<div class="front">
+       				<div class="contentfront">
+          				<div class="month">
+            				<table>
+             					<tr class="orangeTr">
+                					<th>M</th>
+                					<th>T</th>
+                					<th>W</th>
+                					<th>T</th>
+                					<th>F</th>
+                					<th>S</th>
+                					<th>S</th>
+              					</tr>
+              					<tr class="whiteTr">
+                					<th></th>
+            					   	<th></th>
+            					   	<th></th>
+            					   	<th></th>
+            					   	<th>1</th>
+            					   	<th>2</th>
+            					   	<th>3</th>
+            					</tr>
+            					<tr class="whiteTr">
+            					 	<th>4</th>
+            					   	<th>5</th>
+            					   	<th>6</th>
+            					   	<th>7</th>
+            					   	<th>8</th>
+            					   	<th>9</th>
+            					   	<th>10</th>
+            					</tr>
+            					<tr class="whiteTr">
+            					 	<th>11</th>
+            					   	<th>12</th>
+            					   	<th>13</th>
+            					   	<th>14</th>
+            					   	<th style={{fontWeight: "bold"}}>15</th>
+            					   	<th>16</th>
+            					   	<th>17</th>
+            					</tr>
+            					<tr class="whiteTr">
+            					   	<th>18</th>
+            					   	<th>19</th>
+            					   	<th>20</th>
+            					   	<th>21</th>
+            					   	<th>22</th>
+            					   	<th>23</th>
+            					   	<th>24</th>
+            					</tr>
+            					<tr class="whiteTr">
+            					 	<th>25</th>
+            					   	<th>26</th>
+            					   	<th>27</th>
+            					   	<th>28</th>
+            					   	<th>29</th>
+            					   	<th>30</th>
+            					   	<th></th>
+            					</tr>
+            				</table>
+          				</div>
+          				<div class="date">
+            				<div class="datecont">
+              					<div id="day">November</div>
+              					<div id="month">Friday, 15th</div>
+              						<i class="fa fa-pencil edit" aria-hidden="true"></i>
+              						<br/> <br/> <br/> <br/>
+              					<div id="month" style={{fontWeight:'bold'}}>> You have a session today</div>
+              						<br/> <br/> 
+              					<div id="month">> You have a session coming in 2 days</div>
+            				</div>
+          				</div>
+        			</div>
+      			</div>
+      			<div class="back"></div>
+    		</div>
+  		</div>
+        </div>
+        <br/><br/><br/>  
+    	<div>
+            <div class="card-box" style={{backgroundColor: "#232227",width:"50%" }} >
+            <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px', width:"300%"}}>Details</h1>
+            <h6 style={{color:"#FFFFFF",marginLeft:'5px',width:"100%" }}> personal details to add</h6>
+			<div class="display-inline row"	>
+                {programList2.map((program) => {
+            		programLists.push(
+            			<div class="card" style={{backgroundColor: "#E76642", height:"200px",marginLeft:'20px', width:"100px"}}>
+                            <p style={{fontFamily:"bold", color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px'}}>SESSION COMPLETED</p> <br/>
+                            <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{program.title}</p>
+                        </div>    
+                	)})
+            	}
                 
-                programLists.push(<div class="card" style={{backgroundColor: "#FFFFFF", height:"200px",width:"80px"}}>
-                                <p>Session completed</p> <br/>
-                                    <p>{program.title}</p>
-                                </div> 
-                    
-                )})
-            }
-            {programLists}
-
-            </div>
-                    </div>
-                    <br/><br/>
-                   
-                    <div class="card-box " style={{backgroundColor: "#FFFFFF",display:"inline-block", width: "500px",height:"150px"}} >
-                            <div class="row">
-                                        <h1 style={{marginLeft:"15px"}}>Reward section (Challenges)</h1>
-                            </div>
-                    </div>
-                    <br/><br/>
-                        <div class="align-right">
-                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
-                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                Back
-                            </button>
-                        </div>
-                    </div>    
-                </section>
+                {programList1.map((program) => {
+                    programLists.push(
+                    	<div class="card" style={{backgroundColor: "#5FE164", height:"200px",marginLeft:'20px', width:"100px"}}>
+                            <p style={{fontFamily:"bold", color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px'}}>SESSION IN PROGRESS</p>
+                            <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{program.title}</p>
+                        </div>   
+                    )}) 
+            	}
+            	
+        {programLists}
+        </div>
+        </div>
+        <br/><br/><br/>
+        <div class="centerize" style={{color:"#FFFFFF"}}>
+                <h1 >Dickson Indicator</h1>
+                
+                <h6 >It is a physical test that assesses a person's fitness for sport.<br/>
+                It will define what is called an athletic heart and an insufficient heart.<br/>
+                </h6>
+                <h6 style={{}}>
+                0 = excellent<br/>
+                0 to 2 = very good<br/>
+                4 to 6 = medium<br/>
+                10 poor adaptation
+                </h6>
+        </div>
+        
+        <div class=" centerize" style={{width:"50%"}}>
+        
+            <CanvasJSChart options = {options} 
+            	/* onRef={ref => this.chart = ref} */
+                />
+                {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+    	    </div>
+        </div>      
+    
+    <br/><br/>
+    <div class="card-box centerize" style={{backgroundColor: "#FFFFFF",height:"150px"}} >
+        <div class="row">
+            <h1 style={{marginLeft:"15px"}}>Reward section (Challenges)</h1>
+        </div>
+    </div>
+    <br/><br/>
+    <div class="align-right">
+        <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
+        <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+        Back
+        </button>
+    </div>
+    </div>
+</section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>
                 <script src="assets/popper/popper.min.js"></script>
                 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -56,7 +56,7 @@ class visualizeProgram extends Component {
                     <Table.Cell><strong>{Program.title}</strong></Table.Cell>
                     <Table.Cell>{Program.description}</Table.Cell>
                     <Table.Cell>{Program.type}</Table.Cell>
-                    <Table.Cell>{Program.duration}</Table.Cell>
+                    <Table.Cell>{Program.duration} weeks</Table.Cell>
                      <Table.Cell singleLine>       
                     <Button primary size="small">See details</Button>
                     <Button primary size="small">Update</Button>

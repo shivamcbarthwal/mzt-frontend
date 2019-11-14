@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import '../assets2/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets2/bootstrap/css/bootstrap.min.css';
 import '../assets2/bootstrap/css/bootstrap-grid.min.css';
@@ -33,8 +34,17 @@ class focusSessionStartExercise extends React.Component {
     ;
     toggleNext = () => {
         const {exercises, exerciseN} = this.state;
-        if (exercises.length === exerciseN + 1) {
-            this.props.history.push("/focusSessionResult")
+        if (exercises.length === (exerciseN+2)) {
+            axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
+                program_id: this.props.match.params.programID,
+                sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
+            });
+            axios.post('http://localhost:8080/program/customerUpdateProgramStatus',{
+                program_id: this.props.match.params.programID,
+            });
+            window.location.href='/listOfSessions/'+this.props.match.params.programID;
+            console.log("finished");
+            
         } else {
             this.setState({
                 onExercise: !this.state.onExercise,
@@ -48,11 +58,11 @@ class focusSessionStartExercise extends React.Component {
       console.log("Query", this.props.location);
       const index = Number(this.props.location.search.slice(1).split("=")[1]);
       console.log("Index", index);
-      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.sessionID}`)
+      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
         .then(res => {
             const program = res.data;
             this.setState({exercises: program.sessions[index].exercises});
-            console.log(program);
+            console.log('prog',program);
         }
       )
     }
@@ -60,8 +70,8 @@ class focusSessionStartExercise extends React.Component {
     render() {
         const {exercises, exerciseN} = this.state;
         var optionsInfo = [];
-        var optionsExercise = []
-        console.log(exercises)
+        var optionsExercise = [];
+        console.log(exercises);
         //можно потом использовать if чтобы показывать упражнения на время или на количество
         if (exercises) {
           if (exercises[exerciseN].set_type === 'TIME') {
