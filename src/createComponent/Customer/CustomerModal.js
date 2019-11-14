@@ -15,6 +15,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import Spinner from './Spinner';
 import 'semantic-ui-css/semantic.min.css';
+import { Button } from 'semantic-ui-react';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -24,6 +25,7 @@ import '../assets/dropdown/css/style.css'
 import '../assets/theme/css/style.css'
 import '../assets/mobirise/css/mbr-additional.css'
 import './Customer.css';
+import { program } from '@babel/types';
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -76,6 +78,19 @@ class CustomerModal extends Component {
     handleClickBack = () => {
         this.props.history.push('/customerList');
     };
+    handleClickActiveSession = (progId, index) => () =>{
+        axios.post('http://localhost:8080/program/coachUpdateSessionStatus',{
+            program_id: progId,
+            sessionNumber: index
+        });
+        window.location.href='/CustomersDetail/'+this.props.match.params.customerID;
+    };
+    handleClickCancelProgram = (progId) => () =>{
+        axios.post('http://localhost:8080/program/coachUpdateProgramStatus',{
+            program_id: progId
+        });
+        window.location.href='/CustomersDetail/'+this.props.match.params.customerID;
+    }
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -100,10 +115,34 @@ class CustomerModal extends Component {
         });
     };
     render() {
-        const { customers, program, open } = this.state;
-        const { classes, className } = this.props;
+        const { customers, open } = this.state;
         const Icon = variantIcon["warning"];
         console.log(open);
+        const programList1 = [];
+        const programList2 = [];
+        const programLists = [];
+        this.state.programs.map(Program =>{
+            if(Program.status == "ASSIGNED"){
+                programList1.push(Program);
+            }
+        });
+        this.state.programs.map(Program =>{
+            if(Program.status == "IN_PROGRESS"){
+                programList1.push(Program);
+            }
+        });
+        this.state.programs.map(Program =>{
+            if(Program.status == "COMPLETED"){
+                programList2.push(Program);
+            }
+        });
+        this.state.programs.map(Program =>{
+            if(Program.status == "CANCELED"){
+                programList2.push(Program);
+            }
+        });
+        var SessionList1 = [];
+        var SessionList2 = [];
         if (customers){
             return (
                 <body>
@@ -136,54 +175,130 @@ class CustomerModal extends Component {
                                     </table>
                                 </div>
                             </div>
-                        {program ?
-                            <div class="card px-3 col-12">
-                                <div class="card-wrapper media-container-row media-container-row">
-                                    <div class="card-box">
-                                        <div class="top-line pb-3">
-                                            <h4 class="card-title mbr-fonts-style display-5">
-                                            {program.title}
-                                            </h4>
-                                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                {programList1.map((program) => {
+                    SessionList1 = [];
+                    programLists.push(
+                    <div class="card px-3 col-12">
+                        <div class="card-wrapper media-container-row media-container-row">
+                            <div class="card-box">
+                                <div class="top-line pb-3">
+                                    <h4 class="card-title mbr-fonts-style display-5">
+                                    {program.title}
+                                    </h4>
+                                    <div class="mbr-text align-left display-5" style={{width:'50%'}}>{program.goal}</div>
+                                        <div class="mbr-text align-right display-5" style={{width:'50%'}}>
                                             {program.status}
-                                            </p>
+                                            <br/>
+                                            <Button primary size="medium" onClick={this.handleClickCancelProgram(program._id)}>
+                                                Cancel the Program
+                                            </Button>
                                         </div>
-                                        <div class="bottom-line">
-                                            <p title="Description" class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                            {program.description}
-                                            </p>
-                                        </div>
-                                        <br/>
-                                    {program.sessions.map(session=>
-                                        <details>
-                                            <summary class="media-container-row">
-                                                <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
-                                                <div class="align-right display-6" style={{width:'50%'}}>{session.session_status}</div>
-                                            </summary>
-                                            <div class="card px-3 col-12">
-                                                <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                                    <div>
-                                                    {session.exercises.map(exercise=>
-                                                        <div>
-                                                            {exercise.name}
-                                                        </div>
-                                                    )}
-                                                    </div>
-                                                </p>
-                                            </div>
-                                        </details>
-                                    )}
-                                    </div>
                                 </div>
-                            </div>
-                        : null}
-                            <div class="align-right">
-                                <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
-                                    <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                    Back
-                                </button>
+                                <div class="bottom-line">
+                                    <p class="mbr-text mbr-fonts-style m-0 b-descr display-6">
+                                    {program.description}
+                                    </p>
+                                </div>
+                                <br/>
+                                <details>
+                                    <summary class="card-title mbr-fonts-style display-5">
+                                        Show Sessions
+                                    </summary>
+                                {program.sessions.map((session, index) => {
+                                    if(session.session_status == "CLOSED"){
+                                        SessionList1.push(
+                                            <div class="media-container-row">
+                                                <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
+                                                <div class="align-right display-6" style={{width:'50%', height:"30px"}}>
+                                                    {session.session_status}
+                                                    <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
+                                                        Open the session
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    else{
+                                        if(session.session_status == "OPENED"){
+                                            SessionList1.push(
+                                                <div class="media-container-row">
+                                                    <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
+                                                    <div class="align-right display-6" style={{width:'50%'}}>
+                                                        {session.session_status}
+                                                        <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
+                                                            Close the session
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                        else{
+                                            SessionList1.push(
+                                                <div class="media-container-row">
+                                                    <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
+                                                    <div class="align-right display-6" style={{width:'50%'}}>
+                                                        {session.session_status}
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    }
+                                })}
+                                    {SessionList1}
+                                </details>
                             </div>
                         </div>
+                    </div>
+                )})
+            }
+            {programList2.map((program) => {
+                SessionList2 = [];
+                programLists.push(
+                    <div class="card px-3 col-12">
+                        <div class="card-wrapper media-container-row media-container-row">
+                            <div class="card-box">
+                                <div class="top-line pb-3">
+                                    <h4 class="card-title mbr-fonts-style display-5">
+                                    {program.title}
+                                    </h4>
+                                    <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                                    {program.status}
+                                    </p>
+                                </div>
+                                <div class="bottom-line">
+                                    <p class="mbr-text mbr-fonts-style m-0 b-descr display-6">
+                                    {program.description}
+                                    </p>
+                                </div>
+                                <br/>
+                                <details>
+                                    <summary class="card-title mbr-fonts-style display-5">
+                                        Show Sessions
+                                    </summary>
+                            {program.sessions.map(session=>{
+                                SessionList2.push(
+                                        <div class="media-container-row">
+                                            <div class="align-left display-6" style={{width:'50%'}}>{session.name}</div>
+                                            <div class="align-right display-6" style={{width:'50%'}}>{session.session_status}</div>
+                                        </div>
+                                )
+                                }
+                            )}
+                            {SessionList2}
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                )})
+            }
+            {programLists}
+                        <div class="align-right">
+                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
+                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+                                Back
+                            </button>
+                        </div>
+                    </div>
                     </section>
                     <script src="assets/web/assets/jquery/jquery.min.js"></script>
                     <script src="assets/popper/popper.min.js"></script>

@@ -22,6 +22,7 @@ import visualizeProgram from './createComponent/VisualizeProgram'
 import Customer from './createComponent/Customer/Customer';
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import listOfSessions from './createComponent/listOfSessions/listOfSessions'
+import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
 import AssignEtoS from './createComponent/AssignEtoS';
 import AssignStoP from './createComponent/AssignStoP';
@@ -29,32 +30,33 @@ import AssignStoP from './createComponent/AssignStoP';
 function App() {
   return (
     <SnackbarProvider maxSnack={3}>
-      <div className="App">
-        <Router>
-            <Route path="/exerciseCreate" component={ExerciseCreate} />
-            <Route path="/visualizeExercise" component={visualizeExercise} />
-            <Route path="/sessionCreate" component={SessionCreate} />
-            <Route path="/visualizeSession" component={visualizeSession} />
-            <Route path="/editSession" component={editSession} />
-            <Route path="/homepage" component={Homepage} />
-            <Route path="/dashboard" component={dashboard} />
-            <Route path="/workout" component={workout} />
-            <Route path="/assignPtoC/:custId" component={assignPtoC} />
-            <Route exact path="/" component={CoachHome} />
-            <Route path="/ProgramTemplates" component={ProgramTemplates} />
-            <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
-            <Route path="/focusSessionForm" component={focusSessionForm} />
-            <Route path="/focusSessionAgenda" component={focusSessionAgenda} />
-            <Route path="/focusSessionResult" component={focusSessionResult} />
-            <Route path="/visualizeProgram" component={visualizeProgram} />
-            <Route path="/customerList" component={Customer} />
-            <Route path="/focusSessionStartExercise/:sessionID" component={focusSessionStartExercise} />
-            <Route path="/listOfSessions" component={listOfSessions} />
-            <Route path="/createProgramT" component={createProgramT} />
-            <Route path="/AssignEtoS" component={AssignEtoS} />
-            <Route path="/AssignStoP" component={AssignStoP} />
-        </Router>
-      </div>
+    <div className="App">
+      <Router>
+          <Route path="/exerciseCreate" component={ExerciseCreate} />
+          <Route path="/visualizeExercise" component={visualizeExercise} />
+          <Route path="/sessionCreate" component={SessionCreate} />
+          <Route path="/visualizeSession" component={visualizeSession} />
+          <Route path="/editSession" component={editSession} />
+          <Route path="/homepage" component={Homepage} />
+          <Route path="/dashboard" component={dashboard} />
+          <Route path="/workout" component={workout} />
+          <Route path="/assignPtoC/:custId" component={assignPtoC} />
+          <Route exact path="/" component={CoachHome} />
+          <Route path="/ProgramTemplates" component={ProgramTemplates} />
+          <Route path="/CustomersDetail/:customerID" component={CustomerModal} />
+          <Route path="/focusSessionForm" component={focusSessionForm} />
+          <Route path="/focusSessionAgenda/:sessionID" component={focusSessionAgenda} />
+          <Route path="/focusSessionResult" component={focusSessionResult} />
+          <Route path="/visualizeProgram" component={visualizeProgram} />
+          <Route path="/customerList" component={Customer} />
+          <Route path="/focusSessionStartExercise/:programID" component={focusSessionStartExercise} />
+          <Route path="/listOfSessions/:programID" component={listOfSessions} />
+          <Route path="/listOfPrograms" component={listOfPrograms} />
+          <Route path="/createProgramT" component={createProgramT} />
+          <Route path="/AssignEtoS" component={AssignEtoS} />
+          <Route path="/AssignStoP" component={AssignStoP} />
+      </Router>
+    </div>
     </SnackbarProvider>
   );
 }

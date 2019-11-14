@@ -31,7 +31,7 @@ class focusSessionStartExercise extends React.Component {
         });
     }
     ;
-            toggleNext = () => {
+    toggleNext = () => {
         const {exercises, exerciseN} = this.state;
         if (exercises.length === exerciseN + 1) {
             this.props.history.push("/focusSessionResult")
@@ -44,17 +44,17 @@ class focusSessionStartExercise extends React.Component {
         }
     }
     ;
-            componentDidMount() {
-        console.log("Query", this.props.location);
-        const index = Number(this.props.location.search.slice(1).split("=")[1]);
-        console.log("Index", index);
-        axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
-                .then(res => {
-                    const program = res.data[0];
-                    this.setState({exercises: program.sessions[index].exercises});
-                    console.log(program);
-                }
-                )
+    componentDidMount() {
+      console.log("Query", this.props.location);
+      const index = Number(this.props.location.search.slice(1).split("=")[1]);
+      console.log("Index", index);
+      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+        .then(res => {
+            const program = res.data;
+            this.setState({exercises: program.sessions[index].exercises});
+            console.log(program);
+        }
+      )
     }
 
     render() {
@@ -64,6 +64,7 @@ class focusSessionStartExercise extends React.Component {
         console.log(exercises)
         //можно потом использовать if чтобы показывать упражнения на время или на количество
         if (exercises) {
+          if (exercises[exerciseN].set_type === 'TIME') {
             optionsInfo.push(
                     <div class="container align-items-center">
                         <div class="row justify-content-md-center">
@@ -74,13 +75,13 @@ class focusSessionStartExercise extends React.Component {
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                     <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                     <span style={{marginLeft: '1em'}}>
-                                        {exercises[exerciseN].repetition} min
+                                        {exercises[exerciseN].time} seconds
                                     </span>
                                 </p>
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                     <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                     <span style={{marginLeft: '1em'}}>
-                                        Do as much as you can!
+                                        {exercises[exerciseN].sets}
                                     </span>
                                 </p>
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
@@ -117,6 +118,117 @@ class focusSessionStartExercise extends React.Component {
                     
                     </div>
                     );
+            }
+            if (exercises[exerciseN].set_type === 'REPETITION') {
+              optionsInfo.push(
+                      <div class="container align-items-center">
+                          <div class="row justify-content-md-center">
+                              <div class="mbr-white col-md-10">
+                                  <h1 class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <br /> {exercises[exerciseN].name}
+                                  </h1>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em'}}>
+                                        Repetition: {exercises[exerciseN].repetition}
+                                      </span>
+                                  </p>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em'}}>
+                                          Sets: {exercises[exerciseN].sets}
+                                      </span>
+                                  </p>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
+                                          Coach advice: {exercises[exerciseN].description}
+                                      </span>
+                                  </p>
+                                  <div class="mbr-section-btn">
+                                      <a class="btn btn-md btn-secondary display-4" onClick={this.toggle} >GO</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      );
+              optionsExercise.push(
+                      <div class="media-container-row">
+                      
+                          <div class="media-content align-center">
+                              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
+                                  {exercises[exerciseN].name}
+                              </h1>
+                              <div class="mbr-section-text mbr-white pb-3">
+                                  <p class="mbr-text mbr-fonts-style display-5">
+                                      {exercises[exerciseN].description}
+                                  </p>
+                              </div>
+                              <div class="mbr-section-btn">
+                                  <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                              </div>
+                          </div>
+                      
+                          <div class="mbr-figure" style={{width: '145%'}}><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe></div>
+                      
+                      </div>
+                      );
+             }
+             if (exercises[exerciseN].set_type === 'TIME_REPETITION') {
+              optionsInfo.push(
+                      <div class="container align-items-center">
+                          <div class="row justify-content-md-center">
+                              <div class="mbr-white col-md-10">
+                                  <h1 class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <br /> {exercises[exerciseN].name}
+                                  </h1>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em'}}>
+                                        Repetition: {exercises[exerciseN].time}sec x{exercises[exerciseN].repetition}
+                                      </span>
+                                  </p>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em'}}>
+                                          Sets: {exercises[exerciseN].sets}
+                                      </span>
+                                  </p>
+                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                      <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                      <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
+                                          Coach advice: {exercises[exerciseN].description}
+                                      </span>
+                                  </p>
+                                  <div class="mbr-section-btn">
+                                      <a class="btn btn-md btn-secondary display-4" onClick={this.toggle} >GO</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      );
+              optionsExercise.push(
+                      <div class="media-container-row">
+                      
+                          <div class="media-content align-center">
+                              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
+                                  {exercises[exerciseN].name}
+                              </h1>
+                              <div class="mbr-section-text mbr-white pb-3">
+                                  <p class="mbr-text mbr-fonts-style display-5">
+                                      {exercises[exerciseN].description}
+                                  </p>
+                              </div>
+                              <div class="mbr-section-btn">
+                                  <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                              </div>
+                          </div>
+                      
+                          <div class="mbr-figure" style={{width: '145%'}}><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe></div>
+                      
+                      </div>
+                      );
+             }
         }
         return (
                 <body>
