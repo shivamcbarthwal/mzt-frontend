@@ -15,34 +15,61 @@ import Background from '../assets/images/bk_hp.jpg';
 var Logo = require('../assets2/images/logo-mzt.png');
 
 class dashboard extends React.Component {
-
     state = {
-        sessions: []
+        customer:'5da86562f964d02c2c679155',
+        programs: []
     };
     
-    componentDidMount() {
-        axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
-        .then(res => {
-            const sessions = res.data;
-            this.setState({sessions});
-        });
-    };
     handleClickBack = () => {
         this.props.history.push('/Homepage');
     }
-
+    componentDidMount(){
+    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
+        .then(res => {
+            const programs = res.data;
+            console.log(programs);
+            if (!programs) {
+                console.log("HERE");
+                this.setState({ open: true });
+            } 
+            else {
+                this.setState({ programs });
+            }
+        })
+        .catch(e => {
+            console.log(e);
+        });
+    };
 
     render() {
-        const {sessions} = this.state.sessions;
-        var optionsSession = [];
-        this.state.sessions.map((sessionId) => {
-            optionsSession.push(
-                <div class="card" style={{backgroundColor: "#FFFFFF", height:"200px", width:"80px"}}>
-                <p>sessionId.name</p>
-            </div>
-            );
+       
+        const { customers, open } = this.state;
+        console.log(open);
+        const programList1 = [];
+        const programList2 = [];
+        const programLists = [];
+        this.state.programs.map(Program =>{
+            if(Program.status == "ASSIGNED"){
+                programList1.push(Program);
+            }
         });
-
+        this.state.programs.map(Program =>{
+            if(Program.status == "IN_PROGRESS"){
+                programList1.push(Program);
+            }
+        });
+        this.state.programs.map(Program =>{
+            if(Program.status == "COMPLETED"){
+                programList2.push(Program);
+            }
+        });
+        this.state.programs.map(Program =>{
+            if(Program.status == "CANCELED"){
+                programList2.push(Program);
+            }
+        });
+        
+       
 
         return (
             <body>
@@ -92,14 +119,14 @@ class dashboard extends React.Component {
                              </div>
                       </nav>
                 </section>
-                      
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
                     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
                     </div>
                     <div class="container ">
-                        
-
-
+                    <br/>       
+                <h1 style={{color:"#FFFFFF"}}> Dashboard </h1>
+                <h3 style={{color:"#FFFFFF"}}> Let's see what is happening for you!</h3>
+                <br/><br/>
                     
                     <div class="card-box col-4 " style={{backgroundColor: "#FFFFFF",display:"inline-block", height:"300px"}} >
                             <div class="row">
@@ -111,25 +138,31 @@ class dashboard extends React.Component {
                     </div>
                     <div class="card-box col-3" style={{backgroundColor: "#2C2C2C",display:"inline-block"}} >
                             <div class="row">
-                                <h1 style={{color:"#FFFFFF"}}>Details</h1>
-                                <h4 style={{color:"#FFFFFF"}}> personnal details of the customer</h4>
-                                
-                                {optionsSession}
-                                <div class="card" style={{opacity:"0"}}>
-                                    <p>Spa</p>
-                                </div>
-                                <div class="card" style={{backgroundColor: "#FFFFFF", height:"200px",width:"80px"}}>
-                                    <p>Session2</p>
-                                </div>
-                            </div>
+                                <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px'}}>Details</h1>
+                                <h4 style={{color:"#FFFFFF",marginLeft:'5px'}}> personnal details of the customer</h4>
+
+
+                {programList1.map((program) => {
+                    programLists.push(<div class="card" style={{backgroundColor: "#5FE164", height:"200px",width:"50%",marginLeft:'5px'}}>
+                                    <p style={{fontFamily:"bold", color:"#FFFFFF"}}>SESSION IN PROGRESS</p>
+                                    <p style={{color:"#FFFFFF"}}>{program.title}</p>
+                                </div>   
+                                )}) 
+            }
+            {programList2.map((program) => {
+                
+                programLists.push(<div class="card" style={{backgroundColor: "#FFFFFF", height:"200px",width:"80px"}}>
+                                <p>Session completed</p> <br/>
+                                    <p>{program.title}</p>
+                                </div> 
+                    
+                )})
+            }
+            {programLists}
+
+            </div>
                     </div>
                     
-                    
-
-
-
-
-    
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
@@ -149,9 +182,11 @@ class dashboard extends React.Component {
                 <script src="assets/parallax/jarallax.min.js"></script>
                 <script src="assets/theme/js/script.js"></script>
                 <script src="assets/sociallikes/social-likes.js"></script>
-            </body>
-        );
+                </body>
+                );
+        }
+        
     };
-};
+
 
 export default dashboard;
