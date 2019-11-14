@@ -50,7 +50,7 @@ export default class Customer extends Component {
         var optionsCustomer = [];
         const { column, direction } = this.state;
         this.state.customers.map((Customer) => {
-            if(Customer.status=="NONE"){
+            if(Customer.status === "NONE"){
                 optionsCustomer.push(
                     <Table.Row>
                         <Table.Cell><strong>{Customer.first_name} {Customer.last_name}</strong></Table.Cell>
