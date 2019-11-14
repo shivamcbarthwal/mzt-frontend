@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets2/bootstrap/css/bootstrap.min.css';
-import '../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets2/tether/tether.min.css';
-import '../assets2/dropdown/css/style.css';
-import '../assets2/theme/css/style.css';
-import '../assets2/mobirise/css/mbr-additional.css';
-import Background from '../assets/images/bk_hp.jpg';
-
-
-var Logo = require('../assets2/images/logo-mzt.png');
+import '../../assets2/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets2/bootstrap/css/bootstrap.min.css';
+import '../../assets2/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets2/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets2/tether/tether.min.css';
+import '../../assets2/dropdown/css/style.css';
+import '../../assets2/theme/css/style.css';
+import './style.css';
+import '../../assets2/mobirise/css/mbr-additional.css';
+import Background from '../../assets/images/bk_hp.jpg';
+import CanvasJSReact from '../../assets/canvas/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var Logo = require('../../assets2/images/logo-mzt.png');
 
 class dashboard extends React.Component {
     state = {
-        customer:'5da86562f964d02c2c679155',
-        programs: []
+        customer:'5dc53fb7717676384459fe63',
+        programs: [],
+        measurements: [],
+        dickson: []
     };
     
     handleClickBack = () => {
         this.props.history.push('/Homepage');
     }
     componentDidMount(){
-    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5da86562f964d02c2c679155`)
+    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5dc53fb7717676384459fe63`)
         .then(res => {
             const programs = res.data;
             console.log(programs);
@@ -39,11 +42,23 @@ class dashboard extends React.Component {
         .catch(e => {
             console.log(e);
         });
+    axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+        {
+            params: {
+                "customer_id":"5dc541fb717676384459fe66",
+                "program_id":"5dcbe4cfdeb2027f66d2c4c8"
+            }
+        })
+        .then(res => {
+            const measurements = res.data;
+            console.log("request",res.data);
+            this.setState({ measurements });
+          }
+        )
     };
 
     render() {
-       
-        const { customers, open } = this.state;
+        const { customers, open, measurements } = this.state;
         console.log(open);
         const programList1 = [];
         const programList2 = [];
@@ -68,8 +83,38 @@ class dashboard extends React.Component {
                 programList2.push(Program);
             }
         });
-        
-       
+
+        var measurementsData = [];
+        if(measurements){
+            for (let i = 0; i < measurements.length; i++){
+                measurementsData.push({ x: i+1, y: measurements[i].dickson_metric});
+            }
+        }
+        console.log("data ",measurementsData);
+        const options = {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "dark1", // "light1", "dark1", "dark2"
+            title:{
+                text: "Dickson Indicator by Week of Focus Session"
+            },
+            axisY: {
+                title: "Dickson Indicator",
+                includeZero: false,
+                suffix: "%",
+                interval: 0.25
+            },
+            axisX: {
+                title: "Week of Focus Session",
+                prefix: "W",
+                interval: 1
+            },
+            data: [{
+                type: "line",
+                toolTipContent: "Week {x}: {y}%",
+                dataPoints: measurementsData
+            }]
+        }
 
         return (
             <body>
@@ -119,33 +164,130 @@ class dashboard extends React.Component {
                              </div>
                       </nav>
                 </section>
+                
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
                     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
                     </div>
-                    <div class="container ">
-                    <br/>       
-                <h1 style={{color:"#FFFFFF"}}> Dashboard </h1>
-                <h3 style={{color:"#FFFFFF"}}> Let's see what is happening for you!</h3>
-                <br/><br/>
                     
+                
+    
+    <div class="container">     
+                <h1 style={{color:"#FFFFFF", marginleft:"20px"}}> Dashboard </h1>
+                <h3 style={{color:"#FFFFFF", marginleft:"20px"}}> Let's see what is happening for you!</h3>
+                <br/><br/>
+    <div class="containerc">
+    <div class="cardc">
+      <div class="front">
+        <div class="contentfront">
+          <div class="month">
+            <table>
+              <tr class="orangeTr">
+                
+                <th>M</th>
+                <th>T</th>
+                <th>W</th>
+                <th>T</th>
+                <th>F</th>
+                <th>S</th>
+                <th>S</th>
+              </tr>
+              <tr class="whiteTr">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+              </tr>
+              <tr class="whiteTr">
+              	<th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+              <tr class="whiteTr">
+              	<th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th style={{fontWeight: "bold"}}>15</th>
+                <th>16</th>
+                <th>17</th>
+                
+              </tr>
+              <tr class="whiteTr">
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+                <th>21</th>
+                <th>22</th>
+                <th>23</th>
+                <th>24</th>
+                
+              </tr>
+              <tr class="whiteTr">
+              	<th>25</th>
+                <th>26</th>
+                <th>27</th>
+                <th>28</th>
+                <th>29</th>
+                <th>30</th>
+                <th></th>
+                
+              </tr>
+            </table>
+          </div>
+          <div class="date">
+            <div class="datecont">
+              <div id="day">November</div>
+              <div id="month">Friday, 15th</div>
+              <i class="fa fa-pencil edit" aria-hidden="true"></i>
+              <br/> <br/> <br/> <br/>
+              <div id="month" style={{fontWeight:'bold'}}>> You have a session today</div>
+              <br/> <br/> 
+              <div id="month">> You have a session coming in 2 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        
+      </div>
+    </div>
+  </div>
+  </div>
+<div style={{width:"50px"}}>
+</div>
+                    <div class="container ">
+               <br/><br/><br/>
+                        <div class="col-6 ">
+                        <CanvasJSChart options = {options} 
+                            /* onRef={ref => this.chart = ref} */
+                        />
+                        {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+                        </div>
                     <div class="card-box col-4 " style={{backgroundColor: "#FFFFFF",display:"inline-block", height:"300px"}} >
                             <div class="row">
                                         <h1>Graph indicator</h1>
                             </div>
                     </div>
                     <div style={{opacity: 0,display:"inline-block"}} >
-                            <h1>SPACESP</h1>
+                            <h1>SPA</h1>
                     </div>
-                    <div class="card-box col-3" style={{backgroundColor: "#2C2C2C",display:"inline-block"}} >
+                    <div class="card-box col-3" style={{backgroundColor: "#2C2C2C",display:"inline-block",width:"100%", }} >
                             <div class="row">
-                                <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px'}}>Details</h1>
+                                <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px', width:"100%"}}>Details</h1>
                                 <h4 style={{color:"#FFFFFF",marginLeft:'5px'}}> personnal details of the customer</h4>
 
 
                 {programList1.map((program) => {
-                    programLists.push(<div class="card" style={{backgroundColor: "#5FE164", height:"200px",width:"50%",marginLeft:'5px'}}>
-                                    <p style={{fontFamily:"bold", color:"#FFFFFF"}}>SESSION IN PROGRESS</p>
-                                    <p style={{color:"#FFFFFF"}}>{program.title}</p>
+                    programLists.push(<div class="card" style={{backgroundColor: "#5FE164", height:"200px",width:"100%",marginLeft:'5px'}}>
+                                    <p style={{fontFamily:"bold", color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px'}}>SESSION IN PROGRESS</p>
+                                    <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{program.title}</p>
                                 </div>   
                                 )}) 
             }
@@ -163,14 +305,13 @@ class dashboard extends React.Component {
             </div>
                     </div>
                     <br/><br/>
-                    <div style={{opacity: 0,display:"inline-block"}} >
-                            <h1>SPACESP</h1>
-                    </div>
+                   
                     <div class="card-box " style={{backgroundColor: "#FFFFFF",display:"inline-block", width: "500px",height:"150px"}} >
                             <div class="row">
                                         <h1 style={{marginLeft:"15px"}}>Reward section (Challenges)</h1>
                             </div>
                     </div>
+                    <br/><br/>
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>

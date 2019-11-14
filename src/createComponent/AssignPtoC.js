@@ -47,6 +47,29 @@ class AssignPtoC extends React.Component {
                 }
             });
     };
+
+   // Notify handler for sending notifications
+    // handleNotify = async() => {
+    //     const { program } = this.state;
+    //     const notification = {
+    //         customer_id: program.customer_id,
+    //         coach_id: program.coach_id,
+    //         notify_for: "CUSTOMER",
+    //         notify_type: "PROGRAM_ASSIGNED",
+    //         message: `You have a new assigned program waiting for you.`
+    //     }
+        
+    //     const response = await fetch(`http://localhost:8080/notification/activate`, {
+    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //                     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //         },
+    //         body: JSON.stringify(notification) // body data type must match "Content-Type" header
+    //     });
+    //     return await response.json();
+    // }
     // Submit the data to backend 
     handleSubmit = async event => {
         const {program} = this.state;
@@ -119,6 +142,13 @@ class AssignPtoC extends React.Component {
                                 Back
                             </button>
                         </div>
+
+                        {/* <div class="align-right">
+                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleNotify}>
+                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+                                Notify Customer
+                            </button>
+                        </div> */}
                     </div>
                 </section>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>

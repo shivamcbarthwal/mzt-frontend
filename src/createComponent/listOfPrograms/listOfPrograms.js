@@ -12,7 +12,7 @@ import '../../assets2/mobirise/css/mbr-additional.css'
 import '../../assets2/mobirise/css/mbr-additional.css'
 import './listOfPrograms.css'
 var Logo = require('../../assets2/images/logo-mzt.png');
-const cust_id = '5dc541fb717676384459fe66'
+const cust_id = '5dc53fb7717676384459fe63'
 
 class listOfPrograms extends React.Component {
   state = {
@@ -62,7 +62,7 @@ class listOfPrograms extends React.Component {
             </div>
             );
         }
-        if(programID.status === 'IN_PROGRESS'){
+        if(programID.status === 'ASSIGNED'){
             optionsSession.push(
                 <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/listOfSessions/${programID._id}`)} >
                 <div class="card-wrapper media-container-row media-container-row">
