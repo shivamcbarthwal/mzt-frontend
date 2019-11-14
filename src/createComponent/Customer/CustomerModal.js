@@ -16,7 +16,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import Spinner from './Spinner';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Table, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal } from 'semantic-ui-react';
+import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -256,14 +256,9 @@ class CustomerModal extends Component {
                                             <Button primary size="medium" onClick={this.handleClickCancelProgram(program._id)}>
                                                 Cancel the Program
                                             </Button>
-                                            <Modal trigger={<Button primary size="medium" >Show Results</Button>} closeIcon>
-                                                <Modal.Header>Results for {program.title}</Modal.Header>
-                                                <Modal.Content>
-                                                    <Modal.Description>
-                                                        <h1>Test</h1>
-                                                    </Modal.Description>
-                                                </Modal.Content>
-                                            </Modal>
+                                            <Button primary size="medium" onClick={this.handleClickShowResults(program._id)}>
+                                                Show Results
+                                            </Button>
                                         </div>
                                 </div>
                                 <div class="bottom-line">
