@@ -8,7 +8,7 @@ import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
 import Homepage from './createComponent/Homepage.js'
-import dashboard from './createComponent/dashboard.js'
+import dashboard from './createComponent/Dashboard/dashboard.js'
 import workout from './createComponent/workout.js'
 import assignPtoC from './createComponent/AssignPtoC.js'
 import CoachHome from './createComponent/CoachHome.js';
