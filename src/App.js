@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { SnackbarProvider } from 'notistack';
 import logo from './logo.svg';
 import './App.css';
 import ExerciseCreate from './createComponent/ExerciseCreate.js'
@@ -28,6 +29,7 @@ import AssignStoP from './createComponent/AssignStoP';
 
 function App() {
   return (
+    <SnackbarProvider maxSnack={3}>
     <div className="App">
       <Router>
           <Route path="/exerciseCreate" component={ExerciseCreate} />
@@ -55,6 +57,7 @@ function App() {
           <Route path="/AssignStoP" component={AssignStoP} />
       </Router>
     </div>
+    </SnackbarProvider>
   );
 }
 
