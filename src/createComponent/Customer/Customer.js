@@ -110,10 +110,7 @@ export default class Customer extends Component {
                     </Table.Body>
                 </Table>
                 <div class="align-right">
-                    <Button sencondary onClick = {this.handleClickBack}>
-                            <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                            Back
-                    </Button>
+                <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                 </div>
                 <script src="assets/web/assets/jquery/jquery.min.js"></script>
                 <script src="assets/popper/popper.min.js"></script>

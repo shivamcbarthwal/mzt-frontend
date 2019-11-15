@@ -9,6 +9,7 @@
     "canvasjs": "^1.8.1",
     "immutable": "^4.0.0-rc.12",
     "jquery-tablesort": "0.0.11",
+    "moment": "^2.24.0",
     "notistack": "^0.9.6",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",

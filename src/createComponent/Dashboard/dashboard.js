@@ -46,7 +46,7 @@ class dashboard extends React.Component {
         {
             params: {
                 "customer_id":"5dc541fb717676384459fe66",
-                "program_id":"5dcbe4cfdeb2027f66d2c4c8"
+                "program_id":"5dcb2cd4fe74df22bc65702a"
             }
         })
         .then(res => {
@@ -101,7 +101,6 @@ class dashboard extends React.Component {
             axisY: {
                 title: "Dickson Indicator",
                 includeZero: false,
-                suffix: "%",
                 interval: 0.25
             },
             axisX: {
@@ -111,7 +110,7 @@ class dashboard extends React.Component {
             },
             data: [{
                 type: "line",
-                toolTipContent: "Week {x}: {y}%",
+                toolTipContent: "Week {x}: {y}",
                 dataPoints: measurementsData
             }]
         }
