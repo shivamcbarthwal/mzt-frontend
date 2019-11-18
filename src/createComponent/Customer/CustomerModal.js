@@ -16,7 +16,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import Spinner from './Spinner';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Table, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal } from 'semantic-ui-react';
+import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -26,7 +26,9 @@ import '../assets/dropdown/css/style.css'
 import '../assets/theme/css/style.css'
 import '../assets/mobirise/css/mbr-additional.css'
 import './Customer.css';
+import moment from 'moment';
 import { program } from '@babel/types';
+import { textAlign } from '@material-ui/system';
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -59,13 +61,14 @@ const styles = theme => ({
         alignItems: 'center'
     }
 });
+var ResultList1 = [];
+var ResultList2 = [];
 
 class CustomerModal extends Component {
     state = {
         customers: null,
         programs: [],
         optionResult: [],
-        Result: [],
         open: false,
         setOpen: false
     };
@@ -94,87 +97,52 @@ class CustomerModal extends Component {
         });
         window.location.href='/CustomersDetail/'+this.props.match.params.customerID;
     }
-    handleClickShowResults = (progId) => () =>{
-
-    }
-    handleClickShowResult = (progId,sessId) => () =>{
-        
-    }
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
             const customers = res.data;
-            console.log(res.data);
             this.setState({ customers });
         });
         axios.get(`http://localhost:8080/program/getProgramByCustomerId/${this.props.match.params.customerID}`)
         .then(res => {
             const programs = res.data;
-            console.log(programs);
             if (!programs) {
-                console.log("HERE");
                 this.setState({ open: true });
             } 
             else {
-                this.setState({ programs });
-                this.state.programs.map(program=>{
-                    axios({
-                        method: 'get',
-                        url: 'http://localhost:8080/customer/getCustomerMeasurementsById',
-                        params:{
-                            program_id: program._id,
-                            customer_id: this.props.match.params.customerID
-                        }
-                    })
-                    .then(res => {
-                        res.data.map(result =>{
-                            this.state.optionResult.push(result);
+                this.setState({ programs },()=>{
+                    this.state.programs.map((prog) =>{
+                        axios({
+                            method: 'get',
+                            url: 'http://localhost:8080/customer/getCustomerMeasurementsById',
+                            params:{
+                                program_id: prog._id,
+                                customer_id: this.props.match.params.customerID
+                            }
                         })
-                    });
-                })
+                        .then(res => {
+                            const results = res.data;
+                            results.map(result =>{
+                                this.setState({"optionResult": this.state.optionResult.concat(result)});
+                            })
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                    })
+                });
             }
         })
         .catch(e => {
             console.log(e);
         });
+        
     };
     render() {
-        var measurementsData = [];
-        var measurements = this.state.Result;
-        if(measurements){
-            for (let i = 0; i < measurements.length; i++){
-                measurementsData.push({ x: i+1, y: measurements[i].dickson_metric});
-            }
-        }
-        console.log("data ",measurementsData);
-        const options = {
-            animationEnabled: true,
-            exportEnabled: true,
-            theme: "dark1", // "light1", "dark1", "dark2"
-            title:{
-                text: "Dickson Indicator by Week of Focus Session"
-            },
-            axisY: {
-                title: "Dickson Indicator",
-                includeZero: false,
-                suffix: "%",
-                interval: 0.25
-            },
-            axisX: {
-                title: "Week of Focus Session",
-                prefix: "W",
-                interval: 1
-            },
-            data: [{
-                type: "line",
-                toolTipContent: "Week {x}: {y}%",
-                dataPoints: measurementsData
-            }]
-        }
-        console.log(options)
+        console.log(this.state.programs);
+        console.log(this.state.optionResult);
         const { customers, open} = this.state;
         const Icon = variantIcon["warning"];
-        console.log(open);
         const programList1 = [];
         const programList2 = [];
         const programLists = [];
@@ -198,8 +166,6 @@ class CustomerModal extends Component {
                 programList2.push(Program);
             }
         });
-        var ResultList1 = [];
-        var ResultList2 = [];
         var SessionList1 = [];
         var SessionList2 = [];
         if (customers){
@@ -241,6 +207,34 @@ class CustomerModal extends Component {
                 {programList1.map((program) => {
                     ResultList1 = [];
                     SessionList1 = [];
+                    this.state.optionResult.map((res,index)=>{
+                        if(res.program_id === program._id){
+                            ResultList1.push(
+                                <Table>
+                                    <TableHeader>
+                                        <Table.Row>
+                                            <TableHeaderCell>Measurement Date</TableHeaderCell>
+                                            <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableHeaderCell>Heart Rate 1</TableHeaderCell>
+                                            <TableHeaderCell>Heart Rate 2</TableHeaderCell>
+                                            <TableHeaderCell>Heart Rate 3</TableHeaderCell>
+                                            <TableHeaderCell>Dickson Metric</TableHeaderCell>
+                                        </Table.Row>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <Table.Row>
+                                            <Table.Cell>{res.heartRate1}</Table.Cell>
+                                            <Table.Cell>{res.heartRate2}</Table.Cell>
+                                            <Table.Cell>{res.heartRate3}</Table.Cell>
+                                            <Table.Cell>{res.dickson_metric}</Table.Cell>
+                                        </Table.Row>
+                                    </TableBody>
+                                </Table>
+                            )
+                        }
+                    });
                     programLists.push(
                     <div class="card px-3 col-12">
                         <div class="card-wrapper media-container-row media-container-row">
@@ -256,13 +250,11 @@ class CustomerModal extends Component {
                                             <Button primary size="medium" onClick={this.handleClickCancelProgram(program._id)}>
                                                 Cancel the Program
                                             </Button>
-                                            <Modal trigger={<Button primary size="medium" >Show Results</Button>} closeIcon>
-                                                <Modal.Header>Results for {program.title}</Modal.Header>
-                                                <Modal.Content>
-                                                    <Modal.Description>
-                                                        <h1>Test</h1>
-                                                    </Modal.Description>
-                                                </Modal.Content>
+                                            <Modal trigger={<Button primary size="medium">Show Results</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                <ModalHeader style={{textAlign:'center'}}>Show Results of {program.title}</ModalHeader>
+                                                <ModalContent>
+                                                    {ResultList1}
+                                                </ModalContent>
                                             </Modal>
                                         </div>
                                 </div>
@@ -322,7 +314,7 @@ class CustomerModal extends Component {
                                                         <Table.Cell>{session.name}</Table.Cell>
                                                         <Table.Cell>{session.session_status}</Table.Cell>
                                                         <Table.Cell>
-                                                        <Button primary size="small" onClick={this.handleClickShowResult(program._id,session.session_id)}>
+                                                        <Button primary size="small">
                                                             Show session result
                                                         </Button>
                                                         </Table.Cell>
@@ -354,6 +346,35 @@ class CustomerModal extends Component {
             {programList2.map((program) => {
                 ResultList2 = [];
                 SessionList2 = [];
+                this.state.optionResult.map((res,index)=>{
+                    if(res.program_id === program._id){
+                        ResultList2.push(
+                            <Table>
+                                <TableHeader>
+                                    <Table.Row>
+                                        <TableHeaderCell>Measurement Date</TableHeaderCell>
+                                        <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
+                                    </Table.Row>
+                                    <Table.Row>
+                                        <TableHeaderCell>Heart Rate 1</TableHeaderCell>
+                                        <TableHeaderCell>Heart Rate 2</TableHeaderCell>
+                                        <TableHeaderCell>Heart Rate 3</TableHeaderCell>
+                                        <TableHeaderCell>Dickson Metric</TableHeaderCell>
+                                    </Table.Row>
+                                </TableHeader>
+                                <TableBody>
+                                    <Table.Row>
+                                        <Table.Cell>{res.heartRate1}</Table.Cell>
+                                        <Table.Cell>{res.heartRate2}</Table.Cell>
+                                        <Table.Cell>{res.heartRate3}</Table.Cell>
+                                        <Table.Cell>{res.dickson_metric}</Table.Cell>
+                                    </Table.Row>
+                                </TableBody>
+                            </Table>
+                        )
+                    }
+                });
+                console.log(ResultList2);
                 programLists.push(
                     <div class="card px-3 col-12">
                         <div class="card-wrapper media-container-row media-container-row">
@@ -366,9 +387,12 @@ class CustomerModal extends Component {
                                     <div class="mbr-text align-right display-5" style={{width:'50%'}}>
                                         {program.status}
                                         <br/>
-                                        <Button primary size="medium" onClick={this.handleClickShowResults(program._id)}>
-                                            Show Results
-                                        </Button>
+                                        <Modal trigger={<Button primary size="medium">Show Results</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                <ModalHeader style={{textAlign:'center'}}>Show Results of {program.title}</ModalHeader>
+                                                <ModalContent>
+                                                    {ResultList2}
+                                                </ModalContent>
+                                            </Modal>
                                     </div>
                                 </div>
                                 <div class="bottom-line">
@@ -396,7 +420,6 @@ class CustomerModal extends Component {
                                             <Table.Cell>{session.session_status}</Table.Cell>
                                         </Table.Row>
                                     )
-                                
                                 }
                             )}
                             {SessionList2}
@@ -410,12 +433,7 @@ class CustomerModal extends Component {
                 )})
             }
             {programLists}
-                        <div class="align-right">
-                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
-                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                Back
-                            </button>
-                        </div>
+            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
                     </section>
                     <script src="assets/web/assets/jquery/jquery.min.js"></script>
