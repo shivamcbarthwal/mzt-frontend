@@ -33,6 +33,8 @@ class focusSessionStartExercise extends React.Component {
     ;
     toggleNext = () => {
         const {exercises, exerciseN} = this.state;
+        console.log('current', exerciseN);
+        console.log('length', exercises.length);
         if (exercises.length === exerciseN + 1) {
             this.props.history.push("/focusSessionResult")
         } else {
@@ -48,7 +50,7 @@ class focusSessionStartExercise extends React.Component {
       console.log("Query", this.props.location);
       const index = Number(this.props.location.search.slice(1).split("=")[1]);
       console.log("Index", index);
-      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.sessionID}`)
+      axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
         .then(res => {
             const program = res.data;
             this.setState({exercises: program.sessions[index].exercises});

@@ -29,6 +29,7 @@ class focusSessionAgenda extends React.Component {
             thigh: '',
             waist: ''
         },
+        index: null,
         focus: false
     }
     componentDidMount() {
@@ -51,12 +52,12 @@ class focusSessionAgenda extends React.Component {
         {
             params: {
                 "customer_id":"5dc541fb717676384459fe66",
-                "program_id":"5dcbe4cfdeb2027f66d2c4c8"
+                "program_id":"5dcb2cd4fe74df22bc65702a"
             }
         })
         .then(res => {
             const measurements = res.data;
-            console.log(res.data);
+            console.log('meas',res.data);
             this.setState({measurements});
         }
         )
@@ -86,7 +87,9 @@ class focusSessionAgenda extends React.Component {
             },
             body: JSON.stringify(heartRates) // body data type must match "Content-Type" header
         });
-        return await response.json(); // parses JSON response into native JavaScript objects
+        const index = Number(this.props.location.search.slice(1).split("=")[1]);
+        this.props.history.push(`/focusSessionStartExercise/${this.props.match.params.programID}?sessionIndex=${index}`)
+
     }
 
     render() {
