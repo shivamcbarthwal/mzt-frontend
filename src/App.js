@@ -26,6 +26,7 @@ import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
 import AssignEtoS from './createComponent/AssignEtoS';
 import AssignStoP from './createComponent/AssignStoP';
+import Sponsor from './createComponent/Sponsor';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="/createProgramT" component={createProgramT} />
           <Route path="/AssignEtoS" component={AssignEtoS} />
           <Route path="/AssignStoP" component={AssignStoP} />
+          <Route path="/Sponsor" component={Sponsor} />
       </Router>
     </div>
     </SnackbarProvider>
