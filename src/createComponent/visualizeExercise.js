@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell, Image } from 'semantic-ui-react';
 import _ from 'lodash';
 import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
@@ -51,6 +51,10 @@ class visualizeExercise extends Component {
         var optionsExercise = [];
         const { column, direction } = this.state;
         this.state.exercises.map((Exercise) => {
+            var tags = [];
+            Exercise.exercise_tag.map(tag=>{
+                tags.push(tag + "; ");
+            })
            optionsExercise.push(
                 <Table.Row>
                     <Table.Cell><strong>{Exercise.name}</strong></Table.Cell>
@@ -58,7 +62,60 @@ class visualizeExercise extends Component {
                     <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
                     <Table.Cell singleLine>
-                        <Button primary size="small">See details</Button>
+                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                            <ModalHeader style={{textAlign:'center'}}>{Exercise.name}</ModalHeader>
+                            <ModalContent>
+                                <Table>
+                                    <TableBody>
+                                        <Table.Row>
+                                            <TableCell><strong>Tag</strong></TableCell>
+                                            <TableCell>{tags}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Description</strong></TableCell>
+                                            <TableCell>{Exercise.description}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Equipement Required</strong></TableCell>
+                                            <TableCell>{Exercise.equipment_required}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Type</strong></TableCell>
+                                            <TableCell>{Exercise.exercise_type}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Targeted Muscles</strong></TableCell>
+                                            <TableCell>{Exercise.muscles_targeted}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Set Break</strong></TableCell>
+                                            <TableCell>{Exercise.set_break}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Repetition</strong></TableCell>
+                                            <TableCell>{Exercise.repetition}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Time</strong></TableCell>
+                                            <TableCell>{Exercise.time}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Sets</strong></TableCell>
+                                            <TableCell>{Exercise.sets}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Estimated Duration</strong></TableCell>
+                                            <TableCell>{Exercise.exercise_est_duration}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Image</strong></TableCell>
+                                            <TableCell><Image src={Exercise.exercise_img_url}></Image></TableCell>
+                                        </Table.Row>
+                                    </TableBody>
+                                </Table>
+                            </ModalContent>
+                        </Modal>
+                        
                         <Button primary size="small">Update</Button>
                         <Button primary size="small">Delete</Button>
                     </Table.Cell>

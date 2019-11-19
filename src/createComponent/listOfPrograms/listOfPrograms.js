@@ -35,35 +35,13 @@ class listOfPrograms extends React.Component {
 }
   render() {
     const { program, exerciseN} = this.state;
-    var optionsSession = [];
+    var TodoPrograms = [];
+    var DonePrograms = [];
     console.log("program", program);
     if (program) {
     this.state.program.map((programID, i) => {
-        if(programID.status === 'IN_PROGRESS'){
-        optionsSession.push(
-            <div class="card px-3 col-12" >
-            <div class="card-wrapper media-container-row media-container-row">
-                <div class="card-box">
-                    <div class="top-line pb-3">
-                        <h4 class="card-title mbr-fonts-style display-5">
-                            {programID.title}
-                        </h4>
-                        <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                            {programID.status}
-                        </p>
-                    </div>
-                    <div class="bottom-line">
-                        <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                            Session type: {programID.description} <br/>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            </div>
-            );
-        }
         if(programID.status === 'COMPLETED'){
-        optionsSession.push(
+        DonePrograms.push(
             <div class="card px-3 col-12" >
             <div class="card-wrapper media-container-row media-container-row">
                 <div class="card-box">
@@ -85,8 +63,31 @@ class listOfPrograms extends React.Component {
             </div>
             );
         }
+        if(programID.status === 'CANCELED'){
+            DonePrograms.push(
+                <div class="card px-3 col-12" >
+                <div class="card-wrapper media-container-row media-container-row">
+                    <div class="card-box">
+                        <div class="top-line pb-3">
+                            <h4 class="card-title mbr-fonts-style display-5">
+                                {programID.title}
+                            </h4>
+                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                                {programID.status}
+                            </p>
+                        </div>
+                        <div class="bottom-line">
+                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
+                                Session type: {programID.description} <br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                );
+            }
         if(programID.status === 'IN_PROGRESS'){
-            optionsSession.push(
+            TodoPrograms.push(
                 <div class="card px-3 col-12" onClick={()=>this.props.history.push('/listOfSessions/'+programID._id)} >
                 <div class="card-wrapper media-container-row media-container-row">
                     <div class="card-box">
@@ -109,8 +110,8 @@ class listOfPrograms extends React.Component {
                 );
             }
             if(programID.status === 'ASSIGNED'){
-                optionsSession.push(
-                    <div class="card px-3 col-12" >
+                TodoPrograms.push(
+                    <div class="card px-3 col-12"  onClick={()=>this.props.history.push('/listOfSessions/'+programID._id)} >
                     <div class="card-wrapper media-container-row media-container-row">
                         <div class="card-box">
                             <div class="top-line pb-3">
@@ -197,7 +198,8 @@ class listOfPrograms extends React.Component {
                           Your programs
                       </strong></h2>
                   </div>
-                  {optionsSession}
+                  {TodoPrograms}
+                  {DonePrograms}
               </div>
               <br/>
               <div class="align-right">
