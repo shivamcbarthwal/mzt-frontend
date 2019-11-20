@@ -12,7 +12,6 @@ import '../assets/tether/tether.min.css';
 import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
-import '../assets/mobirise/css/mbr-additional.css';
 
 class visualizeExercise extends Component {
     state = {
