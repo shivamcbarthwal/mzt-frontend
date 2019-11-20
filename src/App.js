@@ -9,6 +9,7 @@ import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
 import Homepage from './createComponent/Homepage.js'
+import Community from './createComponent/Community.js'
 import dashboard from './createComponent/Dashboard/dashboard.js'
 import workout from './createComponent/workout.js'
 import assignPtoC from './createComponent/AssignPtoC.js'
@@ -38,6 +39,7 @@ function App() {
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
           <Route path="/homepage" component={Homepage} />
+          <Route path="/community" component={Community} />
           <Route path="/dashboard" component={dashboard} />
           <Route path="/workout" component={workout} />
           <Route path="/assignPtoC/:custId" component={assignPtoC} />

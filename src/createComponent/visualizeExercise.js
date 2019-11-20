@@ -57,7 +57,7 @@ class visualizeExercise extends Component {
                     <Table.Cell>{Exercise.exercise_type}</Table.Cell>
                     <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
-                    <Table.Cell singleLine>
+                    <Table.Cell>
                         <Button primary size="small">See details</Button>
                         <Button primary size="small">Update</Button>
                         <Button primary size="small">Delete</Button>
