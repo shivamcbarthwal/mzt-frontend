@@ -21,12 +21,14 @@ import focusSessionAgenda from './createComponent/focusSessionAgenda'
 import focusSessionResult from './createComponent/focusSessionResult'
 import visualizeProgram from './createComponent/VisualizeProgram'
 import Customer from './createComponent/Customer/Customer';
+import Feedback from './createComponent/Customer/Feedback';
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import listOfSessions from './createComponent/listOfSessions/listOfSessions'
 import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
 import AssignEtoS from './createComponent/AssignEtoS';
 import AssignStoP from './createComponent/AssignStoP';
+
 
 function App() {
   return (
@@ -57,6 +59,7 @@ function App() {
           <Route path="/createProgramT" component={createProgramT} />
           <Route path="/AssignEtoS" component={AssignEtoS} />
           <Route path="/AssignStoP" component={AssignStoP} />
+          <Route path="/Feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
       </Router>
     </div>
     </SnackbarProvider>
