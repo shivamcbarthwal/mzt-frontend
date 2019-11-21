@@ -21,6 +21,7 @@ import focusSessionResult from './createComponent/focusSessionResult'
 import visualizeProgram from './createComponent/VisualizeProgram'
 import Customer from './createComponent/Customer/Customer';
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
+import regularSessionStartExercise from './createComponent/regularSessionStartExercise'
 import listOfSessions from './createComponent/listOfSessions/listOfSessions'
 import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
@@ -50,6 +51,7 @@ function App() {
           <Route path="/visualizeProgram" component={visualizeProgram} />
           <Route path="/customerList" component={Customer} />
           <Route path="/focusSessionStartExercise/:programID" component={focusSessionStartExercise} />
+          <Route path="/regularSessionStartExercise/:programID" component={regularSessionStartExercise} />
           <Route path="/listOfSessions/:programID" component={listOfSessions} />
           <Route path="/listOfPrograms" component={listOfPrograms} />
           <Route path="/createProgramT" component={createProgramT} />

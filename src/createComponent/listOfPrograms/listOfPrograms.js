@@ -39,7 +39,7 @@ class listOfPrograms extends React.Component {
     console.log("program", program);
     if (program) {
     this.state.program.map((programID, i) => {
-        if(programID.status === 'IN_PROGRESS'){
+        if(programID.status === 'ASSIGNED'){
         optionsSession.push(
             <div class="card px-3 col-12" >
             <div class="card-wrapper media-container-row media-container-row">
