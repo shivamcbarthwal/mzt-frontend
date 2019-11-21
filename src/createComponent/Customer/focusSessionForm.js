@@ -1,15 +1,15 @@
 import React from 'react';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css'
-import '../assets/dropdown/css/style.css'
-import '../assets/theme/css/style.css'
-import '../assets/mobirise/css/mbr-additional.css'
-import '../assets/mobirise/css/mbr-additional.css'
-import Background from '../assets/images/cardio-fitness-player.jpg';
-var Logo = require('../assets/images/logo-mzt.png');
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css'
+import '../../assets/dropdown/css/style.css'
+import '../../assets/theme/css/style.css'
+import '../../assets/mobirise/css/mbr-additional.css'
+import '../../assets/mobirise/css/mbr-additional.css'
+import Background from '../../assets/images/cardio-fitness-player.jpg';
+var Logo = require('../../assets/images/logo-mzt.png');
 
 
 class FocusSessionForm extends React.Component {
@@ -76,7 +76,7 @@ class FocusSessionForm extends React.Component {
                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                     <meta name="generator" content="Mobirise v4.11.2, mobirise.com" />
                     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-                    <link rel="shortcut icon" href="../assets/images/logo-mzt2.png" type="image/x-icon" />
+                    <link rel="shortcut icon" href="../../assets/images/logo-mzt2.png" type="image/x-icon" />
                     <meta name="description" content="Website Builder Description" />
                     <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
                         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">

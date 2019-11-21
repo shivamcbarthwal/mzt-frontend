@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css'
-import '../assets/dropdown/css/style.css'
-import '../assets/theme/css/style.css'
-import '../assets/mobirise/css/mbr-additional.css'
-import Background from '../assets/images/woman-pushup.jpeg';
-var Logo = require('../assets/images/logo-mzt.png');
-var image1 = require('../assets/images/timed.png');
-var image2 = require('../assets/images/reload.png');
-var image3 = require('../assets/images/emoticons.png');
-var angry = require('../assets/images/angry.png');
-var neutral = require('../assets/images/neutral.png');
-var happy = require('../assets/images/very-happy.png');
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css'
+import '../../assets/dropdown/css/style.css'
+import '../../assets/theme/css/style.css'
+import '../../assets/mobirise/css/mbr-additional.css'
+import Background from '../../assets/images/woman-pushup.jpeg';
+var Logo = require('../../assets/images/logo-mzt.png');
+var image1 = require('../../assets/images/timed.png');
+var image2 = require('../../assets/images/reload.png');
+var image3 = require('../../assets/images/emoticons.png');
+var angry = require('../../assets/images/angry.png');
+var neutral = require('../../assets/images/neutral.png');
+var happy = require('../../assets/images/very-happy.png');
 
 class FocusSessionStartExercise extends React.Component {
     state = {
@@ -40,7 +40,7 @@ class FocusSessionStartExercise extends React.Component {
         const {exercises, exerciseN, sessions} = this.state;
         this.state.result = result
         console.log('Result: ',this.state.result);
-        if (exercises.length === (exerciseN+1)) {
+        if (exercises.length === (exerciseN+2)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
                 sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
