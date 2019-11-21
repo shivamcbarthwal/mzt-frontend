@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD:src/createComponent/Customer/regularSessionStartExercise.js
-import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-import '../../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets/tether/tether.min.css'
-import '../../assets/dropdown/css/style.css'
-import '../../assets/theme/css/style.css'
-import '../../assets/mobirise/css/mbr-additional.css'
-=======
 import Select, { components } from 'react-select';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
->>>>>>> d4718ffbb9ba2ef925bf3f8fade04da7eefe3536:src/createComponent/customer/regularSessionStartExercise.js
 import Background from '../../assets/images/woman-pushup.jpeg';
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');

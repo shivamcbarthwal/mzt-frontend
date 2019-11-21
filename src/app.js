@@ -21,7 +21,6 @@ import Customer from './createComponent/coach/customer.js'
 import Feedback from './createComponent/coach/feedback.js'
 
 import Homepage from './createComponent/customer/homepage.js'
-import Challenge from './createComponent/customer/challenge.js'
 import Sponsor from './createComponent/customer/sponsor'
 import Dashboard from './createComponent/customer/dashboard/dashboard.js'
 import ListOfPrograms from './createComponent/customer/listOfPrograms/listOfPrograms'
@@ -51,10 +50,8 @@ function App() {
           <Route path="/programTemplates" component={ProgramTemplates} />
           <Route path="/customersDetail/:customerID" component={CustomerModal} />
           <Route path="/customerList" component={Customer} />
-          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
-          
+          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />         
           <Route path="/homepage" component={Homepage} />
-          <Route path="/challenge" component={Challenge} />
           <Route path="/sponsor" component={Sponsor} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
