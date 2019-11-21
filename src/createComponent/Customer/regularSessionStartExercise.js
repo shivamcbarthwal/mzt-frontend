@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Select, { components } from 'react-select';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/bootstrap/css/bootstrap-grid.min.css';

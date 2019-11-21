@@ -3,18 +3,6 @@ import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import { Table, Button } from 'semantic-ui-react';
 import _ from 'lodash';
-import { withStyles, Snackbar, SnackbarContent, IconButton } from '@material-ui/core';
-import clsx from 'clsx';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { SnackbarProvider, withSnackbar } from 'notistack';
-
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
-import { amber, green } from '@material-ui/core/colors';
-import WarningIcon from '@material-ui/icons/Warning';
 import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/bootstrap/css/bootstrap-grid.min.css';
