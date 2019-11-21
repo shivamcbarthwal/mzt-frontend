@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell, Image } from 'semantic-ui-react';
 import _ from 'lodash';
 import Select, { components } from 'react-select';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
@@ -15,7 +15,9 @@ import '../assets/mobirise/css/mbr-additional.css';
 
 class visualizeSession extends Component {
     state = {
-        sessions: []
+        column: null,
+        sessions: [],
+        direction: null
     };
      // Sort the table according to header
     handleSort = (clickedColumn) => () => {
@@ -37,6 +39,7 @@ class visualizeSession extends Component {
         this.props.history.push('/');
     };
     componentDidMount() {
+        
         axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
         .then(res => {
             const sessions = res.data;
@@ -47,18 +50,61 @@ class visualizeSession extends Component {
         this.handleSort('status');
         var optionsSession = [];
         const { column, direction } = this.state;
-        this.state.sessions.map((Session) => {   
+        this.state.sessions.map((Session, index) => { 
+            var tags = [];
+            var optionExercises = [];
+            Session.session_template_tag.map((tag,index)=>{
+                tags.push(tag + "; ");
+            });
+            axios.get('http://localhost:8080/sessionTemplate/showInformation/'+Session._id)
+            .then(res => {
+                var exercises = res.data.exercises;
+                console.log("Session: "+exercises);
+                Object.keys(exercises).map((key,index) =>{
+                    optionExercises.push(
+                        <p>{String(exercises[key].name)}</p>
+                    )
+                });
+            });
             optionsSession.push(
                 <Table.Row>
                     <Table.Cell><strong>{Session.name}</strong></Table.Cell>
                     <Table.Cell>{Session.session_coach_notes}</Table.Cell>
-                    <Table.Cell>
-                        <Button primary size="small">See details</Button>
+                    <Table.Cell singleLine>
+                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                            <ModalHeader style={{textAlign:'center'}}>{Session.name}</ModalHeader>
+                            <ModalContent>
+                                <Table>
+                                    <TableBody>
+                                        <Table.Row>
+                                            <TableCell><strong>Tag</strong></TableCell>
+                                            <TableCell>{tags}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Description</strong></TableCell>
+                                            <TableCell>{Session.session_coach_notes}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Type</strong></TableCell>
+                                            <TableCell>{Session.session_type}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Duration</strong></TableCell>
+                                            <TableCell>{Session.session_duration}</TableCell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <TableCell><strong>Exercises</strong></TableCell>
+                                            <TableCell>{optionExercises}</TableCell>
+                                        </Table.Row>
+                                    </TableBody>
+                                </Table>
+                            </ModalContent>
+                        </Modal>
                         <Button primary size="small">Update</Button>
                         <Button primary size="small">Delete</Button>
                     </Table.Cell>
                 </Table.Row>
-            );        
+            );
         });
         return (
             <body>

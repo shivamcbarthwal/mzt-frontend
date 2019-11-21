@@ -85,7 +85,7 @@ class visualizeProgram extends Component {
                                     <Table.Row>
                                         <Table.HeaderCell
                                           sorted={column === 'title' ? direction : null}
-                                          onClick={this.handleSort('tite')}
+                                          onClick={this.handleSort('title')}
                                         >
                                             TITLE
                                         </Table.HeaderCell>
