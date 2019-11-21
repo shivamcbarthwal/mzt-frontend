@@ -16,12 +16,13 @@ import CreateProgramT from './createComponent/createProgramT'
 import AssignStoP from './createComponent/assignStoP'
 import AssignPtoC from './createComponent/assignPtoC.js'
 import ProgramTemplates from './createComponent/programTemplates'
-import CustomerModal from './createComponent/Customer/customerModal'
-import Customer from './createComponent/Customer/customer'
+import CustomerModal from './createComponent/customer/customerModal'
+import Customer from './createComponent/customer/customer'
+import Feedback from './createComponent/customer/feedback.js'
 
 import Homepage from './createComponent/homepage.js'
 import Challenge from './createComponent/challenge.js'
-import Dashboard from './createComponent/Dashboard/dashboard.js'
+import Dashboard from './createComponent/dashboard/dashboard.js'
 import Workout from './createComponent/workout.js'
 import ListOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import ListOfSessions from './createComponent/listOfSessions/listOfSessions'
@@ -30,7 +31,6 @@ import FocusSessionForm from './createComponent/focusSessionForm'
 import FocusSessionAgenda from './createComponent/focusSessionAgenda'
 import FocusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import FocusSessionResult from './createComponent/focusSessionResult'
-import Feedback from './createComponent/Customer/feedback.js';
 
 function App() {
   return (
@@ -51,6 +51,7 @@ function App() {
           <Route path="/programTemplates" component={ProgramTemplates} />
           <Route path="/customersDetail/:customerID" component={CustomerModal} />
           <Route path="/customerList" component={Customer} />
+          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
           
           <Route path="/homepage" component={Homepage} />
           <Route path="/challenge" component={Challenge} />
@@ -63,7 +64,6 @@ function App() {
           <Route path="/focusSessionAgenda/:programID" component={FocusSessionAgenda} />                    
           <Route path="/focusSessionStartExercise/:programID" component={FocusSessionStartExercise} />
           <Route path="/focusSessionResult" component={FocusSessionResult} />
-          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
       </Router>
     </div>
     </SnackbarProvider>
