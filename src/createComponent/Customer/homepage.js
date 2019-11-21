@@ -13,16 +13,16 @@ import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
 import { amber, green } from '@material-ui/core/colors';
 import WarningIcon from '@material-ui/icons/Warning';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css';
-import '../assets/dropdown/css/style.css';
-import '../assets/theme/css/style.css';
-import '../assets/mobirise/css/mbr-additional.css';
-import Background from '../assets/images/bk_hp.jpg';
-var Logo = require('../assets/images/logo-mzt.png');
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css';
+import '../../assets/dropdown/css/style.css';
+import '../../assets/theme/css/style.css';
+import '../../assets/mobirise/css/mbr-additional.css';
+import Background from '../../assets/images/bk_hp.jpg';
+var Logo = require('../../assets/images/logo-mzt.png');
 
 const customer_Id = "5dc53fb7717676384459fe63";
 

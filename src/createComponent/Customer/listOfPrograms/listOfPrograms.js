@@ -1,148 +1,143 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets2/bootstrap/css/bootstrap.min.css';
-import '../../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets2/tether/tether.min.css'
-import '../../assets2/dropdown/css/style.css'
-import '../../assets2/theme/css/style.css'
-import '../../assets2/mobirise/css/mbr-additional.css'
-import '../../assets2/mobirise/css/mbr-additional.css'
-import './listOfSessions.css'
-var Logo = require('../../assets2/images/logo-mzt.png');
+import '../../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../../assets/bootstrap/css/bootstrap.min.css';
+import '../../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../../assets/tether/tether.min.css'
+import '../../../assets/dropdown/css/style.css'
+import '../../../assets/theme/css/style.css'
+import '../../../assets/mobirise/css/mbr-additional.css'
+import './listOfPrograms.css'
+var Logo = require('../../../assets2/images/logo-mzt.png');
+const cust_id = '5dc53fb7717676384459fe63'
 
-class ListOfSessions extends React.Component {
+class ListOfPrograms extends React.Component {
   state = {
     exerciseN: 1,
     program: null
   }
 
   componentDidMount(){
-     axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+     axios.get(`http://localhost:8080/program/getProgramByCustomerId/${cust_id}`)
      .then(res => {
          const program = res.data;
-         console.log("request",res.data);
+         console.log(res.data);
          this.setState({ program });
        }
      )
   }
-
+  
   handleClickBack = () => {
     this.props.history.push('/Homepage');
 }
   render() {
     const { program, exerciseN} = this.state;
-    var optionsSession = [];
+    var TodoPrograms = [];
+    var DonePrograms = [];
     console.log("program", program);
     if (program) {
-    program.sessions.map((sessionId, i) => {
-    if(sessionId.session_status === 'OPENED') {
-      if(sessionId.session_type === 'regular') {
-        optionsSession.push(
-            <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/regularSessionStartExercise/${program._id}?sessionIndex=${i}`)} >
+    this.state.program.map((programID, i) => {
+        if(programID.status === 'COMPLETED'){
+        DonePrograms.push(
+            <div class="card px-3 col-12" >
             <div class="card-wrapper media-container-row media-container-row">
                 <div class="card-box">
                     <div class="top-line pb-3">
                         <h4 class="card-title mbr-fonts-style display-5">
-                            {sessionId.name}
+                            {programID.title}
                         </h4>
                         <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                            {sessionId.session_status}
+                            {programID.status}
                         </p>
                     </div>
                     <div class="bottom-line">
                         <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                            Session type: {sessionId.session_type} <br/>
-                            Coach notes: {sessionId.session_coach_notes}
+                            Session type: {programID.description} <br/>
                         </p>
                     </div>
                 </div>
             </div>
             </div>
-            )
+            );
         }
-        if(sessionId.session_type === 'focus') {
-            optionsSession.push(
-                <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/focusSessionAgenda/${program._id}?sessionIndex=${i}`)} >
+        if(programID.status === 'CANCELED'){
+            DonePrograms.push(
+                <div class="card px-3 col-12" >
                 <div class="card-wrapper media-container-row media-container-row">
                     <div class="card-box">
                         <div class="top-line pb-3">
                             <h4 class="card-title mbr-fonts-style display-5">
-                                {sessionId.name}
+                                {programID.title}
                             </h4>
                             <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                {sessionId.session_status}
+                                {programID.status}
                             </p>
                         </div>
                         <div class="bottom-line">
                             <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                Session type: {sessionId.session_type} <br/>
-                                Coach notes: {sessionId.session_coach_notes}
+                                Session type: {programID.description} <br/>
                             </p>
                         </div>
                     </div>
                 </div>
                 </div>
-                )
-            } 
-        }
-        if(sessionId.session_status === 'CLOSED') {
-            optionsSession.push(
-                  <div class="card px-3 col-12" >
-                  <div class="card-wrapper media-container-row media-container-row">
-                      <div class="card-box">
-                          <div class="top-line pb-3">
-                              <h4 class="card-title mbr-fonts-style display-5">
-                                  {sessionId.name}
-                              </h4>
-                              <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                  {sessionId.session_status}
-                              </p>
-                          </div>
-                          <div class="bottom-line">
-                              <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                  Session type: {sessionId.session_type} <br/>
-                                  Coach notes: {sessionId.session_coach_notes}
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-                  </div>
-                  ) 
-              }
-        if(sessionId.session_status === 'COMPLETED') {
-            optionsSession.push(
-                  <div class="card px-3 col-12" >
-                  <div class="card-wrapper media-container-row media-container-row">
-                      <div class="card-box">
-                          <div class="top-line pb-3">
-                              <h4 class="card-title mbr-fonts-style display-5">
-                                  {sessionId.name}
-                              </h4>
-                              <p class="mbr-text cost mbr-fonts-style m-0 display-5">
-                                  {sessionId.session_status}
-                              </p>
-                          </div>
-                          <div class="bottom-line">
-                              <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
-                                  Session type: {sessionId.session_type} <br/>
-                                  Coach notes: {sessionId.session_coach_notes}
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-                  </div>
-                  ) 
-              }
-    }
-    );
+                );
+            }
+        if(programID.status === 'IN_PROGRESS'){
+            TodoPrograms.push(
+                <div class="card px-3 col-12" onClick={()=>this.props.history.push('/listOfSessions/'+programID._id)} >
+                <div class="card-wrapper media-container-row media-container-row">
+                    <div class="card-box">
+                        <div class="top-line pb-3">
+                            <h4 class="card-title mbr-fonts-style display-5">
+                                {programID.title}
+                            </h4>
+                            <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                                {programID.status}
+                            </p>
+                        </div>
+                        <div class="bottom-line">
+                            <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
+                                Session type: {programID.description} <br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                );
+            }
+            if(programID.status === 'ASSIGNED'){
+                TodoPrograms.push(
+                    <div class="card px-3 col-12"  onClick={()=>this.props.history.push('/listOfSessions/'+programID._id)} >
+                    <div class="card-wrapper media-container-row media-container-row">
+                        <div class="card-box">
+                            <div class="top-line pb-3">
+                                <h4 class="card-title mbr-fonts-style display-5">
+                                    {programID.title}
+                                </h4>
+                                <p class="mbr-text cost mbr-fonts-style m-0 display-5">
+                                    {programID.status}
+                                </p>
+                            </div>
+                            <div class="bottom-line">
+                                <p class="mbr-text mbr-fonts-style m-0 b-descr display-7">
+                                    Session type: {programID.description} <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    );
+                }
+    })
 }
+
     return (
       <body>
-<section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
-            <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+      <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
+          <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
               <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <div class="hamburger">
                       <span></span>
@@ -182,9 +177,8 @@ class ListOfSessions extends React.Component {
                       </ul>
                   </div>
           </nav>
-        </section>
-
-      <section class="engine"><a href="https://mobirise.info/c">free website builder</a></section>
+      </section>
+      
       <section class="services5 cid-rHe57AJS6O mbr-parallax-background" id="services5-f">
 
           <div class="mbr-overlay" style={{opacity: 0.5, backgroundColor: "#232323"}}>
@@ -193,10 +187,11 @@ class ListOfSessions extends React.Component {
               <div class="row">
                   <div class="title pb-5 col-12">
                       <h2 class="align-left mbr-fonts-style m-0 display-1" style={{color: "#ffffff"}}><strong>
-                          Your sessions
+                          Your programs
                       </strong></h2>
                   </div>
-                  {optionsSession}
+                  {TodoPrograms}
+                  {DonePrograms}
               </div>
               <br/>
               <div class="align-right">
@@ -224,4 +219,4 @@ class ListOfSessions extends React.Component {
   }
 }
 
-export default ListOfSessions;
+export default ListOfPrograms;

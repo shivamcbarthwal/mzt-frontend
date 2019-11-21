@@ -14,7 +14,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
-import Spinner from './Spinner';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
