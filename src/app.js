@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 import logo from './logo.svg';
-import './App.css';
+import './app.css';
 
 import CoachHome from './createComponent/coach/coachHome.js'
 import VisualizeExercise from './createComponent/coach/visualizeExercise.js'
@@ -16,9 +16,9 @@ import CreateProgramT from './createComponent/coach/createProgramT'
 import AssignStoP from './createComponent/coach/assignStoP'
 import AssignPtoC from './createComponent/coach/assignPtoC.js'
 import ProgramTemplates from './createComponent/coach/programTemplates'
-import CustomerModal from './createComponent/customer/customerModal'
-import Customer from './createComponent/customer/customer'
-import Feedback from './createComponent/customer/feedback.js'
+import CustomerModal from './createComponent/coach/customerModal'
+import Customer from './createComponent/coach/customer.js'
+import Feedback from './createComponent/coach/feedback.js'
 
 import Homepage from './createComponent/customer/homepage.js'
 import Challenge from './createComponent/customer/challenge.js'
