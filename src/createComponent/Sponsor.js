@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets2/bootstrap/css/bootstrap.min.css';
-import '../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets2/tether/tether.min.css';
-import '../assets2/dropdown/css/style.css';
-import '../assets2/theme/css/style.css';
-import '../assets2/mobirise/css/mbr-additional.css';
+import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../assets/bootstrap/css/bootstrap.min.css';
+import '../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../assets/tether/tether.min.css';
+import '../assets/dropdown/css/style.css';
+import '../assets/theme/css/style.css';
+import '../assets/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../assets/canvas/canvasjs.react';
-var Logo = require('../assets2/images/logo-mzt.png');
+var Logo = require('../assets/images/logo-mzt.png');
 
 class Sponsor extends React.Component {
+    handleClickBack = () => {
+        this.props.history.push('/Homepage');
+    };
 
 
     render() {
@@ -73,7 +76,6 @@ class Sponsor extends React.Component {
 
                     <div class="container">
 
-                        <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
 
 
