@@ -13,7 +13,7 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 
-class visualizeSession extends Component {
+class VisualizeSession extends Component {
     state = {
         column: null,
         sessions: [],
@@ -116,7 +116,7 @@ class visualizeSession extends Component {
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Sessions</h2>
                         <br/>
                         <div>
-                            <a class="align-center col-md-3 btn btn-orange-outline " href='/SessionCreate' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
+                            <a class="align-center col-md-3 btn btn-orange-outline " href='/createSession' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 NEW SESSION
                             </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
@@ -163,5 +163,5 @@ class visualizeSession extends Component {
     };
 };
 
-export default visualizeSession;
+export default VisualizeSession;
     

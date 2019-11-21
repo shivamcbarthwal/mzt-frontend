@@ -1,6 +1,6 @@
 import React from 'react';
 
-class workout extends React.Component {
+class Workout extends React.Component {
     render() {
         return (
             <div className="App">
@@ -12,4 +12,4 @@ class workout extends React.Component {
     };
 };
 
-export default workout;
+export default Workout;

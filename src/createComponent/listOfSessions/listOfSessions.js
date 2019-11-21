@@ -13,7 +13,7 @@ import '../../assets2/mobirise/css/mbr-additional.css'
 import './listOfSessions.css'
 var Logo = require('../../assets2/images/logo-mzt.png');
 
-class listOfSessions extends React.Component {
+class ListOfSessions extends React.Component {
   state = {
     exerciseN: 1,
     program: null
@@ -152,35 +152,35 @@ class listOfSessions extends React.Component {
                   </div>
               </button>
               <div class="menu-logo">
-                  <div class="navbar-brand">
-                      <span class="navbar-logo">
-                          <a href="/Homepage">
-                              <img src={Logo} alt="Mobirise" title="" />
-                          </a>
-                      </span>
-                      <span class="navbar-caption-wrap">
-                          <a class="navbar-caption text-white display-4" href="/Homepage">
-                              MZT FITNESS
-                          </a>
-                      </span>
+                      <div class="navbar-brand">
+                          <span class="navbar-logo">
+                              <a href="/homepage">
+                                  <img src={Logo} alt="MZT fitness" title="" />
+                              </a>
+                          </span>
+                          <span class="navbar-caption-wrap">
+                              <a class="navbar-caption text-white display-4" href="/homepage">
+                                  MZT FITNESS
+                              </a>
+                          </span>
+                      </div>
                   </div>
-              </div>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                      <li class="nav-item">
-                          <a class="nav-link link text-white display-4" href="/Homepage">
-                              <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                              Home page
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link link text-white display-4" href="/Community">
-                              <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                              Community
-                          </a>
-                      </li>
-                  </ul>
-              </div>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                          <li class="nav-item">
+                              <a class="nav-link link text-white display-4" href="/homepage">
+                                  <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                  Home page
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link link text-white display-4" href="/challenge">
+                                  <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                  Challenge
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
           </nav>
         </section>
 
@@ -224,4 +224,4 @@ class listOfSessions extends React.Component {
   }
 }
 
-export default listOfSessions;
+export default ListOfSessions;

@@ -10,7 +10,7 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 
-class SessionCreate extends React.Component {
+class CreateSession extends React.Component {
     state = {
         session: {
             session_name: "",
@@ -161,4 +161,4 @@ class SessionCreate extends React.Component {
     };
 };
 
-export default SessionCreate;
+export default CreateSession;

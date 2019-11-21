@@ -26,9 +26,10 @@ import '../assets/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/bk_hp.jpg';
 
 const customer_Id = "5dc53fb7717676384459fe63";
-var Logo = require('../assets2/images/logo-mzt.png');
+var Logo = require('../assets/images/logo-mzt.png');
+var certificate = require("../assets/images/certificate.png");
 
-class Community extends React.Component {
+class Challenge extends React.Component {
     state = {
         column: null,
         challenges: [],
@@ -60,6 +61,7 @@ class Community extends React.Component {
             this.setState({challenges});
         });
     };
+    
     render() {
         this.handleSort('status');
         var optionsChallenge = [];
@@ -87,12 +89,12 @@ class Community extends React.Component {
                   <div class="menu-logo">
                       <div class="navbar-brand">
                           <span class="navbar-logo">
-                              <a href="/Homepage">
-                                  <img src={Logo} alt="Mobirise" title="" />
+                              <a href="/homepage">
+                                  <img src={Logo} alt="MZT fitness" />
                               </a>
                           </span>
                           <span class="navbar-caption-wrap">
-                              <a class="navbar-caption text-white display-4" href="/Homepage">
+                              <a class="navbar-caption text-white display-4" href="/homepage">
                                   MZT FITNESS
                               </a>
                           </span>
@@ -101,15 +103,9 @@ class Community extends React.Component {
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                           <li class="nav-item">
-                              <a class="nav-link link text-white display-4" href="/Homepage">
+                              <a class="nav-link link text-white display-4" href="/homepage">
                                   <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                                   Home page
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link link text-white display-4" href="/Community">
-                                  <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                  Community
                               </a>
                           </li>
                       </ul>
@@ -123,48 +119,30 @@ class Community extends React.Component {
 
                 <div class="container">
                     <h2 class="mbr-white mbr-fonts-style m-0 display-1 align-center">
-                        Challenge<br/>each other and earn points
-                    </h2>  
+                        Challenge yourself and earn points
+                    </h2>      
                     <br/>
-                    <div class="media-container-column align-center" style={{backgroundColor:"#232323"}}>
-                        <h2 class="mbr-section-title mbr-fonts-style display-10">
-                            New challenge from Shivam!
-                        </h2>
-                            <p class="mbr-text-challenge mbr-fonts-style display-5">
-                                Take the stairs instead of the lifts all week.
-                                Rewards: 
-                            </p>
-                        <div class="mbr-section-btn">
-                            <a class="btn btn-primary display-4" href="">Accept</a>
-                            <a class="btn btn-secondary display-4" href="">Reject</a>
-                        </div>
-                    </div>             
-                    <div class=" media-container-column align-center"> 
-                        <h2 class="mbr-section-title mbr-fonts-style display-2">
-                            CHALLENGE LOG
-                        </h2>                           
-                        <Table sortable celled structured>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell
-                                      sorted={column === 'description' ? direction : null}
-                                      onClick={this.handleSort('description')}
-                                    >
-                                        CHALLENGE
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell
-                                      sorted={column == 'type' ? direction : null}
-                                      onClick={this.handleSort('type')}
-                                    >
-                                        STATUS
-                                    </Table.HeaderCell>
-                                </Table.Row>
-                            </Table.Header>
-                            <Table.Body textAlign='center'>
-                                {optionsChallenge}
-                            </Table.Body>
-                        </Table>  
-                    </div>
+                    <Table sortable celled structured>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell
+                                  sorted={column === 'description' ? direction : null}
+                                  onClick={this.handleSort('description')}
+                                >
+                                    CHALLENGE
+                                </Table.HeaderCell>
+                                <Table.HeaderCell
+                                  sorted={column == 'type' ? direction : null}
+                                  onClick={this.handleSort('type')}
+                                >
+                                    STATUS
+                                </Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body textAlign='center'>
+                            {optionsChallenge}
+                        </Table.Body>
+                    </Table>  
                 </div>  
             </section>
 
@@ -173,7 +151,7 @@ class Community extends React.Component {
                     <div class="row justify-content-md-center">
                         <div class="col-md-10 align-center">
                             <h1 class="mbr-section-title mbr-bold mbr-fonts-style display-1">
-                                <img src="assets/images/certificate.png" alt="Certificate"/>
+                                <img src={certificate} alt="Certificate"/>
                                 15 points
                             </h1>	
                             <p class="mbr-text pb-3 mbr-fonts-style display-5"></p>
@@ -194,9 +172,10 @@ class Community extends React.Component {
             <script src="assets/parallax/jarallax.min.js"></script>
             <script src="assets/theme/js/script.js"></script>
             <script src="assets/formoid/formoid.min.js"></script> 
+            <script src="/path/to/lottery-wheel.min.js"></script>
         </body>
     )
   }
 }
 
-export default Community;
+export default Challenge;

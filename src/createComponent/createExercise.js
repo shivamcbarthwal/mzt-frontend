@@ -17,7 +17,7 @@ import img4 from '../assets/images/a-hamstretch-800x600-800x600.png';
 const imageList = [img1, img2, img3, img4];
 
 // Class based component to create Exercise
-class ExcerciseCreate extends React.Component {
+class CreateExercise extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -168,4 +168,4 @@ class ExcerciseCreate extends React.Component {
     }
 }
 
-export default ExcerciseCreate;
+export default CreateExercise;

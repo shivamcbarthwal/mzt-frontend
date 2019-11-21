@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class createProgramT extends Component {
+export default class CreateProgramT extends Component {
     handleClickBack = () => {
         this.props.history.push('/VisualizeProgram');
     };
