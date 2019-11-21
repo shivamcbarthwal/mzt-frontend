@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class CreateProgramT extends Component {
     handleClickBack = () => {
-        this.props.history.push('/VisualizeProgram');
+        this.props.history.push('/visualizeProgram');
     };
     render() {
         return (
