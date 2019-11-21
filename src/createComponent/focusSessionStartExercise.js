@@ -21,7 +21,8 @@ class FocusSessionStartExercise extends React.Component {
         exerciseN: 0,
         exercises: null,
         onExercise: false,
-        offInfo: true
+        offInfo: true,
+        sessions: null,
     }
 
     toggle = () => {
@@ -32,15 +33,22 @@ class FocusSessionStartExercise extends React.Component {
     }
     ;
     toggleNext = () => {
-        const {exercises, exerciseN} = this.state;
+        const {exercises, exerciseN, sessions} = this.state;
         if (exercises.length === (exerciseN+1)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
                 sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
             });
-            axios.post('http://localhost:8080/program/customerUpdateProgramStatus',{
-                program_id: this.props.match.params.programID,
-            });
+            if(Number(this.props.location.search.slice(1).split("=")[1])===0){
+                axios.post('http://localhost:8080/program/customerUpdateProgramStatus',{
+                    program_id: this.props.match.params.programID,
+                });
+            }
+            if(Number(this.props.location.search.slice(1).split("=")[1])===(sessions.length-1)){
+                axios.post('http://localhost:8080/program/customerUpdateProgramStatus',{
+                    program_id: this.props.match.params.programID,
+                });
+            }
             window.location.href='/listOfSessions/'+this.props.match.params.programID;
             console.log("finished");
             
@@ -59,7 +67,10 @@ class FocusSessionStartExercise extends React.Component {
       axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
         .then(res => {
             const program = res.data;
-            this.setState({exercises: program.sessions[index].exercises});
+            this.setState({
+                exercises: program.sessions[index].exercises,
+                sessions: program.sessions
+            });
             console.log('prog',program);
         }
       )
