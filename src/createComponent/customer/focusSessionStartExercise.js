@@ -15,6 +15,7 @@ class FocusSessionStartExercise extends React.Component {
         onExercise: false,
         offInfo: true,
         sessions: null,
+        result: ''
     }
 
     toggle = () => {
@@ -22,10 +23,15 @@ class FocusSessionStartExercise extends React.Component {
             onExercise: !this.state.onExercise,
             offInfo: !this.state.offInfo
         });
-    }
-    ;
+    };
     toggleNext = () => {
-        const {exercises, exerciseN, sessions} = this.state;
+        const {exercises, exerciseN, sessions, result} = this.state;
+        axios.post('http://localhost:8080/program/updateExerciseResult',{
+            program_id:  this.props.match.params.programID,
+            sessionNumber : Number(this.props.location.search.slice(1).split("=")[1]),
+            exerciseNumber : exerciseN,
+            exerciseResult : result
+        });
         if (exercises.length === (exerciseN+2)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
@@ -67,6 +73,13 @@ class FocusSessionStartExercise extends React.Component {
         }
       )
     }
+    handleChange = (name, event) => {
+        console.log(this.state.session);
+        this.setState({
+            result: event.target.value
+        });
+        console.log(event.target);
+    };
 
     render() {
         const {exercises, exerciseN} = this.state;
@@ -118,7 +131,11 @@ class FocusSessionStartExercise extends React.Component {
                             <p class="mbr-text mbr-fonts-style display-5">
                                 {exercises[exerciseN].description}
                             </p>
+                            <p class="mbr-text mbr-fonts-style display-5">
+                                Your result:
+                            </p>
                         </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                         <div class="mbr-section-btn">
                             <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                         </div>
@@ -172,7 +189,12 @@ class FocusSessionStartExercise extends React.Component {
                             <p class="mbr-text mbr-fonts-style display-5">
                               {exercises[exerciseN].description}
                             </p>
+                            <p class="mbr-text mbr-fonts-style display-5">
+                                Your result:
+                            </p>
                         </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
+                      
                         <div class="mbr-section-btn">
                             <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                         </div>
@@ -226,7 +248,11 @@ class FocusSessionStartExercise extends React.Component {
                                 <p class="mbr-text mbr-fonts-style display-5">
                                     {exercises[exerciseN].description}
                                 </p>
+                                <p class="mbr-text mbr-fonts-style display-5">
+                                    Your result:
+                                </p>
                             </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
