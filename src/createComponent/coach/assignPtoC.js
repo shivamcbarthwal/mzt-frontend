@@ -46,9 +46,9 @@ class AssignPtoC extends React.Component {
     //     const notification = {
     //         customer_id: program.customer_id,
     //         coach_id: program.coach_id,
-    //         notify_for: "CUSTOMER",
-    //         notify_type: "PROGRAM_ASSIGNED",
-    //         message: `You have a new assigned program waiting for you.`
+    //         notify_for: "COACH",
+    //         notify_type: "FOCUS_SESSION_APPROACHING",
+    //         msg: `A focus session is awaiting for you.`
     //     }
         
     //     const response = await fetch(`http://localhost:8080/notification/activate`, {
@@ -138,7 +138,7 @@ class AssignPtoC extends React.Component {
                         {/* <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleNotify}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                Notify Customer
+                                Notify COACH
                             </button>
                         </div> */}
                     </div>
