@@ -1,14 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-import '../../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets/tether/tether.min.css';
-import '../../assets/dropdown/css/style.css';
-import '../../assets/theme/css/style.css';
-import '../../assets/mobirise/css/mbr-additional.css';
 
 class CreateSession extends React.Component {
     state = {
@@ -149,13 +141,6 @@ class CreateSession extends React.Component {
                         </div>
                     </div>
                 </section>
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/parallax/jarallax.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>
             </body>
         );
     };

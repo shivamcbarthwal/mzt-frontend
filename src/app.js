@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 import logo from './logo.svg'

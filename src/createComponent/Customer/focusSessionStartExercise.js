@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD:src/createComponent/Customer/focusSessionStartExercise.js
 import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -8,6 +9,10 @@ import '../../assets/tether/tether.min.css'
 import '../../assets/dropdown/css/style.css'
 import '../../assets/theme/css/style.css'
 import '../../assets/mobirise/css/mbr-additional.css'
+=======
+import Select, { components } from 'react-select';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+>>>>>>> d4718ffbb9ba2ef925bf3f8fade04da7eefe3536:src/createComponent/customer/focusSessionStartExercise.js
 import Background from '../../assets/images/woman-pushup.jpeg';
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');
@@ -21,6 +26,7 @@ class FocusSessionStartExercise extends React.Component {
         onExercise: false,
         offInfo: true,
         sessions: null,
+        result: ''
     }
 
     toggle = () => {
@@ -28,10 +34,15 @@ class FocusSessionStartExercise extends React.Component {
             onExercise: !this.state.onExercise,
             offInfo: !this.state.offInfo
         });
-    }
-    ;
+    };
     toggleNext = () => {
-        const {exercises, exerciseN, sessions} = this.state;
+        const {exercises, exerciseN, sessions, result} = this.state;
+        axios.post('http://localhost:8080/program/updateExerciseResult',{
+            program_id:  this.props.match.params.programID,
+            sessionNumber : Number(this.props.location.search.slice(1).split("=")[1]),
+            exerciseNumber : exerciseN,
+            exerciseResult : result
+        });
         if (exercises.length === (exerciseN+2)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
@@ -73,6 +84,13 @@ class FocusSessionStartExercise extends React.Component {
         }
       )
     }
+    handleChange = (name, event) => {
+        console.log(this.state.session);
+        this.setState({
+            result: event.target.value
+        });
+        console.log(event.target);
+    };
 
     render() {
         const {exercises, exerciseN} = this.state;
@@ -124,7 +142,11 @@ class FocusSessionStartExercise extends React.Component {
                             <p class="mbr-text mbr-fonts-style display-5">
                                 {exercises[exerciseN].description}
                             </p>
+                            <p class="mbr-text mbr-fonts-style display-5">
+                                Your result:
+                            </p>
                         </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                         <div class="mbr-section-btn">
                             <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                         </div>
@@ -178,7 +200,12 @@ class FocusSessionStartExercise extends React.Component {
                             <p class="mbr-text mbr-fonts-style display-5">
                               {exercises[exerciseN].description}
                             </p>
+                            <p class="mbr-text mbr-fonts-style display-5">
+                                Your result:
+                            </p>
                         </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
+                      
                         <div class="mbr-section-btn">
                             <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                         </div>
@@ -232,7 +259,11 @@ class FocusSessionStartExercise extends React.Component {
                                 <p class="mbr-text mbr-fonts-style display-5">
                                     {exercises[exerciseN].description}
                                 </p>
+                                <p class="mbr-text mbr-fonts-style display-5">
+                                    Your result:
+                                </p>
                             </div>
+                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
@@ -305,18 +336,7 @@ class FocusSessionStartExercise extends React.Component {
                             {optionsExercise}
                         </div>
                     </section>
-                )}
-                
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                <script src="assets/parallax/jarallax.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>                
+                )}                
             </body>
         );
     }

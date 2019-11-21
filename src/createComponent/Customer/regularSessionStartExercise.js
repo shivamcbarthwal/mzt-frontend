@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD:src/createComponent/Customer/regularSessionStartExercise.js
 import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -8,6 +9,10 @@ import '../../assets/tether/tether.min.css'
 import '../../assets/dropdown/css/style.css'
 import '../../assets/theme/css/style.css'
 import '../../assets/mobirise/css/mbr-additional.css'
+=======
+import Select, { components } from 'react-select';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+>>>>>>> d4718ffbb9ba2ef925bf3f8fade04da7eefe3536:src/createComponent/customer/regularSessionStartExercise.js
 import Background from '../../assets/images/woman-pushup.jpeg';
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');
@@ -38,7 +43,13 @@ class FocusSessionStartExercise extends React.Component {
         const {exercises, exerciseN, sessions} = this.state;
         this.state.result = result
         console.log('Result: ',this.state.result);
-        if (exercises.length === (exerciseN+2)) {
+        axios.post('http://localhost:8080/program/updateExerciseResult',{
+            program_id:  this.props.match.params.programID,
+            sessionNumber : Number(this.props.location.search.slice(1).split("=")[1]),
+            exerciseNumber : exerciseN,
+            exerciseResult : result
+        });
+        if (exercises.length === (exerciseN+1)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
                 sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
@@ -344,18 +355,6 @@ class FocusSessionStartExercise extends React.Component {
                                     </section>
                                 )
                     }
-                    <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                    <script src="assets/popper/popper.min.js"></script>
-                    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                    <script src="assets/tether/tether.min.js"></script>
-                    <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                    <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                    <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                    <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                    <script src="assets/parallax/jarallax.min.js"></script>
-                    <script src="assets/theme/js/script.js"></script>
-                
-                
                 </body>
                 );
     }
