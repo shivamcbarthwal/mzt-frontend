@@ -76,10 +76,6 @@ class Sponsor extends React.Component {
 
                     <div class="container">
 
-<<<<<<< HEAD
-                        <Button secondary onClick = {this.handleClickBack}>Back</Button>
-=======
->>>>>>> a240e333af9793c8d2fa03f17261462e3f37e213
                     </div>
 
 
