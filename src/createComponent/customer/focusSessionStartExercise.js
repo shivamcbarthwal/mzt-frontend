@@ -34,7 +34,7 @@ class FocusSessionStartExercise extends React.Component {
     ;
     toggleNext = () => {
         const {exercises, exerciseN, sessions} = this.state;
-        if (exercises.length === (exerciseN+1)) {
+        if (exercises.length === (exerciseN+2)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
                 sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
