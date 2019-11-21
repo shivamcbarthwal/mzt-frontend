@@ -19,7 +19,7 @@ import ProgramTemplates from './createComponent/coach/programTemplates'
 import CustomerModal from './createComponent/coach/customerModal'
 import Customer from './createComponent/coach/customer.js'
 import Feedback from './createComponent/coach/feedback.js'
-
+import Challenge from './createComponent/customer/challenge.js'
 import Homepage from './createComponent/customer/homepage.js'
 import Sponsor from './createComponent/customer/sponsor'
 import Dashboard from './createComponent/customer/dashboard/dashboard.js'
@@ -52,6 +52,7 @@ function App() {
           <Route path="/customerList" component={Customer} />
           <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />         
           <Route path="/homepage" component={Homepage} />
+          <Route path="/challenge" component={Challenge} />
           <Route path="/sponsor" component={Sponsor} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
