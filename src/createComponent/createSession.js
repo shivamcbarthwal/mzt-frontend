@@ -10,19 +10,15 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 
-class SessionCreate extends React.Component {
+class CreateSession extends React.Component {
     state = {
         session: {
             session_name: "",
             session_type: "",
-            session_start_date: "",
-            session_end_date: "",
             session_coach_notes: "",
-            program_id: "",
-            coach_id: "",
-            customer_id: "",
+            session_duration: "",
             exercise_tag: [],
-            measurement_date: ""
+            coach_id: "5dc2f70414b9e52a30d6620e"
         },
         programs: [],
         customers: []
@@ -121,41 +117,21 @@ class SessionCreate extends React.Component {
                                                 <option>Regular Session</option>
                                             </select>
                                         </div>
-                                        <div class=" col-md-6  form-group" >
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Start date</label>
-                                            <input type="date" onChange={(e) => this.handleChange('session_start_date', e)} placeholder="0" required="required" class="form-control display-7"  id="name-form1-5" />
-                                        </div>
-                                        <div class=" col-md-6  form-group" >
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">End date</label>
-                                            <input type="date" onChange={(e) => this.handleChange('session_end_date', e)} placeholder="0"  required="required" class="form-control display-7"  id="name-form1-5" />
-                                        </div>
                                         <div data-for="message" class="col-md-12 form-group">
-                                            <label for="message-form1-3" class="form-control-label mbr-fonts-style display-7">Coach notes</label>
+                                            <label for="message-form1-3" class="form-control-label mbr-fonts-style display-7">Notes</label>
                                             <textarea name="message" placeholder="Enter description here" onChange={(e) => this.handleChange('session_coach_notes', e)} data-form-field="Message" class="form-control display-7" id="message-form1-3"></textarea>
                                         </div>
                                         <div class="col-md-6  form-group" data-for="program_id">
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Program</label>
-                                            <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('program_id', e)}>
-                                                {optionsProgram}
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6  form-group" data-for="coach_id">
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Coach</label>
-                                            <input type="number" onChange={(e) => this.handleChange('coach_id', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
-                                        </div>
-                                        <div class="col-md-4  form-group" data-for="customer_id">
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Customer</label>
-                                            <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('customer_id', e)}>
-                                                {optionsCustomers}
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4  form-group" data-for="tag">
+                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Duration</label>
+                                            <input type="text" name="duration" data-form-field="Duration" placeholder="0" required="required" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('session_name', e)} />
+                                       </div>
+                                        <div class="col-md-6  form-group" data-for="tag">
                                             <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Tags</label>
                                             <input class="form-control display-7"  />
                                         </div>
-                                        <div class="col-md-4  form-group" data-for="measurement_date">
-                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Measurement Date</label>
-                                            <input type="date" onChange={(e) => this.handleChange('measurement_date', e)} placeholder="0" required="required" class="form-control display-7"  id="name-form1-5" />
+                                        <div class="col-md-6  form-group" data-for="exercises">
+                                            <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Exercises</label>
+                                            <input class="form-control display-7"  />
                                         </div>
                                         <div class="col-md-12 input-group-btn align-center" />
                                         <button type="submit" class="btn btn-form btn-warning display-4" onClick={this.handleSubmit}>
@@ -185,4 +161,4 @@ class SessionCreate extends React.Component {
     };
 };
 
-export default SessionCreate;
+export default CreateSession;

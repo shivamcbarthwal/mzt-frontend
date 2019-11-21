@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets2/bootstrap/css/bootstrap.min.css';
-import '../../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets2/tether/tether.min.css';
-import '../../assets2/dropdown/css/style.css';
-import '../../assets2/theme/css/style.css';
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css';
+import '../../assets/dropdown/css/style.css';
+import '../../assets/theme/css/style.css';
 import './style.css';
-import '../../assets2/mobirise/css/mbr-additional.css';
+import '../../assets/mobirise/css/mbr-additional.css';
 import Background from '../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var Logo = require('../../assets2/images/logo-mzt.png');
+var Logo = require('../../assets/images/logo-mzt.png');
 
-class dashboard extends React.Component {
+class Dashboard extends React.Component {
     state = {
         customer:'5dc53fb7717676384459fe63',
         programs: [],
@@ -117,94 +117,86 @@ class dashboard extends React.Component {
 
         return (
             <body>
-                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
-                        <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <div class="hamburger">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </button>
-                            <div class="menu-logo">
-                                <div class="navbar-brand">
-                                    <span class="navbar-logo" href="homepage">
-                                        <a href="homepage">
-                                            <img src= {Logo}/>
-                                        </a>
-                                    </span>
-                                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="Homepage">
-                                            MZT FITNESS</a>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="Homepage">
-                                            <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                                            Home page
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="community_page.html">
-                                            <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                            Community
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" >
-                                            <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                                            About Us
-                                        </a>
-                                    </li>
-                                </ul>
-                             </div>
-                      </nav>
-                </section>
+                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
+            <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <div class="hamburger">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  </div>
+              </button>
+                <div class="menu-logo">
+                    <div class="navbar-brand">
+                        <span class="navbar-logo">
+                            <a href="/homepage">
+                                <img src={Logo} alt="MZT fitness" title="" />
+                            </a>
+                        </span>
+                        <span class="navbar-caption-wrap">
+                            <a class="navbar-caption text-white display-4" href="/homepage">
+                                MZT FITNESS
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="/homepage">
+                                <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                Home page
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="/challenge">
+                                <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                Challenge
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+          </nav>
+        </section>
                 
-                <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
-    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
-    </div>
-    
-	     
-    
-        
-            
-    <div class="container"> 
-    <br/> <br/> <br/><br/> <br/> <br/> 
-    <div class="display-inline row"> 
-        <div>
-        <h1 style={{color:"#FFFFFF", marginleft:"20px"}}> Dashboard </h1>
-        <h3 style={{color:"#FFFFFF", marginleft:"20px"}}>> Let's see what is happening for you!</h3>
-        </div>
-        <br/><br/>
-    	<div class="containerc" style={{marginLeft:"250px"}}>
-    		<div class="cardc">
-      			<div class="front">
-       				<div class="contentfront">
-          				<div class="month">
-            				<table>
-             					<tr class="orangeTr">
-                					<th>M</th>
-                					<th>T</th>
-                					<th>W</th>
-                					<th>T</th>
-                					<th>F</th>
-                					<th>S</th>
-                					<th>S</th>
-              					</tr>
-              					<tr class="whiteTr">
-                					<th></th>
-            					   	<th></th>
-            					   	<th></th>
-            					   	<th></th>
-            					   	<th>1</th>
-            					   	<th>2</th>
-            					   	<th>3</th>
-            					</tr>
-            					<tr class="whiteTr">
+        <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
+            <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
+            </div>
+
+            <div class="container"> 
+            <br/> <br/> <br/><br/> <br/> <br/> 
+            <div class="display-inline row"> 
+                <div>
+                    <h1 style={{color:"#FFFFFF", marginleft:"20px"}}> Dashboard </h1>
+                    <h3 style={{color:"#FFFFFF", marginleft:"20px"}}>> Let's see what is happening for you!</h3>
+                </div>
+                <br/><br/>
+                <div class="containerc" style={{marginLeft:"250px"}}>
+                    <div class="cardc">
+                        <div class="front">
+                            <div class="contentfront">
+                                <div class="month">
+                                    <table>
+                                        <tr class="orangeTr">
+                                            <th>M</th>
+                                            <th>T</th>
+                                            <th>W</th>
+                                            <th>T</th>
+                                            <th>F</th>
+                                            <th>S</th>
+                                            <th>S</th>
+                                        </tr>
+                                        <tr class="whiteTr">
+                                            <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                            </tr>
+                                            <tr class="whiteTr">
             					 	<th>4</th>
             					   	<th>5</th>
             					   	<th>6</th>
@@ -338,9 +330,7 @@ class dashboard extends React.Component {
                 <script src="assets/sociallikes/social-likes.js"></script>
                 </body>
                 );
-        }
-        
+        }     
     };
 
-
-export default dashboard;
+export default Dashboard;

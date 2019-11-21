@@ -14,7 +14,7 @@ import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 import Background from '../assets/images/prog_bk.jpg';
 
-class visualizeProgram extends Component {
+class VisualizeProgram extends Component {
     state = {
         column: null,
         programs: [],
@@ -85,7 +85,7 @@ class visualizeProgram extends Component {
                                     <Table.Row>
                                         <Table.HeaderCell
                                           sorted={column === 'title' ? direction : null}
-                                          onClick={this.handleSort('tite')}
+                                          onClick={this.handleSort('title')}
                                         >
                                             TITLE
                                         </Table.HeaderCell>
@@ -131,4 +131,4 @@ class visualizeProgram extends Component {
     };
 };
 
-export default visualizeProgram;
+export default VisualizeProgram;

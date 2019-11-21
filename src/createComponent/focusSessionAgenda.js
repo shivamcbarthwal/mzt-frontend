@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets2/bootstrap/css/bootstrap.min.css';
-import '../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets2/tether/tether.min.css'
-import '../assets2/dropdown/css/style.css'
-import '../assets2/theme/css/style.css'
-import '../assets2/mobirise/css/mbr-additional.css'
-import '../assets2/mobirise/css/mbr-additional.css'
-var Logo = require('../assets2/images/logo-mzt.png');
+import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../assets/bootstrap/css/bootstrap.min.css';
+import '../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../assets/tether/tether.min.css'
+import '../assets/dropdown/css/style.css'
+import '../assets/theme/css/style.css'
+import '../assets/mobirise/css/mbr-additional.css'
+var Logo = require('../assets/images/logo-mzt.png');
 
-class focusSessionAgenda extends React.Component {
+class FocusSessionAgenda extends React.Component {
     state = {
         exercises: null,
         Measurements: null,
@@ -149,12 +148,12 @@ class focusSessionAgenda extends React.Component {
                             <div class="menu-logo">
                                 <div class="navbar-brand">
                                     <span class="navbar-logo">
-                                        <a href="https://mobirise.com">
-                                            <img src={Logo} alt="Mobirise" title="" />
+                                        <a href="/homepage">
+                                            <img src={Logo} alt="MZT fitness" title="" />
                                         </a>
                                     </span>
                                     <span class="navbar-caption-wrap">
-                                        <a class="navbar-caption text-white display-4" href="homepage.html">
+                                        <a class="navbar-caption text-white display-4" href="/homepage">
                                             MZT FITNESS
                                         </a>
                                     </span>
@@ -163,21 +162,15 @@ class focusSessionAgenda extends React.Component {
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="homepage.html">
+                                        <a class="nav-link link text-white display-4" href="/homepage">
                                             <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                                             Home page
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="community_page.html">
+                                        <a class="nav-link link text-white display-4" href="/challenge">
                                             <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                            Community
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="https://mobirise.com">
-                                            <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                                            About Us
+                                            Challenge
                                         </a>
                                     </li>
                                 </ul>
@@ -290,4 +283,4 @@ class focusSessionAgenda extends React.Component {
     }
 }
 
-export default focusSessionAgenda;
+export default FocusSessionAgenda;

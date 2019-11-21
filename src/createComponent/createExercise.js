@@ -17,7 +17,7 @@ import img4 from '../assets/images/a-hamstretch-800x600-800x600.png';
 const imageList = [img1, img2, img3, img4];
 
 // Class based component to create Exercise
-class ExcerciseCreate extends React.Component {
+class CreateExercise extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,36 +93,19 @@ class ExcerciseCreate extends React.Component {
                                             </div>
                                             <div class="col-md-6  form-group" data-for="muscles_targeted">
                                                 <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Muscles targeted</label>
-                                                <br/>
-                                                <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('muscles_targeted', e)} multiple>
-                                                    <option>Abs</option>
-                                                    <option>Calf muscle</option>
-                                                    <option>Back</option>
-                                                    <option>Biceps</option>
-                                                    <option>Triceps</option>
-                                                    <option>Waist</option>
-                                                </select>
-                                            </div>
+                                                <input type="text" name="muscles_targeted" data-form-field="muscles_targeted" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('muscles_targeted', e)}/>
+                                           </div>
                                             <div class=" col-md-4  form-group" >
                                                 <label class="form-control-label mbr-fonts-style display-7">Equipment</label>
-                                                <br/>
-                                                <select class="form-control display-7" onChange={(e) => this.handleChange('equipement_required', e)} id="name-form1-5" multiple>
-                                                    <option>Balls</option>
-                                                    <option>Hoop</option>
-                                                    <option>Balls</option>
-                                                    <option>Hoop</option>
-                                                    <option>Balls</option>
-                                                    <option>Hoop</option>
-                                                </select>
+                                                <input type="text" name="equipment" data-form-field="equipment" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('equipment_required', e)}/>
                                             </div>
                                             <div class="box col-md-4  form-group" >
                                                 <label class="form-control-label mbr-fonts-style display-7">Type</label>
-                                                <br/>
-                                                <select onChange={(e) => this.handleChange('exercise_type', e)}>
-                                                    <option>Aerobic</option>
-                                                    <option>Strength</option>
-                                                    <option>Flexibility</option>
-                                                    <option>Balance</option>
+                                                <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('exercise_type', e)}>
+                                                    <option>AEROBIC</option>
+                                                    <option>BALANCE</option>
+                                                    <option>STRENGTHENING</option>
+                                                    <option>STRETCHING</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4  form-group">
@@ -185,4 +168,4 @@ class ExcerciseCreate extends React.Component {
     }
 }
 
-export default ExcerciseCreate;
+export default CreateExercise;

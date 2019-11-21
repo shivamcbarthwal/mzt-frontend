@@ -25,11 +25,12 @@ import '../assets/tether/tether.min.css'
 import '../assets/dropdown/css/style.css'
 import '../assets/theme/css/style.css'
 import '../assets/mobirise/css/mbr-additional.css'
-import './Customer.css';
+import './customer.css';
 import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
+const coach_id = "5dc2f70414b9e52a30d6620e";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const variantIcon = {
@@ -424,12 +425,7 @@ class CustomerModal extends Component {
                                         <Table.Row>
                                             <Table.Cell>{res.dickson_metric}</Table.Cell>
                                             <Table.Cell>
-                                            <Modal trigger={<Button primary size="medium">Give Feedback</Button>} style={{marginLeft:'300px'}} closeIcon>
-                                                <ModalHeader style={{textAlign:'center'}}>Give Feedback to {session.name}</ModalHeader>
-                                                <ModalContent>
-                                                    <p>Feedback</p>
-                                                </ModalContent>
-                                            </Modal>
+                                                <Button primary size="medium" onClick={()=>this.props.history.push('/Feedback/'+coach_id+'/'+res.customer_id+'/'+program._id+'/'+session._id)}>Give Feedback</Button>
                                             </Table.Cell>
                                         </Table.Row>
                                     </TableBody>
