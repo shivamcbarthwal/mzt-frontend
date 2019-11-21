@@ -4,14 +4,14 @@ import 'semantic-ui-css/semantic.min.css';
 import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell, Image } from 'semantic-ui-react';
 import _ from 'lodash';
 import Select, { components } from 'react-select';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css';
-import '../assets/dropdown/css/style.css';
-import '../assets/theme/css/style.css';
-import '../assets/mobirise/css/mbr-additional.css';
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css';
+import '../../assets/dropdown/css/style.css';
+import '../../assets/theme/css/style.css';
+import '../../assets/mobirise/css/mbr-additional.css';
 
 class VisualizeExercise extends Component {
     state = {

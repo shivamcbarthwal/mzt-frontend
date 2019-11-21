@@ -4,33 +4,32 @@ import { SnackbarProvider } from 'notistack';
 import logo from './logo.svg';
 import './app.css';
 
-import CoachHome from './createComponent/coachHome.js'
-import VisualizeExercise from './createComponent/visualizeExercise.js'
-import CreateExercise from './createComponent/createExercise.js'
-import VisualizeSession from './createComponent/visualizeSession.js'
-import CreateSession from './createComponent/createSession.js'
-import EditSession from './createComponent/editSession.js'
-import AssignEtoS from './createComponent/assignEtoS'
-import VisualizeProgram from './createComponent/visualizeProgram'
-import CreateProgramT from './createComponent/createProgramT'
-import AssignStoP from './createComponent/assignStoP'
-import AssignPtoC from './createComponent/assignPtoC.js'
-import ProgramTemplates from './createComponent/programTemplates'
+import CoachHome from './createComponent/coach/coachHome.js'
+import VisualizeExercise from './createComponent/coach/visualizeExercise.js'
+import CreateExercise from './createComponent/coach/createExercise.js'
+import VisualizeSession from './createComponent/coach/visualizeSession.js'
+import CreateSession from './createComponent/coach/createSession.js'
+import EditSession from './createComponent/coach/editSession.js'
+import AssignEtoS from './createComponent/coach/assignEtoS'
+import VisualizeProgram from './createComponent/coach/visualizeProgram'
+import CreateProgramT from './createComponent/coach/createProgramT'
+import AssignStoP from './createComponent/coach/assignStoP'
+import AssignPtoC from './createComponent/coach/assignPtoC.js'
+import ProgramTemplates from './createComponent/coach/programTemplates'
 import CustomerModal from './createComponent/customer/customerModal'
 import Customer from './createComponent/customer/customer'
 import Feedback from './createComponent/customer/feedback.js'
 
 import Homepage from './createComponent/customer/homepage.js'
-import Challenge from './createComponent/challenge.js'
-import Dashboard from './createComponent/dashboard/dashboard.js'
-import Workout from './createComponent/workout.js'
-import ListOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
-import ListOfSessions from './createComponent/listOfSessions/listOfSessions'
-import RegularSessionStartExercise from './createComponent/regularSessionStartExercise'
-import FocusSessionForm from './createComponent/focusSessionForm'
-import FocusSessionAgenda from './createComponent/focusSessionAgenda'
-import FocusSessionStartExercise from './createComponent/focusSessionStartExercise'
-import FocusSessionResult from './createComponent/focusSessionResult'
+import Challenge from './createComponent/customer/challenge.js'
+import Dashboard from './createComponent/customer/dashboard/dashboard.js'
+import ListOfPrograms from './createComponent/customer/listOfPrograms/listOfPrograms'
+import ListOfSessions from './createComponent/customer/listOfSessions/listOfSessions'
+import RegularSessionStartExercise from './createComponent/customer/regularSessionStartExercise'
+import FocusSessionForm from './createComponent/customer/focusSessionForm'
+import FocusSessionAgenda from './createComponent/customer/focusSessionAgenda'
+import FocusSessionStartExercise from './createComponent/customer/focusSessionStartExercise'
+import FocusSessionResult from './createComponent/customer/focusSessionResult'
 
 function App() {
   return (
@@ -56,7 +55,6 @@ function App() {
           <Route path="/homepage" component={Homepage} />
           <Route path="/challenge" component={Challenge} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/workout" component={Workout} /> 
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
           <Route path="/listOfSessions/:programID" component={ListOfSessions} /> 
           <Route path="/regularSessionStartExercise/:programID" component={RegularSessionStartExercise} />
