@@ -3,20 +3,7 @@ import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import { Table, Button } from 'semantic-ui-react';
 import _ from 'lodash';
-import { withStyles, Snackbar, SnackbarContent, IconButton } from '@material-ui/core';
-import clsx from 'clsx';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { SnackbarProvider, withSnackbar } from 'notistack';
-
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
-import { amber, green } from '@material-ui/core/colors';
-import WarningIcon from '@material-ui/icons/Warning';
 import Background from '../../assets/images/bk_hp.jpg';
-
 const customer_Id = "5dc53fb7717676384459fe63";
 var Logo = require('../../assets/images/logo-mzt.png');
 var certificate = require("../../assets/images/certificate.png");
@@ -152,19 +139,6 @@ class Challenge extends React.Component {
                     </div>
                 </div>
             </section>
-                
-            <script src="assets/web/assets/jquery/jquery.min.js"></script>
-            <script src="assets/popper/popper.min.js"></script>
-            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="assets/smoothscroll/smooth-scroll.js"></script>
-            <script src="assets/tether/tether.min.js"></script>
-            <script src="assets/dropdown/js/nav-dropdown.js"></script>
-            <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-            <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-            <script src="assets/parallax/jarallax.min.js"></script>
-            <script src="assets/theme/js/script.js"></script>
-            <script src="assets/formoid/formoid.min.js"></script> 
-            <script src="/path/to/lottery-wheel.min.js"></script>
         </body>
     )
   }
