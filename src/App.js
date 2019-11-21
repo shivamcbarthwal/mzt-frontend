@@ -26,7 +26,7 @@ import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
 import AssignEtoS from './createComponent/AssignEtoS';
 import AssignStoP from './createComponent/AssignStoP';
-import Sponsor from './createComponent/Sponsor';
+import Sponsor from './createComponent/sponsor';
 
 function App() {
   return (
