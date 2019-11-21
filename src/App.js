@@ -25,10 +25,12 @@ import Dashboard from './createComponent/Dashboard/dashboard.js'
 import Workout from './createComponent/workout.js'
 import ListOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import ListOfSessions from './createComponent/listOfSessions/listOfSessions'
+import RegularSessionStartExercise from './createComponent/regularSessionStartExercise'
 import FocusSessionForm from './createComponent/focusSessionForm'
 import FocusSessionAgenda from './createComponent/focusSessionAgenda'
 import FocusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import FocusSessionResult from './createComponent/focusSessionResult'
+import Feedback from './createComponent/Customer/feedback';
 
 function App() {
   return (
@@ -55,11 +57,13 @@ function App() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/workout" component={Workout} /> 
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
-          <Route path="/listOfSessions/:programID" component={ListOfSessions} />   
+          <Route path="/listOfSessions/:programID" component={ListOfSessions} /> 
+          <Route path="/regularSessionStartExercise/:programID" component={RegularSessionStartExercise} />
           <Route path="/focusSessionForm" component={FocusSessionForm} />
           <Route path="/focusSessionAgenda/:programID" component={FocusSessionAgenda} />                    
           <Route path="/focusSessionStartExercise/:programID" component={FocusSessionStartExercise} />
           <Route path="/focusSessionResult" component={FocusSessionResult} />
+          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
       </Router>
     </div>
     </SnackbarProvider>

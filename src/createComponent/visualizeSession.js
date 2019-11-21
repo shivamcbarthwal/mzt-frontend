@@ -17,8 +17,7 @@ class VisualizeSession extends Component {
     state = {
         column: null,
         sessions: [],
-        direction: null,
-        exercises: []
+        direction: null
     };
      // Sort the table according to header
     handleSort = (clickedColumn) => () => {
@@ -40,11 +39,7 @@ class VisualizeSession extends Component {
         this.props.history.push('/');
     };
     componentDidMount() {
-        axios.get('http://localhost:8080/exercise/getAllExercises')
-        .then(res => {
-            const exercises = res.data;
-            this.setState({exercises});
-        });
+        
         axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
         .then(res => {
             const sessions = res.data;
@@ -54,20 +49,23 @@ class VisualizeSession extends Component {
     render() {
         this.handleSort('status');
         var optionsSession = [];
-        const {exercises} = this.state.exercises;
         const { column, direction } = this.state;
-        var optionsExercise = [];
-        this.state.exercises.map((exercise) => {
-            optionsExercise.push(
-                <option label = {exercise.name} >{exercise._id}</option>
-            );
-        });
-        this.state.sessions.map((Session) => { 
+        this.state.sessions.map((Session, index) => { 
             var tags = [];
-            var exercises = [];
-            Session.session_template_tag.map(tag=>{
+            var optionExercises = [];
+            Session.session_template_tag.map((tag,index)=>{
                 tags.push(tag + "; ");
-            }) 
+            });
+            axios.get('http://localhost:8080/sessionTemplate/showInformation/'+Session._id)
+            .then(res => {
+                var exercises = res.data.exercises;
+                console.log("Session: "+exercises);
+                Object.keys(exercises).map((key,index) =>{
+                    optionExercises.push(
+                        <p>{String(exercises[key].name)}</p>
+                    )
+                });
+            });
             optionsSession.push(
                 <Table.Row>
                     <Table.Cell><strong>{Session.name}</strong></Table.Cell>
@@ -96,7 +94,7 @@ class VisualizeSession extends Component {
                                         </Table.Row>
                                         <Table.Row>
                                             <TableCell><strong>Exercises</strong></TableCell>
-                                            <TableCell>{optionsExercise}</TableCell>
+                                            <TableCell>{optionExercises}</TableCell>
                                         </Table.Row>
                                     </TableBody>
                                 </Table>
@@ -106,7 +104,7 @@ class VisualizeSession extends Component {
                         <Button primary size="small">Delete</Button>
                     </Table.Cell>
                 </Table.Row>
-            );        
+            );
         });
         return (
             <body>

@@ -41,7 +41,7 @@ class ListOfSessions extends React.Component {
     if(sessionId.session_status === 'OPENED') {
       if(sessionId.session_type === 'regular') {
         optionsSession.push(
-            <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/focusSessionStartExercise/${program._id}?sessionIndex=${i}`)} >
+            <div class="card px-3 col-12" onClick={()=>this.props.history.push(`/regularSessionStartExercise/${program._id}?sessionIndex=${i}`)} >
             <div class="card-wrapper media-container-row media-container-row">
                 <div class="card-box">
                     <div class="top-line pb-3">
