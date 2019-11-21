@@ -16,7 +16,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import Spinner from './Spinner';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, Form, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
+import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
 import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../assets/bootstrap/css/bootstrap.min.css';
 import '../assets/bootstrap/css/bootstrap-grid.min.css';
@@ -30,8 +30,8 @@ import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const coach_id = "5dc2f70414b9e52a30d6620e";
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -615,7 +615,12 @@ class CustomerModal extends Component {
                                     <Table.Row>
                                         <Table.Cell>{res.dickson_metric}</Table.Cell>
                                         <Table.Cell>
-                                            <Button primary size="medium" onClick={()=>this.props.history.push('/Feedback/'+coach_id+'/'+res.customer_id+'/'+program._id+'/'+session._id)}>Give Feedback</Button>
+                                        <Modal trigger={<Button primary size="medium">Give Feedback</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                            <ModalHeader style={{textAlign:'center'}}>Give Feedback to {session.name}</ModalHeader>
+                                            <ModalContent>
+                                                <p>Feedback</p>
+                                            </ModalContent>
+                                        </Modal>
                                         </Table.Cell>
                                     </Table.Row>
                                 </TableBody>
