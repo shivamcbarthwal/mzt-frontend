@@ -9,6 +9,7 @@ import SessionCreate from './createComponent/SessionCreate.js'
 import visualizeSession from './createComponent/visualizeSession.js'
 import editSession from './createComponent/editSession.js'
 import Homepage from './createComponent/Homepage.js'
+import Community from './createComponent/Community.js'
 import dashboard from './createComponent/Dashboard/dashboard.js'
 import workout from './createComponent/workout.js'
 import assignPtoC from './createComponent/AssignPtoC.js'
@@ -20,6 +21,7 @@ import focusSessionAgenda from './createComponent/focusSessionAgenda'
 import focusSessionResult from './createComponent/focusSessionResult'
 import visualizeProgram from './createComponent/VisualizeProgram'
 import Customer from './createComponent/Customer/Customer';
+import Feedback from './createComponent/Customer/Feedback';
 import focusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import regularSessionStartExercise from './createComponent/regularSessionStartExercise'
 import listOfSessions from './createComponent/listOfSessions/listOfSessions'
@@ -27,6 +29,7 @@ import listOfPrograms from './createComponent/listOfPrograms/listOfPrograms'
 import createProgramT from './createComponent/createProgramT';
 import AssignEtoS from './createComponent/AssignEtoS';
 import AssignStoP from './createComponent/AssignStoP';
+
 
 function App() {
   return (
@@ -39,6 +42,7 @@ function App() {
           <Route path="/visualizeSession" component={visualizeSession} />
           <Route path="/editSession" component={editSession} />
           <Route path="/homepage" component={Homepage} />
+          <Route path="/community" component={Community} />
           <Route path="/dashboard" component={dashboard} />
           <Route path="/workout" component={workout} />
           <Route path="/assignPtoC/:custId" component={assignPtoC} />
@@ -57,6 +61,7 @@ function App() {
           <Route path="/createProgramT" component={createProgramT} />
           <Route path="/AssignEtoS" component={AssignEtoS} />
           <Route path="/AssignStoP" component={AssignStoP} />
+          <Route path="/Feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
       </Router>
     </div>
     </SnackbarProvider>
