@@ -25,7 +25,7 @@ import '../assets/tether/tether.min.css'
 import '../assets/dropdown/css/style.css'
 import '../assets/theme/css/style.css'
 import '../assets/mobirise/css/mbr-additional.css'
-import './Customer.css';
+import './customer.css';
 import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';

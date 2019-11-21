@@ -30,7 +30,7 @@ import FocusSessionForm from './createComponent/focusSessionForm'
 import FocusSessionAgenda from './createComponent/focusSessionAgenda'
 import FocusSessionStartExercise from './createComponent/focusSessionStartExercise'
 import FocusSessionResult from './createComponent/focusSessionResult'
-import Feedback from './createComponent/Customer/feedback';
+import Feedback from './createComponent/Customer/feedback.js';
 
 function App() {
   return (
