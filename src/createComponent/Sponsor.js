@@ -73,7 +73,7 @@ class Sponsor extends React.Component {
 
                     <div class="container">
 
-                        <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
+                        <Button secondary onClick = {this.handleClickBack}>Back</Button>
                     </div>
 
 
