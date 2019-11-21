@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css';
-import '../assets/dropdown/css/style.css';
-import '../assets/theme/css/style.css';
-import '../assets/mobirise/css/mbr-additional.css';
-import Background from '../assets/images/bk_hp.jpg';
-import CanvasJSReact from '../assets/canvas/canvasjs.react';
-var Logo = require('../assets/images/logo-mzt.png');
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css';
+import '../../assets/dropdown/css/style.css';
+import '../../assets/theme/css/style.css';
+import '../../assets/mobirise/css/mbr-additional.css';
+import Background from '../../assets/images/bk_hp.jpg';
+import CanvasJSReact from '../../assets/canvas/canvasjs.react';
+var Logo = require('../../assets/images/logo-mzt.png');
 
 class Sponsor extends React.Component {
     handleClickBack = () => {
-        this.props.history.push('/Homepage');
+        this.props.history.push('/homepage');
     };
 
-
-    render() {
-        
+    render() {     
         return (
             <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
@@ -35,38 +33,34 @@ class Sponsor extends React.Component {
                             </button>
                             <div class="menu-logo">
                                 <div class="navbar-brand">
-                                    <span class="navbar-logo" href="homepage">
-                                        <a href="homepage">
-                                            <img src= {Logo}/>
+                                    <span class="navbar-logo">
+                                        <a href="/homepage">
+                                            <img src={Logo} alt="MZT fitness" title="" />
                                         </a>
                                     </span>
-                                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="Homepage">
-                                            MZT FITNESS</a>
+                                    <span class="navbar-caption-wrap">
+                                        <a class="navbar-caption text-white display-4" href="/homepage">
+                                            MZT FITNESS
+                                        </a>
                                     </span>
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                 <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="Homepage">
+                                        <a class="nav-link link text-white display-4" href="/homepage">
                                             <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                                             Home page
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="community_page.html">
+                                        <a class="nav-link link text-white display-4" href="/challenge">
                                             <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                            Community
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" >
-                                            <span class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
-                                            About Us
+                                            Challenge
                                         </a>
                                     </li>
                                 </ul>
-                             </div>
+                            </div>
                       </nav>
                 </section>
                 

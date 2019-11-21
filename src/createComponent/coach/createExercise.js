@@ -1,18 +1,18 @@
 import React from 'react';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css';
-import '../assets/dropdown/css/style.css';
-import '../assets/theme/css/style.css';
-import '../assets/mobirise/css/mbr-additional.css';
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css';
+import '../../assets/dropdown/css/style.css';
+import '../../assets/theme/css/style.css';
+import '../../assets/mobirise/css/mbr-additional.css';
 import 'react-image-picker/dist/index.css';
 import ImagePicker from 'react-image-picker';
-import img1 from '../assets/images/absbike-800x600-800x600.png';
-import img2 from '../assets/images/a-buttextension-800x600-800x600.png';
-import img3 from '../assets/images/a-chilpose-800x600-800x600.png';
-import img4 from '../assets/images/a-hamstretch-800x600-800x600.png';
+import img1 from '../../assets/images/absbike-800x600-800x600.png';
+import img2 from '../../assets/images/a-buttextension-800x600-800x600.png';
+import img3 from '../../assets/images/a-chilpose-800x600-800x600.png';
+import img4 from '../../assets/images/a-hamstretch-800x600-800x600.png';
 
 const imageList = [img1, img2, img3, img4];
 

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css'
-import '../assets/dropdown/css/style.css'
-import '../assets/theme/css/style.css'
-import '../assets/mobirise/css/mbr-additional.css'
-var Logo = require('../assets/images/logo-mzt.png');
+import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
+import '../../assets/bootstrap/css/bootstrap.min.css';
+import '../../assets/bootstrap/css/bootstrap-grid.min.css';
+import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
+import '../../assets/tether/tether.min.css'
+import '../../assets/dropdown/css/style.css'
+import '../../assets/theme/css/style.css'
+import '../../assets/mobirise/css/mbr-additional.css'
+var Logo = require('../../assets/images/logo-mzt.png');
 const cust_id = '5da86562f964d02c2c679155'
 
 class FocusSessionResult extends React.Component {
