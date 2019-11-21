@@ -11,7 +11,7 @@ import '../../assets/theme/css/style.css'
 import '../../assets/mobirise/css/mbr-additional.css'
 import '../../assets/mobirise/css/mbr-additional.css'
 import './listOfPrograms.css'
-var Logo = require('../../assets2/images/logo-mzt.png');
+var Logo = require('../../assets/images/logo-mzt.png');
 const cust_id = '5dc53fb7717676384459fe63'
 
 class ListOfPrograms extends React.Component {
