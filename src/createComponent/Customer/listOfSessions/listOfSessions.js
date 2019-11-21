@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select, { components } from 'react-select';
-import '../../../assets2/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../../assets2/bootstrap/css/bootstrap.min.css';
-import '../../../assets2/bootstrap/css/bootstrap-grid.min.css';
-import '../../../assets2/bootstrap/css/bootstrap-reboot.min.css';
-import '../../../assets2/tether/tether.min.css'
-import '../../../assets2/dropdown/css/style.css'
-import '../../../assets2/theme/css/style.css'
-import '../../../assets2/mobirise/css/mbr-additional.css'
-import '../../../assets2/mobirise/css/mbr-additional.css'
-import './listOfSessions.css'
 var Logo = require('../../../assets2/images/logo-mzt.png');
 
 class ListOfSessions extends React.Component {

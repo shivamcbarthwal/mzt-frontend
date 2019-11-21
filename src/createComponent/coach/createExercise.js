@@ -1,12 +1,5 @@
 import React from 'react';
-import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-import '../../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets/tether/tether.min.css';
-import '../../assets/dropdown/css/style.css';
-import '../../assets/theme/css/style.css';
-import '../../assets/mobirise/css/mbr-additional.css';
+
 import 'react-image-picker/dist/index.css';
 import ImagePicker from 'react-image-picker';
 import img1 from '../../assets/images/absbike-800x600-800x600.png';

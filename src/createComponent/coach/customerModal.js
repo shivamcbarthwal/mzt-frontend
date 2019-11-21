@@ -16,15 +16,6 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
-import '../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../assets/bootstrap/css/bootstrap.min.css';
-import '../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../assets/tether/tether.min.css'
-import '../assets/dropdown/css/style.css'
-import '../assets/theme/css/style.css'
-import '../assets/mobirise/css/mbr-additional.css'
-import './customer.css';
 import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';
