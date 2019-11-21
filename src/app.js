@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack';
 import logo from './logo.svg';
-import './app.css';
+import './App.css';
 
 import CoachHome from './createComponent/coach/coachHome.js'
 import VisualizeExercise from './createComponent/coach/visualizeExercise.js'
@@ -22,6 +22,7 @@ import Feedback from './createComponent/customer/feedback.js'
 
 import Homepage from './createComponent/customer/homepage.js'
 import Challenge from './createComponent/customer/challenge.js'
+import Sponsor from './createComponent/customer/sponsor';
 import Dashboard from './createComponent/customer/dashboard/dashboard.js'
 import ListOfPrograms from './createComponent/customer/listOfPrograms/listOfPrograms'
 import ListOfSessions from './createComponent/customer/listOfSessions/listOfSessions'
@@ -54,6 +55,7 @@ function App() {
           
           <Route path="/homepage" component={Homepage} />
           <Route path="/challenge" component={Challenge} />
+          <Route path="/sponsor" component={Sponsor} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
           <Route path="/listOfSessions/:programID" component={ListOfSessions} /> 
