@@ -138,7 +138,7 @@ class Homepage extends React.Component {
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                               <li class="nav-item">
-                                  <a class="nav-link link text-white display-4" href="/challenge">
+                                  <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+customer_Id)}>
                                       <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                       Challenge
                                   </a>

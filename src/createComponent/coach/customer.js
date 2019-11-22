@@ -53,7 +53,7 @@ export default class Customer extends Component {
             if(Customer.status === "NONE"){
                 optionsCustomer.push(
                     <Table.Row>
-                        <Table.Cell><strong>{Customer.first_name} {Customer.last_name}</strong></Table.Cell>
+                        <Table.Cell onClick={()=>this.props.history.push(`/CustomersDetail/${Customer._id}`)}><strong>{Customer.first_name} {Customer.last_name}</strong></Table.Cell>
                         <Table.Cell>{Customer.goal}</Table.Cell>
                         <Table.Cell>{Customer.activity_level}</Table.Cell>
                         <Table.Cell><Button primary onClick = {()=>this.props.history.push('/AssignPtoC/'+Customer._id)}> Assign Program</Button></Table.Cell>
