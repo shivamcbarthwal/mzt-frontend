@@ -161,7 +161,7 @@ class ListOfPrograms extends React.Component {
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link link text-white display-4" href="/challenge">
+                              <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+cust_id)}>
                                   <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                   Challenge
                               </a>

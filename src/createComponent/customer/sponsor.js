@@ -7,6 +7,8 @@ import Background from '../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 var Logo = require('../../assets/images/logo-mzt.png');
 
+const customer_Id = "5dc53fb7717676384459fe63";
+
 class Sponsor extends React.Component {
    
     state = {
@@ -111,7 +113,7 @@ class Sponsor extends React.Component {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="community_page.html">
+                                        <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+customer_Id)}>
                                             <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                             Community
                                         </a>

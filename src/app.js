@@ -52,7 +52,7 @@ function App() {
           <Route path="/customerList" component={Customer} />
           <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />         
           <Route path="/homepage" component={Homepage} />
-          <Route path="/challenge" component={Challenge} />
+          <Route path="/challenge/:customerID" component={Challenge} />
           <Route path="/sponsor" component={Sponsor} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
@@ -61,7 +61,7 @@ function App() {
           <Route path="/focusSessionForm" component={FocusSessionForm} />
           <Route path="/focusSessionAgenda/:programID" component={FocusSessionAgenda} />                    
           <Route path="/focusSessionStartExercise/:programID" component={FocusSessionStartExercise} />
-          <Route path="/focusSessionResult" component={FocusSessionResult} />
+          <Route path="/focusSessionResult/:programID" component={FocusSessionResult} />
       </Router>
     </div>
     </SnackbarProvider>
