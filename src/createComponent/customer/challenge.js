@@ -1,18 +1,24 @@
-import React from 'react';
-import axios from 'axios';
-import 'semantic-ui-css/semantic.min.css';
-import { Table, Button } from 'semantic-ui-react';
+import React from 'react'
+import axios from 'axios'
+import 'semantic-ui-css/semantic.min.css'
+import { Table, Button, Image } from 'semantic-ui-react'
 import _ from 'lodash';
-import Background from '../../assets/images/bk_hp.jpg';
-const customer_Id = "5dc53fb7717676384459fe63";
-var Logo = require('../../assets/images/logo-mzt.png');
-var certificate = require("../../assets/images/certificate.png");
+import Background from '../../assets/images/bk_hp.jpg'
+var Logo = require('../../assets/images/logo-mzt.png')
+var certificate = require("../../assets/images/certificate.png")
+const cust_id = '5dc53fb7717676384459fe63'
 
 class Challenge extends React.Component {
     state = {
         column: null,
         challenges: [],
-        direction: null
+        direction: null,
+        points: {
+            "totalPoints": null,
+            "totalEarned": null,
+            "totalRedeemed": null
+          },
+        transactions: null
     };
     // Sort the table according to header
     handleSort = (clickedColumn) => () => {
@@ -31,7 +37,10 @@ class Challenge extends React.Component {
         });
     }
     handleClickBack = () => {
-        this.props.history.push('/');
+        this.props.history.push('/homepage');
+    };
+    handleClickSponsor = () => {
+        this.props.history.push('/sponsor');
     };
     componentDidMount() {
         axios.get('http://localhost:8080/challenge/getAllChallenges')
@@ -39,14 +48,26 @@ class Challenge extends React.Component {
             const challenges = res.data;
             this.setState({challenges});
         });
+        axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
+        .then(res => {
+            const points = res.data;
+            this.setState({points});
+        });
+        axios.get(`http://localhost:8080//offerTransaction/getAllTransByCustomerId/${this.props.match.params.customerID}`)
+        .then(res => {
+            const transactions = res.data;
+            this.setState({transactions});
+        });
     };
     
     render() {
+        console.log("state: "+JSON.stringify(this.state)
+                )
         this.handleSort('status');
-        var optionsChallenge = [];
+        var optionChallenge = [];
         const { column, direction } = this.state;
         this.state.challenges.map((Challenge) => {   
-            optionsChallenge.push(
+            optionChallenge.push(
                 <Table.Row>
                     <Table.Cell><strong>{Challenge.description}</strong></Table.Cell>
                     <Table.Cell>{Challenge.type}</Table.Cell>
@@ -101,6 +122,16 @@ class Challenge extends React.Component {
                         Challenge yourself and earn points
                     </h2>      
                     <br/>
+                    <div class="container align-center">
+                    </div>
+                    <div class="container align-center">
+                        <h1 class="mbr-section-title mbr-bold mbr-fonts-style mbr-white display-2">
+                            <Image src={certificate} alt="Certificate" size="small" centered/>
+                            {this.state.points.totalPoints} points
+                        </h1>	
+                        <Button onClick = {this.handleClickSponsor} floated='center' color='green'>Convert to vouchers</Button>
+                    </div>
+                    <br/>
                     <Table sortable celled structured>
                         <Table.Header>
                             <Table.Row>
@@ -119,25 +150,10 @@ class Challenge extends React.Component {
                             </Table.Row>
                         </Table.Header>
                         <Table.Body textAlign='center'>
-                            {optionsChallenge}
+                            {optionChallenge}
                         </Table.Body>
                     </Table>  
                 </div>  
-            </section>
-
-            <section class="pricing-table3 cid-rFCyJlKcUP" id="pricing-tables3-n"> 
-                <div class="container">
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-10 align-center">
-                            <h1 class="mbr-section-title mbr-bold mbr-fonts-style display-1">
-                                <img src={certificate} alt="Certificate"/>
-                                15 points
-                            </h1>	
-                            <p class="mbr-text pb-3 mbr-fonts-style display-5"></p>
-                            <div class="mbr-section-btn"><a class="btn btn-md btn-primary display-4" href="discount_page.html">Convert to vouchers</a></div>
-                        </div>
-                    </div>
-                </div>
             </section>
         </body>
     )

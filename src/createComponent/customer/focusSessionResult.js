@@ -71,12 +71,6 @@ class FocusSessionResult extends React.Component {
                                         Home page
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link text-white display-4" href="/challenge">
-                                        <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                        Challenge
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -121,37 +115,6 @@ class FocusSessionResult extends React.Component {
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
                                 Back
                             </button>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cid-rFL604bhmT" id="social-buttons3-5">
-                    <div class="container">
-                        <div class="media-container-row">
-                            <div class="col-md-8 align-center">
-                                <h2 class="pb-3 mbr-section-title mbr-fonts-style display-2">
-                                    Share your performance!
-                                </h2>
-                                <div>
-                                    <div class="mbr-social-likes">
-                                        <span class="btn btn-social socicon-bg-facebook facebook mx-2" title="Share link on Facebook">
-                                            <i class="socicon socicon-facebook"></i>
-                                        </span>
-                                        <span class="btn btn-social twitter socicon-bg-twitter mx-2" title="Share link on Twitter">
-                                            <i class="socicon socicon-twitter"></i>
-                                        </span>
-                                        <span class="btn btn-social instagram socicon-bg-instagram mx-2" title="Share link on Instagram">
-                                            <i class="socicon socicon-instagram"></i>
-                                        </span>
-                                        <span class="btn btn-social pinterest socicon-bg-pinterest mx-2" title="Share link on Pinterest">
-                                            <i class="socicon socicon-pinterest"></i>
-                                        </span>
-                                        <span class="btn btn-social mailru socicon-bg-mail mx-2" title="Share link on Mailru">
-                                            <i class="socicon socicon-mail"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
