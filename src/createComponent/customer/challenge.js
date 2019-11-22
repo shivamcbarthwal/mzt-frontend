@@ -1,38 +1,35 @@
 import React from 'react'
 import axios from 'axios'
-import 'semantic-ui-css/semantic.min.css'
 import { Table, Button, Image } from 'semantic-ui-react'
 import _ from 'lodash';
 import Background from '../../assets/images/bk_hp.jpg'
 var Logo = require('../../assets/images/logo-mzt.png')
 var certificate = require("../../assets/images/certificate.png")
-const cust_id = '5dc53fb7717676384459fe63'
 
 class Challenge extends React.Component {
     state = {
         column: null,
-        challenges: [],
         direction: null,
         points: {
             "totalPoints": null,
             "totalEarned": null,
             "totalRedeemed": null
           },
-        transactions: null
+        transactions: []
     };
     // Sort the table according to header
     handleSort = (clickedColumn) => () => {
-        const { column, challenges, direction } = this.state;
+        const { column, transactions, direction } = this.state;
         if (column !== clickedColumn) {
             this.setState({
               column: clickedColumn,
-              challenges: _.sortBy(challenges, [clickedColumn]),
+              transactions: _.sortBy(transactions, [clickedColumn]),
               direction: 'ascending',
             });
             return;
         }
         this.setState({
-            challenges: challenges.reverse(),
+            transactions: transactions.reverse(),
             direction: direction === 'ascending' ? 'descending' : 'ascending',
         });
     }
@@ -43,17 +40,12 @@ class Challenge extends React.Component {
         this.props.history.push('/sponsor');
     };
     componentDidMount() {
-        axios.get('http://localhost:8080/challenge/getAllChallenges')
-        .then(res => {
-            const challenges = res.data;
-            this.setState({challenges});
-        });
         axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
         .then(res => {
             const points = res.data;
             this.setState({points});
         });
-        axios.get(`http://localhost:8080//offerTransaction/getAllTransByCustomerId/${this.props.match.params.customerID}`)
+        axios.get(`http://localhost:8080/offerTransaction/findByCustAndTransType?customer_id=${this.props.match.params.customerID}&transaction_type=EARNED&transaction_type=IN_PROGRESS`)
         .then(res => {
             const transactions = res.data;
             this.setState({transactions});
@@ -61,31 +53,22 @@ class Challenge extends React.Component {
     };
     
     render() {
-        console.log("state: "+JSON.stringify(this.state)
-                )
         this.handleSort('status');
-        var optionChallenge = [];
-        const { column, direction } = this.state;
-        this.state.challenges.map((Challenge) => {   
-            optionChallenge.push(
+        var optionTransaction = [];
+        const { column, direction, transactions} = this.state;
+        Object.keys(transactions).map((Transaction,index) => {  
+            optionTransaction.push(
                 <Table.Row>
-                    <Table.Cell><strong>{Challenge.description}</strong></Table.Cell>
-                    <Table.Cell>{Challenge.type}</Table.Cell>
+                    <Table.Cell><strong>{String(transactions[Transaction].challenge_id.description)}</strong></Table.Cell>
+                    <Table.Cell>{String(transactions[Transaction].transaction_type)}</Table.Cell>
                 </Table.Row>
             );        
         });
+        
         return (
             <body>
               <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
                 <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <div class="hamburger">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                      </div>
-                  </button>
                   <div class="menu-logo">
                       <div class="navbar-brand">
                           <span class="navbar-logo">
@@ -120,7 +103,7 @@ class Challenge extends React.Component {
                 <div class="container">
                     <h2 class="mbr-white mbr-fonts-style m-0 display-1 align-center">
                         Challenge yourself and earn points
-                    </h2>      
+                    </h2> 
                     <br/>
                     <div class="container align-center">
                     </div>
@@ -131,26 +114,26 @@ class Challenge extends React.Component {
                         </h1>	
                         <Button onClick = {this.handleClickSponsor} floated='center' color='green'>Convert to vouchers</Button>
                     </div>
-                    <br/>
+                    <br/><br/>
+                    <h2 class="mbr-white mbr-fonts-style m-0 display-5">
+                        Challenges history
+                    </h2>
                     <Table sortable celled structured>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell
-                                  sorted={column === 'description' ? direction : null}
-                                  onClick={this.handleSort('description')}
-                                >
+                                <Table.HeaderCell>
                                     CHALLENGE
                                 </Table.HeaderCell>
                                 <Table.HeaderCell
-                                  sorted={column == 'type' ? direction : null}
-                                  onClick={this.handleSort('type')}
+                                  sorted={column == 'transaction_type' ? direction : null}
+                                  onClick={this.handleSort('transaction_type')}
                                 >
                                     STATUS
                                 </Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body textAlign='center'>
-                            {optionChallenge}
+                            {optionTransaction}
                         </Table.Body>
                     </Table>  
                 </div>  
