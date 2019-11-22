@@ -45,8 +45,6 @@ class Sponsor extends React.Component {
             const offers = res.data;
             this.setState({offers});
         });
-    };
-    componentDidMount() {
         axios.get('/offerTransaction/getTotalPoints/5da86562f964d02c2c679155')
         .then(res => {
             const points = res.data;
@@ -74,7 +72,6 @@ class Sponsor extends React.Component {
         });
         var optionsPoints = [];
         this.state.points.map((Points) => {
-            
            optionsPoints.push(
             <p>{Points.totalPoints}</p>
             );
@@ -144,7 +141,9 @@ class Sponsor extends React.Component {
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <div>
-                            {optionsPoints}
+                        <br/>
+                            <h5>You currently have {optionsPoints} points!</h5>
+                            
                         </div>
 
                         <br /><br/>
