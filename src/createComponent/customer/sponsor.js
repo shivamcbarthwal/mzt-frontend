@@ -7,7 +7,6 @@ import Background from '../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 var Logo = require('../../assets/images/logo-mzt.png');
 
-const customer_Id = "5dc53fb7717676384459fe63";
 
 class Sponsor extends React.Component {
    
@@ -15,7 +14,11 @@ class Sponsor extends React.Component {
         column: null,
         offers: [],
         direction: null,
-        points: []
+        points: {
+            "totalPoints": null,
+            "totalEarned": null,
+            "totalRedeemed": null
+        }
     };
 
     // Sort the table according to header
@@ -45,7 +48,7 @@ class Sponsor extends React.Component {
             const offers = res.data;
             this.setState({offers});
         });
-        axios.get('/offerTransaction/getTotalPoints/5da86562f964d02c2c679155')
+        axios.get('/offerTransaction/getTotalPoints/${this.props.match.params.customerID}')
         .then(res => {
             const points = res.data;
             this.setState({points});
@@ -70,12 +73,7 @@ class Sponsor extends React.Component {
                 </Table.Row>
             );
         });
-        var optionsPoints = [];
-        this.state.points.map((Points) => {
-           optionsPoints.push(
-            <p>{Points.totalPoints}</p>
-            );
-        });
+        
 
         return (
             <body>
@@ -110,7 +108,7 @@ class Sponsor extends React.Component {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+customer_Id)}>
+                                        <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/${this.props.match.params.customerID}')}>
                                             <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                             Community
                                         </a>
@@ -142,7 +140,7 @@ class Sponsor extends React.Component {
                         </div>
                         <div>
                         <br/>
-                            <h5>You currently have {optionsPoints} points!</h5>
+                            <h5>You currently have {this.state.points.totalPoints} points!</h5>
                             
                         </div>
 
