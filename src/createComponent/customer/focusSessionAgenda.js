@@ -8,12 +8,14 @@ import '../../assets/tether/tether.min.css'
 import '../../assets/dropdown/css/style.css'
 import '../../assets/theme/css/style.css'
 import '../../assets/mobirise/css/mbr-additional.css'
+import { program } from '@babel/template';
 var Logo = require('../../assets/images/logo-mzt.png');
 
 class FocusSessionAgenda extends React.Component {
     state = {
         exercises: null,
         Measurements: null,
+        program: null,
         heartRates: {
             customer_id: '5dc541fb717676384459fe66',
             program_id: '5dcb2cd4fe74df22bc65702a',
@@ -45,22 +47,21 @@ class FocusSessionAgenda extends React.Component {
                 if (program.sessions[index].type === 'Weight loss'){
                     this.setState({focus: true});
                 }
-                console.log("focus",focus)
-            }
-        )
-        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
-        {
-            params: {
-                "customer_id":"5dc541fb717676384459fe66",
-                "program_id":"5dcb2cd4fe74df22bc65702a"
-            }
+                console.log("focus",focus) 
+                axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+                {
+                    params: {
+                        "customer_id": program.customer_id,
+                        "program_id": program._id
+                    }
+                })
+                .then(res => {
+                    const measurements = res.data;
+                    console.log('meas',res.data);
+                    this.setState({measurements});
+                }
+            )   
         })
-        .then(res => {
-            const measurements = res.data;
-            console.log('meas',res.data);
-            this.setState({measurements});
-        }
-        )
     }
 
     handleChange = (name, event) => {
@@ -68,11 +69,9 @@ class FocusSessionAgenda extends React.Component {
         this.setState({heartRates: {
                 ...this.state.heartRates,
                 [name]: event.target.value
-
-            }});
+        }});
         console.log(event.target);
-    }
-    ;
+    };
 
     handleSubmit = async event => {
         console.log('Testing')
@@ -189,17 +188,17 @@ class FocusSessionAgenda extends React.Component {
                                     <div data-for="message" class="col-md-12  form-group">
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Lay down for 5 min</label><br />
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Heart Rate:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurement1} required="required" class="form-control display-7" id="name-form1-2" onChange={(e) => this.handleChange('heartRate1', e)} />
+                                        <input type='number' placeholder={optionsMeasurement1} required="required" class="form-control display-7" onChange={(e) => this.handleChange('heartRate1', e)} />
                                     </div>
                                     <div data-for="message" class="col-md-12  form-group">
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Do 30 complete flexions in 45 sec</label><br />
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Heart rate:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurement2} required="required" class="form-control display-7" id="email-form1-2" onChange={(e) => this.handleChange('heartRate2', e)}/>
+                                        <input type='number' placeholder={optionsMeasurement2} required="required" class="form-control display-7" onChange={(e) => this.handleChange('heartRate2', e)}/>
                                     </div>
                                     <div data-for="message" class="col-md-12  form-group">
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Lay down for 1 min</label><br />
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Heart rate:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurement3} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('heartRate3', e)}/>
+                                        <input type='number' placeholder={optionsMeasurement3} class="form-control display-7" onChange={(e) => this.handleChange('heartRate3', e)}/>
                                     </div>
                                     {this.state.focus && (
                                     <div>

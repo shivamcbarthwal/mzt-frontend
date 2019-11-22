@@ -111,16 +111,8 @@ class Homepage extends React.Component {
                 <body>
                     <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
                     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <div class="hamburger">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                          </div>
-                      </button>
-                      <div class="menu-logo">
-                          <div class="navbar-brand">
+                        <div class="menu-logo">
+                             <div class="navbar-brand">
                               <span class="navbar-logo">
                                   <a href="/homepage">
                                       <img src={Logo} alt="MZT fitness" title="" />
