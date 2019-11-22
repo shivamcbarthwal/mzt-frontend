@@ -53,7 +53,8 @@ class FocusSessionStartExercise extends React.Component {
                     program_id: this.props.match.params.programID,
                 });
             }
-            window.location.href='/listOfSessions/'+this.props.match.params.programID;
+            const index = Number(this.props.location.search.slice(1).split("=")[1]);
+            this.props.history.push(`/regularSessionResult/${this.props.match.params.programID}?sessionIndex=${index}`)
             console.log("finished");
             
         } else {

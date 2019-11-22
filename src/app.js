@@ -26,6 +26,7 @@ import Dashboard from './createComponent/customer/dashboard/dashboard.js'
 import ListOfPrograms from './createComponent/customer/listOfPrograms/listOfPrograms'
 import ListOfSessions from './createComponent/customer/listOfSessions/listOfSessions'
 import RegularSessionStartExercise from './createComponent/customer/regularSessionStartExercise'
+import RegularSessionResult from './createComponent/customer/regularSessionResult'
 import FocusSessionForm from './createComponent/customer/focusSessionForm'
 import FocusSessionAgenda from './createComponent/customer/focusSessionAgenda'
 import FocusSessionStartExercise from './createComponent/customer/focusSessionStartExercise'
@@ -58,6 +59,7 @@ function App() {
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
           <Route path="/listOfSessions/:programID" component={ListOfSessions} /> 
           <Route path="/regularSessionStartExercise/:programID" component={RegularSessionStartExercise} />
+          <Route path="/regularSessionResult/:programID" component={RegularSessionResult} />
           <Route path="/focusSessionForm" component={FocusSessionForm} />
           <Route path="/focusSessionAgenda/:programID" component={FocusSessionAgenda} />                    
           <Route path="/focusSessionStartExercise/:programID" component={FocusSessionStartExercise} />
