@@ -92,12 +92,18 @@ class Sponsor extends React.Component {
                       </div>
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                              <li class="nav-item">
-                                  <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/${this.props.match.params.customerID}')}>
-                                      <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                      Challenge
-                                  </a>
-                              </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-white display-4" href="/homepage">
+                                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                        Home page
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/${this.props.match.params.customerID}')}>
+                                        <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                        Challenge
+                                    </a>
+                                </li>
                           </ul>
                       </div>
                   </nav>
@@ -108,21 +114,18 @@ class Sponsor extends React.Component {
                     </div>
 
                     <div class="container">
-                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Gifts</h2> <br/>
-                            
+                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Gifts</h2> 
+                        <br/>   
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " onClick = {this.handleClickChallenge} style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 Check the challenge page!</a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search a brand:  </label>
                             <input class="col-md-4" default="search" />
-                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
-                        <div>
                         <br/>
-                            <h5 style={{color:"#FFFFFF"}}>You currently have {this.state.points.totalPoints} points!</h5>
-                            
+                        <div>
+                            <h5 style={{color:"#FFFFFF"}}>You currently have {this.state.points.totalPoints} points!</h5>   
                         </div>
-
                         <br />
                         <Table sortable celled structured>
                             <Table.Header>
@@ -158,7 +161,7 @@ class Sponsor extends React.Component {
                                 {optionsOffer}
                             </Table.Body>
                         </Table>
-                        <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
+                        <Button secondary onClick = {this.handleClickBack} floated='right'>Home</Button>
                     </div>
                 </section>
                 </body>
