@@ -40,7 +40,7 @@ class Sponsor extends React.Component {
         this.props.history.push('/Homepage');
     };
     handleClickChallenge = () => {
-        this.props.history.push('/challenge/${this.props.match.params.customerID}');
+        this.props.history.push(`/challenge/${this.props.match.params.customerID}`);
     };
     componentDidMount() {
         axios.get('http://localhost:8080/offer/getAllOffers')
@@ -99,7 +99,7 @@ class Sponsor extends React.Component {
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/${this.props.match.params.customerID}')}>
+                                    <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push(`/challenge/${this.props.match.params.customerID}`)}>
                                         <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                         Challenge
                                     </a>
@@ -114,8 +114,7 @@ class Sponsor extends React.Component {
                     </div>
 
                     <div class="container">
-                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Gifts</h2> 
-                        <br/>   
+                        <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Gifts</h2> <br/>   
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " onClick = {this.handleClickChallenge} style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 Check the challenge page!</a>

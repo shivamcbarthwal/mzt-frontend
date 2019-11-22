@@ -37,7 +37,7 @@ class Challenge extends React.Component {
         this.props.history.push('/homepage');
     };
     handleClickSponsor = () => {
-        this.props.history.push('/sponsor/${this.props.match.params.customerID}');
+        this.props.history.push(`/sponsor/${this.props.match.params.customerID}`);
     };
     componentDidMount() {
         axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
