@@ -48,7 +48,7 @@ class Sponsor extends React.Component {
             const offers = res.data;
             this.setState({offers});
         });
-        axios.get('/offerTransaction/getTotalPoints/${this.props.match.params.customerID}')
+        axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
         .then(res => {
             const points = res.data;
             this.setState({points});
@@ -140,11 +140,11 @@ class Sponsor extends React.Component {
                         </div>
                         <div>
                         <br/>
-                            <h5>You currently have {this.state.points.totalPoints} points!</h5>
+                            <h5 style={{color:"#FFFFFF"}}>You currently have {this.state.points.totalPoints} points!</h5>
                             
                         </div>
 
-                        <br /><br/>
+                        <br />
                         <Table sortable celled structured>
                             <Table.Header>
                                 <Table.Row>
@@ -185,17 +185,6 @@ class Sponsor extends React.Component {
 
 
                 </section>
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                <script src="assets/parallax/jarallax.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>
-                <script src="assets/sociallikes/social-likes.js"></script>
                 </body>
                 );
         }
