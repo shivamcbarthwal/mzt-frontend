@@ -234,20 +234,20 @@ class CustomerModal extends Component {
                                         </TableHeader>
                                         <TableBody>
                                 {program.sessions.map((session, index) => {
-                                    if(session.session_status == "CLOSED"){
-                                        SessionList1.push(
-                                            <Table.Row>
-                                                <Table.Cell>{session.name}</Table.Cell>
-                                                <Table.Cell>{session.session_status}</Table.Cell>
-                                                <Table.Cell>
-                                                    <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
-                                                        Open the session
-                                                    </Button>
-                                                </Table.Cell>
-                                            </Table.Row>
-                                        )
-                                    }
-                                    else{
+                                    if(session.session_type=="focus"){
+                                        if(session.session_status == "CLOSED"){
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                        <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
+                                                            Open the session
+                                                        </Button>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            )
+                                        }
                                         if(session.session_status == "OPENED"){
                                             SessionList1.push(
                                                 <Table.Row>
@@ -261,31 +261,31 @@ class CustomerModal extends Component {
                                                 </Table.Row>
                                             )
                                         }
-                                        else{
-                                            if(session.session_type=="focus"){
-                                                SessionList1.push(
-                                                    <Table.Row>
-                                                        <Table.Cell>{session.name}</Table.Cell>
-                                                        <Table.Cell>{session.session_status}</Table.Cell>
-                                                        <Table.Cell>
-                                                        <Button primary size="small">
-                                                            Show session result
-                                                        </Button>
-                                                        </Table.Cell>
-                                                    </Table.Row>
-                                                )}
-                                            else{
-                                                SessionList1.push(
-                                                    <Table.Row>
-                                                        <Table.Cell>{session.name}</Table.Cell>
-                                                        <Table.Cell>{session.session_status}</Table.Cell>
-                                                        <Table.Cell>
-                                                        </Table.Cell>
-                                                    </Table.Row>
-                                                )}
-                                            }
+                                        if(session.session_status == "COMPLETED"){
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                    <Button primary size="small">
+                                                        Show session result
+                                                    </Button>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            )
                                         }
                                     }
+                                    else{
+                                        SessionList1.push(
+                                            <Table.Row>
+                                                <Table.Cell>{session.name}</Table.Cell>
+                                                <Table.Cell>{session.session_status}</Table.Cell>
+                                                <Table.Cell>
+                                                </Table.Cell>
+                                            </Table.Row>
+                                        )
+                                    }
+                                }
                                 )}
                                 
                                     {SessionList1}
@@ -303,7 +303,8 @@ class CustomerModal extends Component {
                     var measurementsData = [];
                 this.state.optionResult.map((res,index)=>{
                     if(res.program_id === program._id){
-                        measurementsData.push({ 'label': moment(res.measurement_date).format("YYYY-MM-DD"), y: res.dickson_metric});
+                        measurementsData.push({ 'label': moment(res.measurement_date).format("YYYY-MM-DD"), 
+                        y: res.dickson_metric, indexLabel: res.coach_feedback});
                     }
                 });
                 console.log("data ",measurementsData);
@@ -425,20 +426,20 @@ class CustomerModal extends Component {
                                             }
                                         }
                                     });
-                                    if(session.session_status == "CLOSED"){
-                                        SessionList1.push(
-                                            <Table.Row>
-                                                <Table.Cell>{session.name}</Table.Cell>
-                                                <Table.Cell>{session.session_status}</Table.Cell>
-                                                <Table.Cell>
-                                                    <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
-                                                        Open the session
-                                                    </Button>
-                                                </Table.Cell>
-                                            </Table.Row>
-                                        )
-                                    }
-                                    else{
+                                    if(session.session_type=="focus"){
+                                        if(session.session_status == "CLOSED"){
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                        <Button primary size="small" onClick={this.handleClickActiveSession(program._id, index)}>
+                                                            Open the session
+                                                        </Button>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            )
+                                        }
                                         if(session.session_status == "OPENED"){
                                             SessionList1.push(
                                                 <Table.Row>
@@ -452,34 +453,34 @@ class CustomerModal extends Component {
                                                 </Table.Row>
                                             )
                                         }
-                                        else{
-                                            if(session.session_type=="focus"){
-                                                SessionList1.push(
-                                                    <Table.Row>
-                                                        <Table.Cell>{session.name}</Table.Cell>
-                                                        <Table.Cell>{session.session_status}</Table.Cell>
-                                                        <Table.Cell>
-                                                            <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
-                                                                <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
-                                                                <ModalContent>
-                                                                    {SessionRes}
-                                                                </ModalContent>
-                                                            </Modal>
-                                                        </Table.Cell>
-                                                    </Table.Row>
-                                                )}
-                                            else{
-                                                SessionList1.push(
-                                                    <Table.Row>
-                                                        <Table.Cell>{session.name}</Table.Cell>
-                                                        <Table.Cell>{session.session_status}</Table.Cell>
-                                                        <Table.Cell>
-                                                        </Table.Cell>
-                                                    </Table.Row>
-                                                )}
-                                            }
+                                        if(session.session_status == "COMPLETED"){
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                            <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
+                                                            <ModalContent>
+                                                                {SessionRes}
+                                                            </ModalContent>
+                                                        </Modal>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            )
                                         }
                                     }
+                                    else{
+                                        SessionList1.push(
+                                            <Table.Row>
+                                                <Table.Cell>{session.name}</Table.Cell>
+                                                <Table.Cell>{session.session_status}</Table.Cell>
+                                                <Table.Cell>
+                                                </Table.Cell>
+                                            </Table.Row>
+                                        )
+                                    }
+                                }
                                 )}
                                 
                                     {SessionList1}
@@ -497,7 +498,8 @@ class CustomerModal extends Component {
                 var measurementsData = [];
                 this.state.optionResult.map((res,index)=>{
                     if(res.program_id === program._id){
-                        measurementsData.push({ 'label': moment(res.measurement_date).format("YYYY-MM-DD"), y: res.dickson_metric});
+                        measurementsData.push({ 'label': moment(res.measurement_date).format("YYYY-MM-DD"), 
+                        y: res.dickson_metric, indexLabel: res.coach_feedback});
                     }
                 });
                 console.log("data ",measurementsData);
@@ -605,12 +607,12 @@ class CustomerModal extends Component {
                                     <Table.Row>
                                         <Table.Cell>{res.dickson_metric}</Table.Cell>
                                         <Table.Cell>
-                                        <Modal trigger={<Button primary size="medium">Give Feedback</Button>} style={{marginLeft:'300px'}} closeIcon>
-                                            <ModalHeader style={{textAlign:'center'}}>Give Feedback to {session.name}</ModalHeader>
-                                            <ModalContent>
-                                                <p>Feedback</p>
-                                            </ModalContent>
-                                        </Modal>
+                                            <Button primary size="medium" 
+                                            onClick={()=>this.props.history.push('/Feedback/'+coach_id+
+                                            '/'+res.customer_id+'/'+program._id+'/'+session._id)}
+                                            >
+                                                Give Feedback
+                                            </Button>
                                         </Table.Cell>
                                     </Table.Row>
                                 </TableBody>
@@ -669,13 +671,6 @@ class CustomerModal extends Component {
                                     <div class="mbr-text align-left display-5" style={{width:'50%'}}>{program.goal}</div>
                                     <div class="mbr-text align-right display-5" style={{width:'50%'}}>
                                         {program.status}
-                                        <br/>
-                                        <Modal trigger={<Button primary size="medium">Show Results</Button>} style={{marginLeft:'300px'}} closeIcon>
-                                                <ModalHeader style={{textAlign:'center'}}>Show Results of {program.title}</ModalHeader>
-                                                <ModalContent>
-                                                    {ResultList2}
-                                                </ModalContent>
-                                            </Modal>
                                     </div>
                                 </div>
                                 <div class="bottom-line">
