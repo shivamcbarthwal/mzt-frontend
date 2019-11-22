@@ -32,7 +32,7 @@ class FocusSessionStartExercise extends React.Component {
             exerciseNumber : exerciseN,
             exerciseResult : result
         });
-        if (exercises.length === (exerciseN+2)) {
+        if (exercises.length === (exerciseN+1)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
                 sessionNumber: Number(this.props.location.search.slice(1).split("=")[1])
@@ -47,7 +47,8 @@ class FocusSessionStartExercise extends React.Component {
                     program_id: this.props.match.params.programID,
                 });
             }
-            window.location.href='/listOfSessions/'+this.props.match.params.programID;
+            const index = Number(this.props.location.search.slice(1).split("=")[1]);
+            this.props.history.push(`/focusSessionResult/${this.props.match.params.programID}?sessionIndex=${index}`)
             console.log("finished");
             
         } else {

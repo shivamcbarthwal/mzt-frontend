@@ -13,28 +13,64 @@ const cust_id = '5da86562f964d02c2c679155'
 
 class FocusSessionResult extends React.Component {
     state = {
-        measurements: null
+        measurements: null,
+        exercises: null,
+        sessions: null
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById/${cust_id}`)
-                .then(res => {
-                    const measurements = res.data;
-                    console.log(res.data);
-                    this.setState({measurements});
+        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+            {
+                params: {
+                    "customer_id":"5dc541fb717676384459fe66",
+                    "program_id":"5dcb2cd4fe74df22bc65702a"
                 }
-                )
+            }
+        )
+        .then(res => {
+            const measurements = res.data;
+            console.log('meas',res.data);
+            this.setState({measurements});
+        }
+        )
+        console.log("Query", this.props.location);
+        const index = Number(this.props.location.search.slice(1).split("=")[1]);
+        console.log("Index", index);
+        axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+            .then(res => {
+                const program = res.data;
+                this.setState({
+                    exercises: program.sessions[index].exercises,
+                    sessions: program.sessions
+                });
+                console.log('prog',program);
+            }
+        )
     }
 
     handleClickBack = () => {
-        this.props.history.push('/listOfSessions');
+        this.props.history.push(`/listOfSessions/${this.props.match.params.programID}`);
     }
 
     render() {
-        const {measurements} = this.state;
+        const {measurements, exercises} = this.state;
         var optionsMeasurement = [];
+        var optionsExercise = [];
         if (measurements) {
             optionsMeasurement.push(measurements[measurements.length - 1].dickson_metric);
+        }
+        if(exercises){
+            this.state.exercises.map((exerciseId) => {
+                if (exerciseId.set_type === 'TIME'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+                if (exerciseId.set_type === 'REPETITION'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+                if (exerciseId.set_type === 'TIME_REPETITION'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+            });
         }
         return (
             <body>
@@ -94,11 +130,7 @@ class FocusSessionResult extends React.Component {
                             <div class="cid-rFD0NwyLkn">
                                 <div class="counter-container col-12 col-md-18 display-5">
                                     <ul>
-                                        <li>1 min:  22 Push ups </li>
-                                        <li>2 min:  51 Crunches</li>
-                                        <li>2 min:  89 Squats</li>
-                                        <li>1 min:  27 Dips</li>
-                                        <li>2 min:  148 Jump Rope</li>
+                                        {optionsExercise}
                                     </ul>
                                 </div>
                             </div>

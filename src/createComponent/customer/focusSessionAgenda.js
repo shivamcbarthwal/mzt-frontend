@@ -15,7 +15,9 @@ class FocusSessionAgenda extends React.Component {
         exercises: null,
         Measurements: null,
         heartRates: {
-            customer_id: '5db84e5b006e1f170c40bd7d',
+            customer_id: '5dc541fb717676384459fe66',
+            program_id: '5dcb2cd4fe74df22bc65702a',
+            session_id: '',
             heartRate1: '',
             heartRate2: '',
             heartRate3: '',

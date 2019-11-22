@@ -61,7 +61,7 @@ function App() {
           <Route path="/focusSessionForm" component={FocusSessionForm} />
           <Route path="/focusSessionAgenda/:programID" component={FocusSessionAgenda} />                    
           <Route path="/focusSessionStartExercise/:programID" component={FocusSessionStartExercise} />
-          <Route path="/focusSessionResult" component={FocusSessionResult} />
+          <Route path="/focusSessionResult/:programID" component={FocusSessionResult} />
       </Router>
     </div>
     </SnackbarProvider>
