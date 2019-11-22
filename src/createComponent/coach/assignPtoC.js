@@ -1,14 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
-import '../../assets/bootstrap/css/bootstrap.min.css';
-import '../../assets/bootstrap/css/bootstrap-grid.min.css';
-import '../../assets/bootstrap/css/bootstrap-reboot.min.css';
-import '../../assets/tether/tether.min.css';
-import '../../assets/dropdown/css/style.css';
-import '../../assets/theme/css/style.css';
-import '../../assets/mobirise/css/mbr-additional.css';
 import Background from '../../assets/images/PtoC-bk.jpg';
 
 class AssignPtoC extends React.Component {
@@ -54,9 +46,9 @@ class AssignPtoC extends React.Component {
     //     const notification = {
     //         customer_id: program.customer_id,
     //         coach_id: program.coach_id,
-    //         notify_for: "CUSTOMER",
-    //         notify_type: "PROGRAM_ASSIGNED",
-    //         message: `You have a new assigned program waiting for you.`
+    //         notify_for: "COACH",
+    //         notify_type: "FOCUS_SESSION_APPROACHING",
+    //         msg: `A focus session is awaiting for you.`
     //     }
         
     //     const response = await fetch(`http://localhost:8080/notification/activate`, {
@@ -146,20 +138,11 @@ class AssignPtoC extends React.Component {
                         {/* <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleNotify}>
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                Notify Customer
+                                Notify COACH
                             </button>
                         </div> */}
                     </div>
                 </section>
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>
             </body>
         );
     };

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { SnackbarProvider } from 'notistack'
 import logo from './logo.svg'
@@ -19,9 +19,8 @@ import ProgramTemplates from './createComponent/coach/programTemplates'
 import CustomerModal from './createComponent/coach/customerModal'
 import Customer from './createComponent/coach/customer.js'
 import Feedback from './createComponent/coach/feedback.js'
-
-import Homepage from './createComponent/customer/homepage.js'
 import Challenge from './createComponent/customer/challenge.js'
+import Homepage from './createComponent/customer/homepage.js'
 import Sponsor from './createComponent/customer/sponsor'
 import Dashboard from './createComponent/customer/dashboard/dashboard.js'
 import ListOfPrograms from './createComponent/customer/listOfPrograms/listOfPrograms'
@@ -51,8 +50,7 @@ function App() {
           <Route path="/programTemplates" component={ProgramTemplates} />
           <Route path="/customersDetail/:customerID" component={CustomerModal} />
           <Route path="/customerList" component={Customer} />
-          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />
-          
+          <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />         
           <Route path="/homepage" component={Homepage} />
           <Route path="/challenge" component={Challenge} />
           <Route path="/sponsor" component={Sponsor} />
