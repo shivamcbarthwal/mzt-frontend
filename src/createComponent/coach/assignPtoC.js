@@ -47,8 +47,8 @@ class AssignPtoC extends React.Component {
     //         customer_id: program.customer_id,
     //         coach_id: program.coach_id,
     //         notify_for: "COACH",
-    //         notify_type: "FOCUS_SESSION_APPROACHING",
-    //         msg: `A focus session is awaiting for you.`
+    //         notify_type: "FOCUS_SESSION_COMPELETED",
+    //         msg: `A client of yours has compeleted a Focus session.`
     //     }
         
     //     const response = await fetch(`http://localhost:8080/notification/activate`, {
