@@ -13,28 +13,64 @@ const cust_id = '5da86562f964d02c2c679155'
 
 class FocusSessionResult extends React.Component {
     state = {
-        measurements: null
+        measurements: null,
+        exercises: null,
+        sessions: null
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById/${cust_id}`)
-                .then(res => {
-                    const measurements = res.data;
-                    console.log(res.data);
-                    this.setState({measurements});
+        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+            {
+                params: {
+                    "customer_id":"5dc541fb717676384459fe66",
+                    "program_id":"5dcb2cd4fe74df22bc65702a"
                 }
-                )
+            }
+        )
+        .then(res => {
+            const measurements = res.data;
+            console.log('meas',res.data);
+            this.setState({measurements});
+        }
+        )
+        console.log("Query", this.props.location);
+        const index = Number(this.props.location.search.slice(1).split("=")[1]);
+        console.log("Index", index);
+        axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+            .then(res => {
+                const program = res.data;
+                this.setState({
+                    exercises: program.sessions[index].exercises,
+                    sessions: program.sessions
+                });
+                console.log('prog',program);
+            }
+        )
     }
 
     handleClickBack = () => {
-        this.props.history.push('/listOfSessions');
+        this.props.history.push(`/listOfSessions/${this.props.match.params.programID}`);
     }
 
     render() {
-        const {measurements} = this.state;
+        const {measurements, exercises} = this.state;
         var optionsMeasurement = [];
+        var optionsExercise = [];
         if (measurements) {
             optionsMeasurement.push(measurements[measurements.length - 1].dickson_metric);
+        }
+        if(exercises){
+            this.state.exercises.map((exerciseId) => {
+                if (exerciseId.set_type === 'TIME'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+                if (exerciseId.set_type === 'REPETITION'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+                if (exerciseId.set_type === 'TIME_REPETITION'){
+                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+                }
+            });
         }
         return (
             <body>
@@ -70,12 +106,6 @@ class FocusSessionResult extends React.Component {
                                         Home page
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link text-white display-4" href="/challenge">
-                                        <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                        Challenge
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -94,11 +124,7 @@ class FocusSessionResult extends React.Component {
                             <div class="cid-rFD0NwyLkn">
                                 <div class="counter-container col-12 col-md-18 display-5">
                                     <ul>
-                                        <li>1 min:  22 Push ups </li>
-                                        <li>2 min:  51 Crunches</li>
-                                        <li>2 min:  89 Squats</li>
-                                        <li>1 min:  27 Dips</li>
-                                        <li>2 min:  148 Jump Rope</li>
+                                        {optionsExercise}
                                     </ul>
                                 </div>
                             </div>
@@ -120,37 +146,6 @@ class FocusSessionResult extends React.Component {
                                 <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
                                 Back
                             </button>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="cid-rFL604bhmT" id="social-buttons3-5">
-                    <div class="container">
-                        <div class="media-container-row">
-                            <div class="col-md-8 align-center">
-                                <h2 class="pb-3 mbr-section-title mbr-fonts-style display-2">
-                                    Share your performance!
-                                </h2>
-                                <div>
-                                    <div class="mbr-social-likes">
-                                        <span class="btn btn-social socicon-bg-facebook facebook mx-2" title="Share link on Facebook">
-                                            <i class="socicon socicon-facebook"></i>
-                                        </span>
-                                        <span class="btn btn-social twitter socicon-bg-twitter mx-2" title="Share link on Twitter">
-                                            <i class="socicon socicon-twitter"></i>
-                                        </span>
-                                        <span class="btn btn-social instagram socicon-bg-instagram mx-2" title="Share link on Instagram">
-                                            <i class="socicon socicon-instagram"></i>
-                                        </span>
-                                        <span class="btn btn-social pinterest socicon-bg-pinterest mx-2" title="Share link on Pinterest">
-                                            <i class="socicon socicon-pinterest"></i>
-                                        </span>
-                                        <span class="btn btn-social mailru socicon-bg-mail mx-2" title="Share link on Mailru">
-                                            <i class="socicon socicon-mail"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>

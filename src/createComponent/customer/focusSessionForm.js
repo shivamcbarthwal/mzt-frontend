@@ -100,12 +100,6 @@ class FocusSessionForm extends React.Component {
                                             Home page
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link link text-white display-4" href="/challenge">
-                                            <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                            Challenge
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </nav>

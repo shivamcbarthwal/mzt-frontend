@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
         this.props.history.push('/Homepage');
     }
     componentDidMount(){
-    axios.get(`http://localhost:8080/program/getProgramByCustomerId/5dc53fb7717676384459fe63`)
+    axios.get(`http://localhost:8080/program/getProgramByCustomerId/`+this.state.customer)
         .then(res => {
             const programs = res.data;
             console.log(programs);
@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
     axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
         {
             params: {
-                "customer_id":"5dc541fb717676384459fe66",
+                "customer_id":this.state.customer,
                 "program_id":"5dcb2cd4fe74df22bc65702a"
             }
         })
@@ -150,7 +150,7 @@ class Dashboard extends React.Component {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link text-white display-4" href="/challenge">
+                            <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+this.state.customer)}>
                                 <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
                                 Challenge
                             </a>
