@@ -7,8 +7,6 @@ import Background from '../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 var Logo = require('../../assets/images/logo-mzt.png');
 
-const customer_Id = "5dc53fb7717676384459fe63";
-
 class Sponsor extends React.Component {
    
     state = {
@@ -184,21 +182,7 @@ class Sponsor extends React.Component {
                         </Table>
                         <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
-
-
-
                 </section>
-                <script src="assets/web/assets/jquery/jquery.min.js"></script>
-                <script src="assets/popper/popper.min.js"></script>
-                <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="assets/smoothscroll/smooth-scroll.js"></script>
-                <script src="assets/tether/tether.min.js"></script>
-                <script src="assets/dropdown/js/nav-dropdown.js"></script>
-                <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-                <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-                <script src="assets/parallax/jarallax.min.js"></script>
-                <script src="assets/theme/js/script.js"></script>
-                <script src="assets/sociallikes/social-likes.js"></script>
                 </body>
                 );
         }

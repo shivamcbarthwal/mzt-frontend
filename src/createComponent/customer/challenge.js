@@ -43,6 +43,7 @@ class Challenge extends React.Component {
         axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
         .then(res => {
             const points = res.data;
+            console.log("res.data: "+JSON.stringify(res.data));
             this.setState({points});
         });
         axios.get(`http://localhost:8080/offerTransaction/findByCustAndTransType?customer_id=${this.props.match.params.customerID}&transaction_type=EARNED&transaction_type=IN_PROGRESS`)
@@ -99,7 +100,6 @@ class Challenge extends React.Component {
             <section class="header10 cid-rFCyM8AuwD mbr-fullscreen mbr-parallax-background" id="header10-o">
                 <div class="mbr-overlay"> 
                 </div>
-
                 <div class="container">
                     <h2 class="mbr-white mbr-fonts-style m-0 display-1 align-center">
                         Challenge yourself and earn points

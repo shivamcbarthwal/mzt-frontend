@@ -53,7 +53,7 @@ function App() {
           <Route path="/feedback/:coachID/:custID/:progID/:sessID" component={Feedback} />         
           <Route path="/homepage" component={Homepage} />
           <Route path="/challenge/:customerID" component={Challenge} />
-          <Route path="/sponsor" component={Sponsor} />
+          <Route path="/sponsor/:customerID" component={Sponsor} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/listOfPrograms" component={ListOfPrograms} /> 
           <Route path="/listOfSessions/:programID" component={ListOfSessions} /> 
