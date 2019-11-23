@@ -12,12 +12,13 @@ import './style.css';
 import '../../../assets/mobirise/css/mbr-additional.css';
 import Background from '../../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../../assets/canvas/canvasjs.react';
+import moment from 'moment';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var Logo = require('../../../assets/images/logo-mzt.png');
 
 class Dashboard extends React.Component {
     state = {
-        customer:'5dc53fb7717676384459fe63',
+        customer:'5dc541fb717676384459fe66',
         programs: [],
         measurements: [],
         dickson: []
@@ -67,18 +68,12 @@ class Dashboard extends React.Component {
             if(Program.status == "ASSIGNED"){
                 programList1.push(Program);
             }
-        });
-        this.state.programs.map(Program =>{
             if(Program.status == "IN_PROGRESS"){
                 programList1.push(Program);
             }
-        });
-        this.state.programs.map(Program =>{
             if(Program.status == "COMPLETED"){
                 programList2.push(Program);
             }
-        });
-        this.state.programs.map(Program =>{
             if(Program.status == "CANCELED"){
                 programList2.push(Program);
             }
@@ -87,7 +82,8 @@ class Dashboard extends React.Component {
         var measurementsData = [];
         if(measurements){
             for (let i = 0; i < measurements.length; i++){
-                measurementsData.push({ x: i+1, y: measurements[i].dickson_metric});
+                measurementsData.push({ 'label': moment(measurements[i].measurement_date).format("YYYY-MM-DD"), 
+                        y: measurements[i].dickson_metric, indexLabel: measurements[i].coach_feedback});
             }
         }
         console.log("data ",measurementsData);
@@ -96,7 +92,7 @@ class Dashboard extends React.Component {
             exportEnabled: true,
             theme: "dark1", // "light1", "dark1", "dark2"
             title:{
-                text: "Dickson Indicator by Week of Focus Session"
+                text: "Dickson Indicator of Focus Session"
             },
             axisY: {
                 title: "Dickson Indicator",
@@ -104,17 +100,14 @@ class Dashboard extends React.Component {
                 interval: 0.25
             },
             axisX: {
-                title: "Week of Focus Session",
-                prefix: "W",
+                title: "Measurement Date of Focus Session",
                 interval: 1
             },
             data: [{
                 type: "line",
-                toolTipContent: "Week {x}: {y}",
                 dataPoints: measurementsData
             }]
         }
-
         return (
             <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
