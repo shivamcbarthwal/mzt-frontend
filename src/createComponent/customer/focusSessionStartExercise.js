@@ -3,6 +3,8 @@ import axios from 'axios';
 import Select, { components } from 'react-select';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Background from '../../assets/images/woman-pushup.jpeg';
+import Timer from 'react-compound-timer';
+import {Button, Header} from 'semantic-ui-react';
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');
 var image2 = require('../../assets/images/reload.png');
@@ -89,6 +91,40 @@ class FocusSessionStartExercise extends React.Component {
         console.log(exercises);
         //можно потом использовать if чтобы показывать упражнения на время или на количество
         if (exercises) {
+            var timer = [];
+            timer.push(
+                <p style={{color: '#FFFFFF'}} id='timer'>
+                    <Timer
+                        initialTime={exercises[exerciseN].exercise_est_duration * 1000}
+                        direction="backward"
+                        startImmediately={false}
+                        lastUnit='s'
+                        onStart={() => {
+                            document.getElementById('video').removeAttribute('hidden');
+                            document.getElementById('start').setAttribute('hidden','hidden');
+                        }}
+                        checkpoints={[
+                            {
+                                time: 0,
+                                callback: () => {
+                                    document.getElementById('result').removeAttribute('hidden');
+                                    document.getElementById('timer').setAttribute('hidden','hidden')
+                                }
+                            }]}
+                    >
+                    {({ start}) => (
+                        <React.Fragment>
+                            <Header as='h1' color='green'>
+                                <Timer.Seconds /> seconds
+                            </Header>
+                            <div>
+                                <Button id='start' primary size="medium" onClick={start}>Start</Button>
+                            </div>
+                        </React.Fragment>
+                    )}
+                    </Timer>
+                </p>
+            )
           if (exercises[exerciseN].set_type === 'TIME') {
             optionsInfo.push(
                 <div class="container align-items-center">
@@ -128,21 +164,24 @@ class FocusSessionStartExercise extends React.Component {
                         <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
                             {exercises[exerciseN].name}
                         </h1>
+                        </div>
                         <div class="mbr-section-text mbr-white pb-3">
                             <p class="mbr-text mbr-fonts-style display-5">
                                 {exercises[exerciseN].description}
                             </p>
+                        </div>
+                        {timer}
+                        <div id='result' hidden class="mbr-section-text mbr-white pb-3">
                             <p class="mbr-text mbr-fonts-style display-5">
                                 Your result:
                             </p>
-                        </div>
                             <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
-                        <div class="mbr-section-btn">
-                            <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                            <div class="mbr-section-btn">
+                                <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mbr-figure" style={{width: '145%'}}>
-                        <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                    <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                        <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?autoplay=1" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             );
@@ -190,14 +229,16 @@ class FocusSessionStartExercise extends React.Component {
                             <p class="mbr-text mbr-fonts-style display-5">
                               {exercises[exerciseN].description}
                             </p>
+                        </div>
+                            {timer}
+                        <div id='result' hidden class="mbr-section-text mbr-white pb-3">
                             <p class="mbr-text mbr-fonts-style display-5">
                                 Your result:
                             </p>
-                        </div>
                             <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
-                      
-                        <div class="mbr-section-btn">
-                            <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                            <div class="mbr-section-btn">
+                                <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
+                            </div>
                         </div>
                     </div>
                     <div class="mbr-figure" style={{width: '145%'}}>
@@ -205,7 +246,7 @@ class FocusSessionStartExercise extends React.Component {
                     </div>                      
                 </div>
             );
-            }
+        }
             if (exercises[exerciseN].set_type === 'TIME_REPETITION') {
                 optionsInfo.push(
                     <div class="container align-items-center">
@@ -249,14 +290,17 @@ class FocusSessionStartExercise extends React.Component {
                                 <p class="mbr-text mbr-fonts-style display-5">
                                     {exercises[exerciseN].description}
                                 </p>
-                                <p class="mbr-text mbr-fonts-style display-5">
-                                    Your result:
-                                </p>
                             </div>
+                                {timer}
+                        <div id='result' hidden class="mbr-section-text mbr-white pb-3">
+                            <p class="mbr-text mbr-fonts-style display-5">
+                                Your result:
+                            </p>
                             <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
+                        </div>
                         </div>
                         <div class="mbr-figure" style={{width: '145%'}}>
                             <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>

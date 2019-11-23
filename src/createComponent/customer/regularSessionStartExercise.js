@@ -3,6 +3,8 @@ import axios from 'axios';
 import Select, { components } from 'react-select';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Background from '../../assets/images/woman-pushup.jpeg';
+import Timer from 'react-compound-timer';
+import {Button, Header} from 'semantic-ui-react';
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');
 var image2 = require('../../assets/images/reload.png');
@@ -11,7 +13,7 @@ var angry = require('../../assets/images/angry.png');
 var neutral = require('../../assets/images/neutral.png');
 var happy = require('../../assets/images/very-happy.png');
 
-class FocusSessionStartExercise extends React.Component {
+class RegularSessionStartExercise extends React.Component {
     state = {
         exerciseN: 0,
         exercises: null,
@@ -89,6 +91,94 @@ class FocusSessionStartExercise extends React.Component {
         console.log(exercises);
         //можно потом использовать if чтобы показывать упражнения на время или на количество
         if (exercises) {
+            var time = exercises[exerciseN].exercise_est_duration * 1000;
+            var set = exercises[exerciseN].time * exercises[exerciseN].repetition * 1000;
+            var rest = exercises[exerciseN].set_break * 1000;
+            var timer = [];
+            var words = [];
+            var checkpoints = [
+                {
+                    time: 0,
+                    callback: () => {
+                        document.getElementById('result').removeAttribute('hidden');
+                        document.getElementById('timer').setAttribute('hidden','hidden');
+                        document.getElementById('rest').setAttribute('hidden','hidden');
+                    }
+                }
+            ];
+            words.push(
+                <p class="mbr-text mbr-fonts-style display-5">
+                    Finish 1 set ?
+                </p>
+            )
+            for(var i=1; i <= exercises[exerciseN].sets; i++){
+                checkpoints.push({
+                    time: time - set * i - rest * (i - 1),
+                    callback: () => {
+                        document.getElementById('rest').removeAttribute('hidden');
+                    }
+                })
+            }
+            timer.push(
+                <div>
+                    <p style={{color: '#FFFFFF'}} id='timer'>
+                        <Timer
+                            initialTime={time}
+                            direction="backward"
+                            startImmediately={false}
+                            lastUnit='s'
+                            onStart={() => {
+                                document.getElementById('video').removeAttribute('hidden');
+                                document.getElementById('start').setAttribute('hidden','hidden');
+                            }}
+                            checkpoints={checkpoints}
+                        >
+                        {({ start}) => (
+                            <React.Fragment>
+                                <Header as='h1' color='green'>
+                                    <Timer.Seconds /> seconds
+                                </Header>
+                                <div>
+                                    <Button id='start' primary size="medium" onClick={start}>Start</Button>
+                                </div>
+                            </React.Fragment>
+                        )}
+                        </Timer>
+                    </p>
+                    <div id='rest' hidden>
+                        <Timer
+                            initialTime={rest}
+                            direction="backward"
+                            lastUnit='s'
+                            startImmediately={false}
+                            onStart={() => {
+                                document.getElementById('startRest').setAttribute('hidden','hidden');
+                            }}
+                            checkpoints={[
+                                {
+                                    time: 0,
+                                    callback: () => {
+                                        document.getElementById('rest').setAttribute('hidden','hidden');
+                                        document.getElementById('reset').click();
+                                        document.getElementById('startRest').removeAttribute('hidden')
+                                    }
+                                }
+                            ]}
+                        >
+                            {({start, reset}) => (
+                                <React.Fragment>
+                                    {words}
+                                    <p class="mbr-text mbr-fonts-style display-5">
+                                        Take a <Timer.Seconds /> seconds rest
+                                    </p>
+                                    <Button id='startRest' primary size="medium" onClick={start}>Start</Button>
+                                    <Button id='reset' hidden primary size="medium" onClick={reset}>Reset</Button>
+                                </React.Fragment>
+                            )}
+                        </Timer>
+                    </div>
+                </div>
+            );
           if (exercises[exerciseN].set_type === 'TIME') {
             optionsInfo.push(
                     <div class="container align-items-center">
@@ -124,8 +214,7 @@ class FocusSessionStartExercise extends React.Component {
                     );
             optionsExercise.push(
                     <div class="media-container-row">
-                    
-                        <div class="media-content align-center">
+                        <div class="media-content align-center media-container-column">
                             <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
                                 {exercises[exerciseN].name}
                             </h1>
@@ -133,21 +222,24 @@ class FocusSessionStartExercise extends React.Component {
                                 <p class="mbr-text mbr-fonts-style display-5">
                                     {exercises[exerciseN].description}
                                 </p>
-                                <p class="mbr-text mbr-fonts-style display-5">
-                                    How do you feel?
-                                </p>
-                            </div>
-                            <div class="mbr-section-btn">
-                                <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                    <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
-                                </p>
+                                {timer}
+                                <div id='result' hidden>
+                                    <p class="mbr-text mbr-fonts-style display-5">
+                                        How do you feel?
+                                    </p>
+                                    <div class="mbr-section-btn">
+                                        <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
+                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    
-                        <div class="mbr-figure" style={{width: '145%'}}><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe></div>
-                    
+                        <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                            <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     </div>
                     );
             }
@@ -185,33 +277,35 @@ class FocusSessionStartExercise extends React.Component {
                       </div>
                       );
               optionsExercise.push(
-                      <div class="media-container-row">
-                      
-                          <div class="media-content align-center">
-                              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
-                                  {exercises[exerciseN].name}
-                              </h1>
+                        <div class="media-container-row">
+                            <div class="media-content align-center media-container-column">
+                                <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
+                                    {exercises[exerciseN].name}
+                                </h1>
                               <div class="mbr-section-text mbr-white pb-3">
                                     <p class="mbr-text mbr-fonts-style display-5">
                                       {exercises[exerciseN].description}
-                                     </p>
+                                    </p>
+                                    {timer}
+                                <div id='result' hidden>
                                     <p class="mbr-text mbr-fonts-style display-5">
                                         How do you feel?
                                     </p>
-                              </div>
-                              <div class="mbr-section-btn">
-                                <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                    <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
-                                </p>
-                              </div>
-                          </div>
-                      
-                          <div class="mbr-figure" style={{width: '145%'}}><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe></div>
-                      
-                      </div>
-                      );
+                                    <div class="mbr-section-btn">
+                                        <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
+                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                        </p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                            <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                );
              }
              if (exercises[exerciseN].set_type === 'TIME_REPETITION') {
               optionsInfo.push(
@@ -247,32 +341,34 @@ class FocusSessionStartExercise extends React.Component {
                       </div>
                       );
               optionsExercise.push(
-                      <div class="media-container-row">
-                      
-                          <div class="media-content align-center">
-                              <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
-                                  {exercises[exerciseN].name}
-                              </h1>
-                              <div class="mbr-section-text mbr-white pb-3">
-                                  <p class="mbr-text mbr-fonts-style display-5">
-                                      {exercises[exerciseN].description}
-                                  </p>
-                                  <p class="mbr-text mbr-fonts-style display-5">
-                                    How do you feel?
+                    <div class="media-container-row">
+                        <div class="media-content align-center media-container-column">
+                            <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
+                                {exercises[exerciseN].name}
+                            </h1>
+                            <div class="mbr-section-text mbr-white pb-3">
+                                <p class="mbr-text mbr-fonts-style display-5">
+                                    {exercises[exerciseN].description}
                                 </p>
-                              </div>
-                              <div class="mbr-section-btn">
-                                <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                    <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                    <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
-                                </p>
-                              </div>
-                          </div>
-                      
-                          <div class="mbr-figure" style={{width: '145%'}}><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe></div>
-                      
-                      </div>
+                                {timer}
+                                <div id='result' hidden>
+                                    <p class="mbr-text mbr-fonts-style display-5">
+                                        How do you feel?
+                                    </p>
+                                    <div class="mbr-section-btn">
+                                        <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
+                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                            <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
                       );
              }
         }
@@ -344,4 +440,4 @@ class FocusSessionStartExercise extends React.Component {
     }
 }
 
-export default FocusSessionStartExercise;
+export default RegularSessionStartExercise;
