@@ -45,15 +45,14 @@ class Sponsor extends React.Component {
             const offers = res.data;
             this.setState({offers});
         });
-    };
-    componentDidMount() {
+
         axios.get('/offerTransaction/getTotalPoints/5da86562f964d02c2c679155')
         .then(res => {
             const points = res.data;
             this.setState({points});
         });
     };
-
+    
     render() {
         this.handleSort('status');
         var optionsOffer = [];

@@ -97,9 +97,19 @@ class CoachHome extends Component {
     
     handleClickNotif = () => {
         const { notifications, vertical, horizontal } = this.state;
-        notifications.forEach(notification =>
-            setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200));
-            
+        notifications.forEach(notification => {
+            setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200);
+            axios.delete(`http://localhost:8080/notification/deactivate`,
+            {
+                params: {
+                    notify_for: notification.notify_for,
+                    customer_id: notification.customer_id,
+                    coach_id: "5dc2f70414b9e52a30d6620e",
+                    notify_type: notification.notify_type
+                }
+            });
+        });
+        this.setState({notifications: []});
     };
 
     handleClose = () => {

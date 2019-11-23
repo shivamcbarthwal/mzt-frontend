@@ -19,6 +19,7 @@ var Logo = require('../../assets/images/logo-mzt.png');
 // const customer_Id = "5dc541fb717676384459fe66";
 const customer_Id = "5dc53fb7717676384459fe63";
 // const customer_Id = "5dcc1f93ee7a552b6c458a79";
+// const customer_Id = "5dc5413a717676384459fe64";
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -94,10 +95,21 @@ class Homepage extends React.Component {
     
     handleClickNotif = () => {
         const { notifications, vertical, horizontal } = this.state;
-        notifications.forEach(notification =>
-            setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200));
-            
+        notifications.forEach(notification => {
+            setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200);
+            axios.delete(`http://localhost:8080/notification/deactivate`,
+            {
+                params: {
+                    notify_for: notification.notify_for,
+                    customer_id: notification.customer_id,
+                    coach_id: "5dc2f70414b9e52a30d6620e",
+                    notify_type: notification.notify_type
+                }
+            });
+        });
+        this.setState({notifications: []});
     };
+                
 
     handleClose = () => {
         this.setState({ open: false});
