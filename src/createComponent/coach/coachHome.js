@@ -154,7 +154,7 @@ class CoachHome extends Component {
                         <div class="container align-center">
                             <div class="mbr-white centerize">
                                 <br/><br/><br/>
-                                <a class="btn btn-white-outline" onClick={this.handleClickNotif}>NOTIFICATIONS ({notifications.length})</a>
+                                <button class="btn btn-white-outline" onClick={this.handleClickNotif}>NOTIFICATIONS ({notifications.length})</button>
                                 <a class="btn btn-white-outline" href="customerList">CUSTOMERS</a>
                                 <br/><br/>
                                 <a class="btn btn-white-outline" href="visualizeExercise">EXERCISES </a>
