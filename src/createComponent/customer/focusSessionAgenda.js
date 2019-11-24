@@ -14,7 +14,7 @@ var Logo = require('../../assets/images/logo-mzt.png');
 class FocusSessionAgenda extends React.Component {
     state = {
         exercises: null,
-        Measurements: null,
+        measurements: null,
         program: null,
         heartRates: {
             customer_id: '5dc541fb717676384459fe66',
@@ -103,7 +103,7 @@ class FocusSessionAgenda extends React.Component {
         var optionsMeasurementHips = [];
         var optionsMeasurementThigh = [];
         var optionsMeasurementWaist = [];
-        if (measurements) {
+        if (measurements && measurements.items) {
             optionsMeasurement1.push("Previous: " + measurements[measurements.length - 1].heartRate1);
             optionsMeasurement2.push("Previous: " + measurements[measurements.length - 1].heartRate2);
             optionsMeasurement3.push("Previous: " + measurements[measurements.length - 1].heartRate3);
