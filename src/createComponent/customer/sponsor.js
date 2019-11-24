@@ -54,7 +54,7 @@ class Sponsor extends React.Component {
             this.setState({points});
         });
     };
-
+    
     render() {
         this.handleSort('status');
         var optionsOffer = [];
