@@ -181,7 +181,7 @@ class FocusSessionStartExercise extends React.Component {
                             </div>
                         </div>
                     <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
-                        <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?autoplay=1" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             );
@@ -242,7 +242,7 @@ class FocusSessionStartExercise extends React.Component {
                         </div>
                     </div>
                     <div class="mbr-figure" style={{width: '145%'}}>
-                        <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>                      
                 </div>
             );
@@ -303,7 +303,7 @@ class FocusSessionStartExercise extends React.Component {
                         </div>
                         </div>
                         <div class="mbr-figure" style={{width: '145%'}}>
-                            <iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/IODxDxX7oi4?rel=0&amp;amp;showinfo=0&amp;autoplay=1&amp;loop=0" width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 );
