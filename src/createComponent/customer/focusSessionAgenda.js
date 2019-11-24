@@ -14,15 +14,17 @@ var Logo = require('../../assets/images/logo-mzt.png');
 class FocusSessionAgenda extends React.Component {
     state = {
         exercises: null,
-        Measurements: null,
+        measurements: [],
         program: null,
         heartRates: {
-            customer_id: '5dc541fb717676384459fe66',
-            program_id: '5dcb2cd4fe74df22bc65702a',
+            customer_id: program.customer_id,
+            program_id: program._id,
             session_id: '',
             heartRate1: '',
             heartRate2: '',
-            heartRate3: '',
+            heartRate3: ''
+        },
+        options:{
             weight: '',
             height: '',
             chest: '',
@@ -44,9 +46,14 @@ class FocusSessionAgenda extends React.Component {
                 const focus = this.state;
                 console.log("prog",program);
                 this.setState({exercises: program.sessions[index].exercises});
-                if (program.sessions[index].type === 'Weight loss'){
+                if (program.type === 'Weight loss'){
                     this.setState({focus: true});
                 }
+                this.setState({heartRates: {
+                    customer_id: program.customer_id,
+                    program_id: program._id,
+                    session_id: program.sessions[index]._id
+                }})
                 console.log("focus",focus) 
                 axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
                 {
@@ -93,6 +100,7 @@ class FocusSessionAgenda extends React.Component {
 
     render() {
         const {measurements, focus, exercises} = this.state;
+        var optionsMeasurements = [];
         var optionsMeasurement1 = [];
         var optionsMeasurement2 = [];
         var optionsMeasurement3 = [];
@@ -103,7 +111,7 @@ class FocusSessionAgenda extends React.Component {
         var optionsMeasurementHips = [];
         var optionsMeasurementThigh = [];
         var optionsMeasurementWaist = [];
-        if (measurements) {
+        if (measurements.length) {
             optionsMeasurement1.push("Previous: " + measurements[measurements.length - 1].heartRate1);
             optionsMeasurement2.push("Previous: " + measurements[measurements.length - 1].heartRate2);
             optionsMeasurement3.push("Previous: " + measurements[measurements.length - 1].heartRate3);
@@ -114,6 +122,40 @@ class FocusSessionAgenda extends React.Component {
             optionsMeasurementHips.push("Previous: " + measurements[measurements.length - 1].hips);
             optionsMeasurementThigh.push("Previous: " + measurements[measurements.length - 1].thigh);
             optionsMeasurementWaist.push("Previous: " + measurements[measurements.length - 1].waist);
+        }
+        if(focus){
+            optionsMeasurements.push(
+                <div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Weight:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementWeight} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('weight', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Height:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementHeight} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('height', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Arms:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementArms} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('arms', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Hips:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementHips} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('hips', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Chest:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementChest} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('chest', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Waist:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementWaist} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('waist', e)}/>
+                    </div>
+                    <div data-for="message" class="col-md-12  form-group">
+                        <label for="message" class="form-control-label mbr-fonts-style display-7">Thigh:</label>
+                        <input data-form-field="Message" placeholder={optionsMeasurementThigh} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('thigh', e)}/>
+                    </div>
+                </div>
+            )
         }
         //!!!!!!!!!!!!!!! NEED TO CREATE A LOOP
         var optionsExercise = [];
@@ -200,48 +242,7 @@ class FocusSessionAgenda extends React.Component {
                                         <label for="message" class="form-control-label mbr-fonts-style display-7">Heart rate:</label>
                                         <input type='number' placeholder={optionsMeasurement3} class="form-control display-7" onChange={(e) => this.handleChange('heartRate3', e)}/>
                                     </div>
-                                    {this.state.focus && (
-                                    <div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Lay down for 1 min</label><br />
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Heart rate:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurement3} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('heartRate3', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Lay down for 1 min</label><br />
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Heart rate:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurement3} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('heartRate3', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Weight:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementWeight} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('weight', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Height:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementHeight} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('height', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Arms:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementArms} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('arms', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Hips:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementHips} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('hips', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Chest:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementChest} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('chest', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Waist:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementWaist} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('waist', e)}/>
-                                    </div>
-                                    <div data-for="message" class="col-md-12  form-group">
-                                        <label for="message" class="form-control-label mbr-fonts-style display-7">Thigh:</label>
-                                        <input data-form-field="Message" placeholder={optionsMeasurementThigh} class="form-control display-7" id="phone-form1-2" onChange={(e) => this.handleChange('thigh', e)}/>
-                                    </div>
-                                    </div>)
-                                    }
+                                    {optionsMeasurements}
                                 </form>
                                 <h3 class="mbr-section align-left mbr-light pb-3 mbr-fonts-style display-6">
                                     <br /> Performance
