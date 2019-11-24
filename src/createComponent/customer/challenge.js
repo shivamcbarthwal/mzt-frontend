@@ -112,7 +112,7 @@ class Challenge extends React.Component {
                             <Image src={certificate} alt="Certificate" size="small" centered/>
                             {this.state.points.totalPoints} points
                         </h1>	
-                        <Button onClick = {this.handleClickSponsor} floated='center' color='green'>Convert to vouchers</Button>
+                        <Button onClick = {this.handleClickSponsor} floated='center' color='green'>See offers</Button>
                     </div>
                     <br/><br/>
                     <h2 class="mbr-white mbr-fonts-style m-0 display-5">
