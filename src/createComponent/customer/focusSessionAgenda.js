@@ -17,8 +17,8 @@ class FocusSessionAgenda extends React.Component {
         measurements: [],
         program: null,
         heartRates: {
-            customer_id: program.customer_id,
-            program_id: program._id,
+            customer_id: '',
+            program_id: '',
             session_id: '',
             heartRate1: '',
             heartRate2: '',
@@ -43,10 +43,12 @@ class FocusSessionAgenda extends React.Component {
         axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
             .then(res => {
                 const program = res.data;
-                const focus = this.state;
-                console.log("prog",program);
-                this.setState({exercises: program.sessions[index].exercises});
-                if (program.type === 'Weight loss'){
+                const {focus, heartRates} = this.state;
+                heartRates.customer_id = program.customer_id;
+                heartRates.program_id = program._id;
+                heartRates.session_id = program.sessions[index]._id;
+                this.setState({exercises: program.sessions[index].exercises, heartRates});
+                if (program.sessions[index].type === 'Weight loss'){
                     this.setState({focus: true});
                 }
                 this.setState({heartRates: {
