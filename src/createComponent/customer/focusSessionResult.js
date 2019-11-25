@@ -14,19 +14,19 @@ const cust_id = '5da86562f964d02c2c679155'
 class FocusSessionResult extends React.Component {
     state = {
         measurements: null,
-        exercises: null,
-        sessions: null
+        exercises: null
     }
-
+    
     componentDidMount() {
+        const index = Number(this.props.location.search.slice(1).split("=")[1]);
+        console.log("Index", index);
         axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
             .then(res => {
                 const program = res.data;
-                console.log('program_id: '+program._id);
+                console.log('sessions: '+program.sessions);
                 console.log('customer_id: '+program.customer_id)
                 this.setState({
                     exercises: program.sessions[index].exercises,
-                    sessions: program.sessions,
                     program_id: program._id,
                     customer_id: program.customer_id
                 });
@@ -47,8 +47,7 @@ class FocusSessionResult extends React.Component {
             }
         )
         console.log("Query", this.props.location);
-        const index = Number(this.props.location.search.slice(1).split("=")[1]);
-        console.log("Index", index);
+        
     }
 
     handleClickBack = () => {
@@ -80,7 +79,7 @@ class FocusSessionResult extends React.Component {
             }
         }
         if(exercises){
-            this.state.exercises.map((exerciseId) => {
+            exercises.map((exerciseId) => {
                 optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
             });
         }

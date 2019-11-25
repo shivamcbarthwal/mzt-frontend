@@ -41,7 +41,7 @@ class RegularSessionResult extends React.Component {
         const {exercises} = this.state;
         var optionsExercise = [];
         if(exercises){
-            this.state.exercises.map((exerciseId) => {
+            exercises.map((exerciseId) => {
                 optionsExercise.push(<li>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
             });
         }

@@ -22,6 +22,7 @@ import { textAlign } from '@material-ui/system';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 const coach_id = "5dc2f70414b9e52a30d6620e";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var Logo = require('../../assets/images/logo-mzt.png');
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -150,16 +151,16 @@ class CustomerModal extends Component {
             if(Program.status == "IN_PROGRESS"){
                 programInprogress.push(Program);
                 Program.sessions.map((Session,index) =>{
-                    if(Session.session_status == 'OPENED'){
+                    if(Session.session_status == 'COMPLETED'){
                         console.log('index: '+index);
                         console.log('length: '+Program.sessions.length);
                         console.log('percent: '+ (index+1)/Program.sessions.length)
-                        progress.push(
-                            <Progress color='olive' value={index} total={Program.sessions.length} active/>
-                        )
-                    }
-                    else{
-                        if(Session.session_status == 'COMPLETED'){
+                        if(Program.sessions[index+1].session_status == 'OPENED'){
+                            progress.push(
+                                <Progress color='olive' value={index} total={Program.sessions.length} active/>
+                            )
+                        }
+                        if(Program.sessions[index+1].session_status == 'CLOSED'){
                             if(Program.sessions[index+1].session_type == 'focus'){
                                 progress.push(
                                     <Progress color='olive' value={index} total={Program.sessions.length} active/>
@@ -188,6 +189,42 @@ class CustomerModal extends Component {
         if (customers){
             return (
                 <body>
+                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
+                    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </button>
+                        <div class="menu-logo">
+                            <div class="navbar-brand">
+                                <span class="navbar-logo">
+                                    <a href="/">
+                                        <img src={Logo} alt="MZT fitness" title="" />
+                                    </a>
+                                </span>
+                                <span class="navbar-caption-wrap">
+                                    <a class="navbar-caption text-black display-4" href="/">
+                                        MZT FITNESS
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-black display-4" href="/">
+                                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                        Home page
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </section>
                     <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>  
                         <div class="container">
                             <div class="media-container-row">
@@ -407,6 +444,7 @@ class CustomerModal extends Component {
                                         if(res.program_id === program._id){
                                             if(res.session_id === session._id){
                                                 var options = [];
+                                                console.log('res: '+res)
                                                 if(program.type === 'Weight loss'){
                                                     options.push(
                                                         <Table.Row>
@@ -421,7 +459,7 @@ class CustomerModal extends Component {
                                                         </Table.Row>
                                                     );
                                                 }
-                                                if(res.coach_feedback){
+                                                if(res.coach_feedback != ''){
                                                     SessionRes.push(
                                                         <Table>
                                                             <TableHeader>

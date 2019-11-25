@@ -12,6 +12,7 @@ import '../assets/dropdown/css/style.css';
 import '../assets/theme/css/style.css';
 import '../assets/mobirise/css/mbr-additional.css';
 import './customer.css';
+var Logo = require('../../assets/images/logo-mzt.png');
 
 export default class Customer extends Component {
     state = {
@@ -73,6 +74,45 @@ export default class Customer extends Component {
         });
         return (
             <body>
+                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
+                    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+                        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </button>
+                        <div class="menu-logo">
+                            <div class="navbar-brand">
+                                <span class="navbar-logo">
+                                    <a href="/">
+                                        <img src={Logo} alt="MZT fitness" title="" />
+                                    </a>
+                                </span>
+                                <span class="navbar-caption-wrap">
+                                    <a class="navbar-caption text-white display-4" href="/">
+                                        MZT FITNESS
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-white display-4" href="/">
+                                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                        Home page
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </section>
+                <section class="cid-rFCUpdpwBS mbr-fullscreen">
+                <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                <div class="container align-center">
                 <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
                     Customer List
                 </h2>
@@ -112,6 +152,8 @@ export default class Customer extends Component {
                 <div class="align-right">
                 <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                 </div>
+                </div>
+                </section>
             </body>
         )
     }

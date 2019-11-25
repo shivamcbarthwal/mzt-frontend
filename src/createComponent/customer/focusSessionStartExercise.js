@@ -17,7 +17,7 @@ class FocusSessionStartExercise extends React.Component {
         onExercise: false,
         offInfo: true,
         sessions: null,
-        result: ''
+        result: null
     }
 
     toggle = () => {
@@ -26,13 +26,20 @@ class FocusSessionStartExercise extends React.Component {
             offInfo: !this.state.offInfo
         });
     };
+
+    handleChange = (name, event) => {
+        console.log(this.state.session);
+        this.state.result = event.target.value
+        console.log(event.target);
+    };
+
     toggleNext = () => {
-        const {exercises, exerciseN, sessions, result} = this.state;
+        const {exercises, exerciseN, sessions} = this.state;
         axios.post('http://localhost:8080/program/updateExerciseResult',{
             program_id:  this.props.match.params.programID,
             sessionNumber : Number(this.props.location.search.slice(1).split("=")[1]),
             exerciseNumber : exerciseN,
-            exerciseResult : result
+            exerciseResult : this.state.result
         });
         if (exercises.length === (exerciseN+1)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
@@ -76,13 +83,7 @@ class FocusSessionStartExercise extends React.Component {
         }
       )
     }
-    handleChange = (name, event) => {
-        console.log(this.state.session);
-        this.setState({
-            result: event.target.value
-        });
-        console.log(event.target);
-    };
+    
 
     render() {
         const {exercises, exerciseN} = this.state;
@@ -164,7 +165,6 @@ class FocusSessionStartExercise extends React.Component {
                         <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
                             {exercises[exerciseN].name}
                         </h1>
-                        </div>
                         <div class="mbr-section-text mbr-white pb-3">
                             <p class="mbr-text mbr-fonts-style display-5">
                                 {exercises[exerciseN].description}
@@ -179,6 +179,7 @@ class FocusSessionStartExercise extends React.Component {
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
+                        </div>
                         </div>
                     <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
                         <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
@@ -241,7 +242,7 @@ class FocusSessionStartExercise extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div class="mbr-figure" style={{width: '145%'}}>
+                    <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
                         <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>                      
                 </div>
@@ -302,7 +303,7 @@ class FocusSessionStartExercise extends React.Component {
                             </div>
                         </div>
                         </div>
-                        <div class="mbr-figure" style={{width: '145%'}}>
+                        <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
                             <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>

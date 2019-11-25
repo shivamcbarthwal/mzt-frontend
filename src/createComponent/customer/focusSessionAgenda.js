@@ -22,9 +22,7 @@ class FocusSessionAgenda extends React.Component {
             session_id: '',
             heartRate1: '',
             heartRate2: '',
-            heartRate3: ''
-        },
-        options:{
+            heartRate3: '',
             weight: '',
             height: '',
             chest: '',
@@ -48,7 +46,7 @@ class FocusSessionAgenda extends React.Component {
                 heartRates.program_id = program._id;
                 heartRates.session_id = program.sessions[index]._id;
                 this.setState({exercises: program.sessions[index].exercises, heartRates});
-                if (program.sessions[index].type === 'Weight loss'){
+                if (program.type === 'Weight loss'){
                     this.setState({focus: true});
                 }
                 this.setState({heartRates: {
@@ -164,19 +162,9 @@ class FocusSessionAgenda extends React.Component {
         console.log('ex',exercises)
         if(exercises){
             this.state.exercises.map((exerciseId) => {
-                if (exerciseId.set_type === 'TIME'){
-                    optionsExercise.push(<li>{exerciseId.time}sec x {exerciseId.sets}: {exerciseId.name}</li>)
-                }
-                if (exerciseId.set_type === 'REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.repetition} x {exerciseId.sets}: {exerciseId.name}</li>)
-                }
-                if (exerciseId.set_type === 'TIME_REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.repetition} x {exerciseId.sets} for {exerciseId.time}sec: {exerciseId.name}</li>)
-                }
+                optionsExercise.push(<li>{exerciseId.repetition} x {exerciseId.sets} for {exerciseId.time}sec: {exerciseId.name}</li>)
             });
         }
-        
-
         return (
                 <body>
                     <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
