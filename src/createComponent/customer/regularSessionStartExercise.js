@@ -65,6 +65,7 @@ class RegularSessionStartExercise extends React.Component {
                 offInfo: !this.state.offInfo,
                 exerciseN: this.state.exerciseN + 1
             });
+            console.log("exerciseN ",exerciseN)
         }
     }
     ;
