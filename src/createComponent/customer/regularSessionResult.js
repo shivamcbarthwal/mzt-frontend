@@ -42,15 +42,7 @@ class RegularSessionResult extends React.Component {
         var optionsExercise = [];
         if(exercises){
             this.state.exercises.map((exerciseId) => {
-                if (exerciseId.set_type === 'TIME'){
-                    optionsExercise.push(<li>{exerciseId.name}: {exerciseId.time}s x {exerciseId.sets} sets</li>)
-                }
-                if (exerciseId.set_type === 'REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets</li>)
-                }
-                if (exerciseId.set_type === 'TIME_REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
-                }
+                optionsExercise.push(<li>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
             });
         }
         return (

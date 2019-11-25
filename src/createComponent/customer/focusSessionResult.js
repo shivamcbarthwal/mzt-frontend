@@ -19,33 +19,36 @@ class FocusSessionResult extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
-            {
-                params: {
-                    "customer_id":"5dc541fb717676384459fe66",
-                    "program_id":"5dcb2cd4fe74df22bc65702a"
+        axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
+            .then(res => {
+                const program = res.data;
+                console.log('program_id: '+program._id);
+                console.log('customer_id: '+program.customer_id)
+                this.setState({
+                    exercises: program.sessions[index].exercises,
+                    sessions: program.sessions,
+                    program_id: program._id,
+                    customer_id: program.customer_id
+                });
+                axios.get(`http://localhost:8080/customer/getCustomerMeasurementsById`,
+                    {
+                        params: {
+                            "customer_id": program.customer_id,
+                            "program_id": program._id
+                        }
+                    }
+                )
+                .then(res => {
+                    const measurements = res.data;
+                    console.log('meas',res.data);
+                    this.setState({measurements});
                 }
+                )
             }
-        )
-        .then(res => {
-            const measurements = res.data;
-            console.log('meas',res.data);
-            this.setState({measurements});
-        }
         )
         console.log("Query", this.props.location);
         const index = Number(this.props.location.search.slice(1).split("=")[1]);
         console.log("Index", index);
-        axios.get(`http://localhost:8080/program/getProgramById/${this.props.match.params.programID}`)
-            .then(res => {
-                const program = res.data;
-                this.setState({
-                    exercises: program.sessions[index].exercises,
-                    sessions: program.sessions
-                });
-                console.log('prog',program);
-            }
-        )
     }
 
     handleClickBack = () => {
@@ -56,20 +59,29 @@ class FocusSessionResult extends React.Component {
         const {measurements, exercises} = this.state;
         var optionsMeasurement = [];
         var optionsExercise = [];
+        const feedback = [];
+        console.log('measurement: '+measurements);
         if (measurements) {
             optionsMeasurement.push(measurements[measurements.length - 1].dickson_metric);
+            console.log('feedback: '+measurements[measurements.length - 1].coach_feedback)
+            if(measurements[measurements.length - 1].coach_feedback === ''){
+                feedback.push(
+                    <p>
+                        No feedback yet.
+                    </p>
+                )
+            }
+            else{
+                feedback.push(
+                    <p>
+                        {measurements[measurements.length - 1].coach_feedback}
+                    </p>
+                )
+            }
         }
         if(exercises){
             this.state.exercises.map((exerciseId) => {
-                if (exerciseId.set_type === 'TIME'){
-                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
-                }
-                if (exerciseId.set_type === 'REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
-                }
-                if (exerciseId.set_type === 'TIME_REPETITION'){
-                    optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
-                }
+                optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
             });
         }
         return (
@@ -137,9 +149,7 @@ class FocusSessionResult extends React.Component {
                             <h3 class="mbr-section align-left mbr-light pb-3 mbr-fonts-style display-6">
                                 <br/> Coach feedback:
                             </h3>
-                            <p>
-                                No feedback yet.
-                            </p>
+                            {feedback}
                         </div>
                         <div class="align-right">
                             <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}>
