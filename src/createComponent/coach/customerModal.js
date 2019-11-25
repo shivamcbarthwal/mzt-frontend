@@ -15,7 +15,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
+import { Progress, Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent, Segment } from 'semantic-ui-react';
 import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';
@@ -141,15 +141,42 @@ class CustomerModal extends Component {
         const programDone = [];
         const programCanceled = [];
         const programLists = [];
+        const progress = [];
+        const progressDone = [];
         this.state.programs.map(Program =>{
             if(Program.status == "ASSIGNED"){
                 programAssigned.push(Program);
             }
             if(Program.status == "IN_PROGRESS"){
                 programInprogress.push(Program);
+                Program.sessions.map((Session,index) =>{
+                    if(Session.session_status == 'OPENED'){
+                        console.log('index: '+index);
+                        console.log('length: '+Program.sessions.length);
+                        console.log('percent: '+ (index+1)/Program.sessions.length)
+                        progress.push(
+                            <Progress color='olive' value={index} total={Program.sessions.length} active/>
+                        )
+                    }
+                    else{
+                        if(Session.session_status == 'COMPLETED'){
+                            if(Program.sessions[index+1].session_type == 'focus'){
+                                progress.push(
+                                    <Progress color='olive' value={index} total={Program.sessions.length} active/>
+                                )
+                            }
+                        }
+                    }
+                });
             }
             if(Program.status == "COMPLETED"){
                 programDone.push(Program);
+                    progressDone.push(
+                        <Progress percent={100} success>
+                            The progress was successful
+                        </Progress>
+                    )
+                
             }
             if(Program.status == "CANCELED"){
                 programCanceled.push(Program);
@@ -216,7 +243,7 @@ class CustomerModal extends Component {
                                 </div>
                                 <div class="bottom-line">
                                     <p class="mbr-text mbr-fonts-style m-0 b-descr display-6">
-                                    {program.description}
+                                        {program.description}
                                     </p>
                                 </div>
                                 <br/>
@@ -357,6 +384,7 @@ class CustomerModal extends Component {
                                     {program.description}
                                     </p>
                                 </div>
+                                {progress}
                                 <br/>
                                 <details>
                                     <summary class="card-title mbr-fonts-style display-5">
@@ -378,50 +406,68 @@ class CustomerModal extends Component {
                                     this.state.optionResult.map((res,index)=>{
                                         if(res.program_id === program._id){
                                             if(res.session_id === session._id){
+                                                var options = [];
+                                                if(program.type === 'Weight loss'){
+                                                    options.push(
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Weight</strong></Table.Cell>
+                                                            <Table.Cell>{res.weight}</Table.Cell>
+                                                        </Table.Row>
+                                                    );
+                                                    options.push(
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Height</strong></Table.Cell>
+                                                            <Table.Cell>{res.height}</Table.Cell>
+                                                        </Table.Row>
+                                                    );
+                                                }
                                                 if(res.coach_feedback){
-                                                SessionRes.push(
-                                                    <Table>
-                                <TableHeader>
-                                    <Table.Row>
-                                        <TableHeaderCell>Measurement Date</TableHeaderCell>
-                                        <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
-                                    </Table.Row>
-                                    <Table.Row>
-                                        <TableHeaderCell>Dickson Metric</TableHeaderCell>
-                                        <TableHeaderCell>Coach Feedback</TableHeaderCell>
-                                    </Table.Row>
-                                </TableHeader>
-                                <TableBody>
-                                    <Table.Row>
-                                        <Table.Cell>{res.dickson_metric}</Table.Cell>
-                                        <Table.Cell>{res.coach_feedback}</Table.Cell>
-                                    </Table.Row>
-                                </TableBody>
-                            </Table>
-                                                )}
+                                                    SessionRes.push(
+                                                        <Table>
+                                                            <TableHeader>
+                                                                <Table.Row>
+                                                                    <TableHeaderCell>Measurement Date</TableHeaderCell>
+                                                                    <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
+                                                                </Table.Row>
+                                                                <Table.Row>
+                                                                    <TableHeaderCell>Dickson Metric</TableHeaderCell>
+                                                                    <TableHeaderCell>Coach Feedback</TableHeaderCell>
+                                                                </Table.Row>
+                                                            </TableHeader>
+                                                            <TableBody>
+                                                                <Table.Row>
+                                                                    <Table.Cell>{res.dickson_metric}</Table.Cell>
+                                                                    <Table.Cell>{res.coach_feedback}</Table.Cell>
+                                                                </Table.Row>
+                                                                {options}
+                                                            </TableBody>
+                                                        </Table>
+                                                    )
+                                                }
                                                 else{
                                                     SessionRes.push(
                                                         <Table>
-                                    <TableHeader>
-                                        <Table.Row>
-                                            <TableHeaderCell>Measurement Date</TableHeaderCell>
-                                            <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
-                                        </Table.Row>
-                                        <Table.Row>
-                                            <TableHeaderCell>Dickson Metric</TableHeaderCell>
-                                            <TableHeaderCell>Coach Feedback</TableHeaderCell>
-                                        </Table.Row>
-                                    </TableHeader>
-                                    <TableBody>
-                                        <Table.Row>
-                                            <Table.Cell>{res.dickson_metric}</Table.Cell>
-                                            <Table.Cell>
-                                                <Button primary size="medium" onClick={()=>this.props.history.push('/Feedback/'+coach_id+'/'+res.customer_id+'/'+program._id+'/'+session._id)}>Give Feedback</Button>
-                                            </Table.Cell>
-                                        </Table.Row>
-                                    </TableBody>
-                                </Table>)
-                                                
+                                                            <TableHeader>
+                                                                <Table.Row>
+                                                                    <TableHeaderCell>Measurement Date</TableHeaderCell>
+                                                                    <TableHeaderCell>{moment(res.measurement_date).format("YYYY-MM-DD")}</TableHeaderCell>
+                                                                </Table.Row>
+                                                                <Table.Row>
+                                                                    <TableHeaderCell>Dickson Metric</TableHeaderCell>
+                                                                    <TableHeaderCell>Coach Feedback</TableHeaderCell>
+                                                                </Table.Row>
+                                                            </TableHeader>
+                                                            <TableBody>
+                                                                <Table.Row>
+                                                                    <Table.Cell>{res.dickson_metric}</Table.Cell>
+                                                                    <Table.Cell>
+                                                                        <Button primary size="medium" onClick={()=>this.props.history.push('/Feedback/'+coach_id+'/'+res.customer_id+'/'+program._id+'/'+session._id)}>Give Feedback</Button>
+                                                                    </Table.Cell>
+                                                                </Table.Row>
+                                                                {options}
+                                                            </TableBody>
+                                                        </Table>
+                                                    )
                                                 }
                                             }
                                         }
@@ -454,6 +500,30 @@ class CustomerModal extends Component {
                                             )
                                         }
                                         if(session.session_status == "COMPLETED"){
+                                            var exercisesRow1 = [];
+                                            var exercisesRow2 = [];
+                                            session.exercises.map(exer=>{
+                                                exercisesRow1.push(
+                                                    <Table.Cell><strong>{exer.name}</strong></Table.Cell>
+                                                )
+                                                exercisesRow2.push(
+                                                    <Table.Cell>{exer.result}</Table.Cell>
+                                                )
+                                            })
+                                            SessionRes.push(
+                                                <Table>
+                                                    <TableBody>
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Exercise</strong></Table.Cell>
+                                                            {exercisesRow1}
+                                                        </Table.Row>
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Number</strong></Table.Cell>
+                                                            {exercisesRow2}
+                                                        </Table.Row>
+                                                    </TableBody>
+                                                </Table>
+                                            )
                                             SessionList1.push(
                                                 <Table.Row>
                                                     <Table.Cell>{session.name}</Table.Cell>
@@ -471,18 +541,59 @@ class CustomerModal extends Component {
                                         }
                                     }
                                     else{
-                                        SessionList1.push(
-                                            <Table.Row>
-                                                <Table.Cell>{session.name}</Table.Cell>
-                                                <Table.Cell>{session.session_status}</Table.Cell>
-                                                <Table.Cell>
-                                                </Table.Cell>
-                                            </Table.Row>
-                                        )
+                                        if(session.session_status == "COMPLETED"){
+                                            var exercisesRow1 = [];
+                                            var exercisesRow2 = [];
+                                            session.exercises.map(exer=>{
+                                                exercisesRow1.push(
+                                                    <Table.Cell><strong>{exer.name}</strong></Table.Cell>
+                                                )
+                                                exercisesRow2.push(
+                                                    <Table.Cell>{exer.result}</Table.Cell>
+                                                )
+                                            });
+                                            SessionRes.push(
+                                                <Table>
+                                                    <TableBody>
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Exercise</strong></Table.Cell>
+                                                            {exercisesRow1}
+                                                        </Table.Row>
+                                                        <Table.Row>
+                                                            <Table.Cell><strong>Result</strong></Table.Cell>
+                                                            {exercisesRow2}
+                                                        </Table.Row>
+                                                    </TableBody>
+                                                </Table>
+                                            )
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                            <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
+                                                            <ModalContent>
+                                                                {SessionRes}
+                                                            </ModalContent>
+                                                        </Modal>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            );  
+                                        }
+                                        else{
+                                            SessionList1.push(
+                                                <Table.Row>
+                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                    <Table.Cell>{session.session_status}</Table.Cell>
+                                                    <Table.Cell>
+                                                    </Table.Cell>
+                                                </Table.Row>
+                                            )
+                                        }         
                                     }
                                 }
                                 )}
-                                
                                     {SessionList1}
                                     </TableBody>
                                     </Table>
@@ -550,6 +661,7 @@ class CustomerModal extends Component {
                                     {program.description}
                                     </p>
                                 </div>
+                                {progressDone}
                                 <br/>
                                 <details>
                                     <summary class="card-title mbr-fonts-style display-5">
