@@ -14,7 +14,7 @@ const cust_id = '5da86562f964d02c2c679155'
 class FocusSessionResult extends React.Component {
     state = {
         measurements: null,
-        exercises: null
+        exercises: []
     }
     
     componentDidMount() {
@@ -60,6 +60,7 @@ class FocusSessionResult extends React.Component {
         var optionsExercise = [];
         const feedback = [];
         console.log('measurement: '+measurements);
+        console.log('exercises: '+exercises);
         if (measurements) {
             optionsMeasurement.push(measurements[measurements.length - 1].dickson_metric);
             console.log('feedback: '+measurements[measurements.length - 1].coach_feedback)
@@ -78,9 +79,10 @@ class FocusSessionResult extends React.Component {
                 )
             }
         }
-        if(exercises){
-            exercises.map((exerciseId) => {
-                optionsExercise.push(<li>{exerciseId.result} {exerciseId.name}</li>)
+        if(exercises.length){
+            exercises.map(exer => {
+                console.log('exer: '+exer.result)
+                optionsExercise.push(<li>{exer.result} {exer.name}</li>)
             });
         }
         return (
