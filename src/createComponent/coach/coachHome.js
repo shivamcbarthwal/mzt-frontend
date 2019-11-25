@@ -74,6 +74,7 @@ class CoachHome extends Component {
             //     message: `A new focus session has been validated`
             // }
         ],
+        notification: [],
         open: false,
         vertical: 'top',
         horizontal: 'right'
@@ -84,13 +85,25 @@ class CoachHome extends Component {
         {
             params: {
                 notify_for: "COACH",
-                customer_id: customer_Id,
                 coach_id: "5dc2f70414b9e52a30d6620e"
             }
         })
         .then(res => {
             const notifications = res.data;
             this.setState({notifications});
+        });
+        axios.get('http://localhost:8080/notification/checkNotificationFocusApproach',
+        {
+            params: {
+                coach_id: "5dc2f70414b9e52a30d6620e"
+            }
+        })
+        .then(res => {
+            const notification = res.data;
+            console.log('notification.msg: '+notification.msg);
+            if(notification.msg){
+                setTimeout(() => this.props.enqueueSnackbar(notification.msg, {variant: 'info'}), 200);
+            }
         });
     };
 
