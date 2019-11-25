@@ -157,13 +157,13 @@ class CustomerModal extends Component {
                         console.log('percent: '+ (index+1)/Program.sessions.length)
                         if(Program.sessions[index+1].session_status == 'OPENED'){
                             progress.push(
-                                <Progress color='olive' value={index} total={Program.sessions.length} active/>
+                                <Progress color='olive' value={index+1} total={Program.sessions.length} active/>
                             )
                         }
                         if(Program.sessions[index+1].session_status == 'CLOSED'){
                             if(Program.sessions[index+1].session_type == 'focus'){
                                 progress.push(
-                                    <Progress color='olive' value={index} total={Program.sessions.length} active/>
+                                    <Progress color='olive' value={index+1} total={Program.sessions.length} active/>
                                 )
                             }
                         }
