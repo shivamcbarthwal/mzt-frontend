@@ -33,7 +33,7 @@ class ListOfPrograms extends React.Component {
     this.state.program.map((programID, i) => {
         if(programID.status === 'COMPLETED'){
         DonePrograms.push(
-            <div class="card px-3 col-12" >
+            <div class="card px-3 col-12" onClick={()=>this.props.history.push('/listOfSessions/'+programID._id)}>
             <div class="card-wrapper media-container-row media-container-row">
                 <div class="card-box">
                     <div class="top-line pb-3">

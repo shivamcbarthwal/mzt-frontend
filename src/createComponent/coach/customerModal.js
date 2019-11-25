@@ -15,7 +15,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import 'semantic-ui-css/semantic.min.css';
-import { Progress, Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent, Segment } from 'semantic-ui-react';
+import { Progress, Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent, Segment, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import { program } from '@babel/types';
 import { textAlign } from '@material-ui/system';
@@ -597,7 +597,9 @@ class CustomerModal extends Component {
                                                     <Table.Cell><strong>{exer.name}</strong></Table.Cell>
                                                 )
                                                 exercisesRow2.push(
-                                                    <Table.Cell>{exer.result}</Table.Cell>
+                                                    <Table.Cell>
+                                                        <Image src={exer.result}/>
+                                                    </Table.Cell>
                                                 )
                                             });
                                             SessionRes.push(
@@ -847,7 +849,9 @@ class CustomerModal extends Component {
                                                 <Table.Cell><strong>{exer.name}</strong></Table.Cell>
                                             )
                                             exercisesRow2.push(
-                                                <Table.Cell>{exer.result}</Table.Cell>
+                                                <Table.Cell>
+                                                    <Image src={exer.result}/>
+                                                </Table.Cell>
                                             )
                                         });
                                         SessionRes.push(

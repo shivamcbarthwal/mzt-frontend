@@ -32,6 +32,7 @@ class RegularSessionStartExercise extends React.Component {
     ;
     toggleNext = (result) => {
         const {exercises, exerciseN, sessions} = this.state;
+        console.log(result);
         this.state.result = result
         console.log('Result: ',this.state.result);
         axios.post('http://localhost:8080/program/updateExerciseResult',{
@@ -230,9 +231,9 @@ class RegularSessionStartExercise extends React.Component {
                                     </p>
                                     <div class="mbr-section-btn">
                                         <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                            <a onClick={() => this.toggleNext(angry)} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(neutral)} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(happy)} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
                                         </p>
                                     </div>
                                 </div>
@@ -294,9 +295,9 @@ class RegularSessionStartExercise extends React.Component {
                                     </p>
                                     <div class="mbr-section-btn">
                                         <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                            <a onClick={() => this.toggleNext(angry)} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(neutral)} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(happy)} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
                                         </p>
                                     </div>
                                 </div>
@@ -358,9 +359,9 @@ class RegularSessionStartExercise extends React.Component {
                                     </p>
                                     <div class="mbr-section-btn">
                                         <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                            <a onClick={() => this.toggleNext('Bad')} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Neutral')} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext('Happy')} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                            <a onClick={() => this.toggleNext(angry)} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(neutral)} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                            <a onClick={() => this.toggleNext(happy)} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
                                         </p>
                                     </div>
                                 </div>
