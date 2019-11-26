@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
-import Select, { components } from 'react-select';
 var Logo = require('../../../assets/images/logo-mzt.png');
 
 class ListOfSessions extends React.Component {
