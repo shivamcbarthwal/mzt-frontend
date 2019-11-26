@@ -39,18 +39,43 @@ class Challenge extends React.Component {
     handleClickSponsor = () => {
         this.props.history.push(`/sponsor/${this.props.match.params.customerID}`);
     };
+    // Submit handler to add new challenge
+    handleSubmit = async event => {
+        console.log('Testing');
+        event.preventDefault();
+        const {newChallenge} = this.state;
+        const response = await fetch(`http://localhost:8080/offerTransaction/challengeCustomer`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newChallenge) // body data type must match "Content-Type" header
+        });
+        this.props.history.push(`/challenge/${this.props.match.params.customerID}`);
+        return await response.json(); // parses JSON response into native JavaScript objects
+    };
     componentDidMount() {
-        axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)
+        // To display some of the challenges on the lottery wheel
+        axios.get(`http://localhost:8080/challenge/getAllChallenges`) 
+        .then(res => {
+            const challenges = res.data;
+            this.setState({challenges});
+        });
+        //To display the total points a customer has
+        axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/${this.props.match.params.customerID}`)  
         .then(res => {
             const points = res.data;
             console.log("res.data: "+JSON.stringify(res.data));
             this.setState({points});
         });
+        // To display the history of challenges done, canceled or in progress
         axios.get(`http://localhost:8080/offerTransaction/findByCustAndTransType?customer_id=${this.props.match.params.customerID}&transaction_type=EARNED&transaction_type=IN_PROGRESS`)
         .then(res => {
             const transactions = res.data;
             this.setState({transactions});
         });
+
     };
     
     render() {
