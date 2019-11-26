@@ -1,5 +1,4 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import { Table, Button, Image, Confirm } from 'semantic-ui-react'
 import _ from 'lodash';
