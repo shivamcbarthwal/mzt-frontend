@@ -115,31 +115,31 @@ class VisualizeSession extends Component {
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br/><br/>
-                            <Table sortable celled structured>
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell
-                                          sorted={column === 'name' ? direction : null}
-                                          onClick={this.handleSort('name')}
-                                        >
-                                            TITLE
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell
-                                          sorted={column == 'session_coach_notes' ? direction : null}
-                                          onClick={this.handleSort('session_coach_notes')}
-                                        >
-                                            DESCRIPTION
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell>
-                                            OPERATIONS
-                                        </Table.HeaderCell>
-                                    </Table.Row>
-                                </Table.Header>
-                                <Table.Body textAlign='center'>
-                                    {optionsSession}
-                                </Table.Body>
-                            </Table>
-                            <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
+                        <Table sortable celled structured>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell
+                                      sorted={column === 'name' ? direction : null}
+                                      onClick={this.handleSort('name')}
+                                    >
+                                        TITLE
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell
+                                      sorted={column == 'session_coach_notes' ? direction : null}
+                                      onClick={this.handleSort('session_coach_notes')}
+                                    >
+                                        DESCRIPTION
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell>
+                                        OPERATIONS
+                                    </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body textAlign='center'>
+                                {optionsSession}
+                            </Table.Body>
+                        </Table>
+                        <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>
                 </section>
             </body>

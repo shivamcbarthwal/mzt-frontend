@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import '../../assets/web/assets/mobirise-icons/mobirise-icons.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';

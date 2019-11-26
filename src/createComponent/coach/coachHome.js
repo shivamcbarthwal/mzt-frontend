@@ -74,7 +74,6 @@ class CoachHome extends Component {
             //     message: `A new focus session has been validated`
             // }
         ],
-        notification: [],
         open: false,
         vertical: 'top',
         horizontal: 'right'
@@ -85,11 +84,13 @@ class CoachHome extends Component {
         {
             params: {
                 notify_for: "COACH",
-                coach_id: "5dc2f70414b9e52a30d6620e"
+                coach_id: "5dc2f70414b9e52a30d6620e",
+                customer_id: "5dc53fb7717676384459fe63"
             }
         })
         .then(res => {
             const notifications = res.data;
+            console.log('notifications'+notifications)
             this.setState({notifications});
         });
         axios.get('http://localhost:8080/notification/checkNotificationFocusApproach',
@@ -112,6 +113,8 @@ class CoachHome extends Component {
         const { notifications, vertical, horizontal } = this.state;
         Object.keys(notifications).map(notif => {
             var msg =  "@"+ String(notifications[notif].customer_id.first_name + " " + String(notifications[notif].customer_id.last_name) + " " + String(notifications[notif].msg))
+                        console.log('msg'+msg)
+
             setTimeout(() => this.props.enqueueSnackbar(msg, {variant: 'info'}), 200);
             axios.delete(`http://localhost:8080/notification/deactivate`,
             {

@@ -598,7 +598,7 @@ class CustomerModal extends Component {
                                                 )
                                                 exercisesRow2.push(
                                                     <Table.Cell>
-                                                        <Image src={exer.result} size="tiny"/>
+                                                        <Image src={exer.result} size="mini"/>
                                                     </Table.Cell>
                                                 )
                                             });
@@ -850,7 +850,7 @@ class CustomerModal extends Component {
                                             )
                                             exercisesRow2.push(
                                                 <Table.Cell>
-                                                    <Image src={exer.result} size="tiny"/>
+                                                    <Image src={exer.result} size="mini"/>
                                                 </Table.Cell>
                                             )
                                         });

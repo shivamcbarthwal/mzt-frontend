@@ -107,7 +107,6 @@ class VisualizeExercise extends Component {
                                 </Table>
                             </ModalContent>
                         </Modal>
-                        
                         <Button primary size="small">Update</Button>
                         <Button primary size="small">Delete</Button>
                     </Table.Cell>
