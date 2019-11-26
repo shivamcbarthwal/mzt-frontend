@@ -1,5 +1,4 @@
 import React from 'react';
-
 import 'react-image-picker/dist/index.css';
 import ImagePicker from 'react-image-picker';
 import img1 from '../../assets/images/absbike-800x600-800x600.png';

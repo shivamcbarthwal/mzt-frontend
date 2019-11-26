@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
-import Select, { components } from 'react-select';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Background from '../../assets/images/woman-pushup.jpeg';
 import Timer from 'react-compound-timer';
 import {Button, Header} from 'semantic-ui-react';

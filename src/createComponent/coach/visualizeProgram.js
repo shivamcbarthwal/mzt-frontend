@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell } from 'semantic-ui-react';
 import _ from 'lodash';
 import Select, { components } from 'react-select';
 import Background from '../../assets/images/prog_bk.jpg';
@@ -40,17 +40,33 @@ class VisualizeProgram extends Component {
     };
     render() {
         this.handleSort('status');
-        var optionsProgram = [];
-        const { column, direction } = this.state;
-        this.state.programs.map((Program) => {   
-            optionsProgram.push(
+        var optionProgram = [];
+        var optionSession = [];
+        const { column, direction, programs } = this.state;
+        Object.keys(programs).map((Program,index) => { 
+            optionSession.push(
+                <p>{String(programs[Program].sessions[Program].name)}</p>
+            )
+            optionProgram.push(
                 <Table.Row>
-                    <Table.Cell><strong>{Program.title}</strong></Table.Cell>
-                    <Table.Cell>{Program.description}</Table.Cell>
-                    <Table.Cell>{Program.type}</Table.Cell>
-                    <Table.Cell>{Program.duration} weeks</Table.Cell>
-                     <Table.Cell singleLine>       
-                    <Button primary size="small">See details</Button>
+                    <Table.Cell><strong>{String(programs[Program].title)}</strong></Table.Cell>
+                    <Table.Cell>{String(programs[Program].description)}</Table.Cell>
+                    <Table.Cell>{String(programs[Program].type)}</Table.Cell>
+                    <Table.Cell>{String(programs[Program].duration)} weeks</Table.Cell>
+                    <Table.Cell singleLine>       
+                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                            <ModalHeader style={{textAlign:'center'}}>{String(programs[Program].title)}</ModalHeader>
+                            <ModalContent>
+                                <Table>
+                                    <TableBody>
+                                        <Table.Row>
+                                            <TableCell><strong>Sessions</strong></TableCell>
+                                            <TableCell>{optionSession}</TableCell>
+                                        </Table.Row>
+                                    </TableBody>
+                                </Table>
+                            </ModalContent>
+                        </Modal>
                     <Button primary size="small">Update</Button>
                     <Button primary size="small">Delete</Button>
                     </Table.Cell>
@@ -105,7 +121,7 @@ class VisualizeProgram extends Component {
                                     </Table.Row>
                                 </Table.Header>
                                 <Table.Body textAlign='center'>
-                                    {optionsProgram}
+                                    {optionProgram}
                                 </Table.Body>
                             </Table>
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
