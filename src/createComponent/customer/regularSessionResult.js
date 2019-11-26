@@ -9,7 +9,10 @@ import '../../assets/dropdown/css/style.css'
 import '../../assets/theme/css/style.css'
 import '../../assets/mobirise/css/mbr-additional.css'
 var Logo = require('../../assets/images/logo-mzt.png');
-const cust_id = '5da86562f964d02c2c679155'
+const cust_id = '5da86562f964d02c2c679155';
+var angry = require('../../assets/images/angry.png');
+var neutral = require('../../assets/images/neutral.png');
+var happy = require('../../assets/images/very-happy.png');
 
 class RegularSessionResult extends React.Component {
     state = {
@@ -42,7 +45,15 @@ class RegularSessionResult extends React.Component {
         var optionsExercise = [];
         if(exercises){
             exercises.map((exerciseId) => {
-                optionsExercise.push(<li>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
+                if(exerciseId.result==='Angry'){
+                    optionsExercise.push(<li><img src={angry} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
+                }
+                if(exerciseId.result==='Neutral'){
+                    optionsExercise.push(<li><img src={neutral} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
+                }
+                if(exerciseId.result==='Happy'){
+                    optionsExercise.push(<li><img src={happy} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
+                }
             });
         }
         return (

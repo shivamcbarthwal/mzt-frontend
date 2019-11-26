@@ -5,6 +5,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Background from '../../assets/images/woman-pushup.jpeg';
 import Timer from 'react-compound-timer';
 import {Button, Header} from 'semantic-ui-react';
+import ReactPlayer from 'react-player'
 var Logo = require('../../assets/images/logo-mzt.png');
 var image1 = require('../../assets/images/timed.png');
 var image2 = require('../../assets/images/reload.png');
@@ -240,7 +241,9 @@ class RegularSessionStartExercise extends React.Component {
                             </div>
                         </div>
                         <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
-                            <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                            <ReactPlayer
+                                url={exercises[exerciseN].video_url}
+                            />
                         </div>
                     </div>
                     );
@@ -304,7 +307,9 @@ class RegularSessionStartExercise extends React.Component {
                                 </div>
                             </div>
                         <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
-                            <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                            <ReactPlayer
+                                url={exercises[exerciseN].video_url}
+                            />    
                         </div>
                     </div>
                 );
@@ -368,7 +373,9 @@ class RegularSessionStartExercise extends React.Component {
                             </div>
                         </div>
                         <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
-                            <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
+                            <ReactPlayer
+                                url={exercises[exerciseN].video_url} playing
+                            />    
                         </div>
                     </div>
                       );

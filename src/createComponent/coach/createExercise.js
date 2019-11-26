@@ -14,7 +14,7 @@ class CreateExercise extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: null
+            image: []
         };
         this.onPick = this.onPick.bind(this);
     };
@@ -43,33 +43,6 @@ class CreateExercise extends React.Component {
     handleClickBack = () => {
         this.props.history.push('/visualizeExercise');
     };
-    toggle_time = (e) => {
-        this.setState({
-            type_time: true,
-            type_repetition: false,
-            type_time_repetition: false
-        });
-        console.log('time');
-        alert(e.type);
-    };
-    toggle_repetition = (e) => {
-        this.setState({
-            type_time: false,
-            type_repetition: true,
-            type_time_repetition: false
-        });
-        console.log('repetition');
-        alert(e.type);
-    };
-    toggle_time_repetition = (e) => {
-        this.setState({
-            type_time: false,
-            type_repetition: false,
-            type_time_repetition: true
-        });
-        console.log('time_repetition');
-        alert(e.type);
-    };
     // Input Change Handler method to take form inputs
     handleChange = (name, event) => {
         this.setState({
@@ -97,15 +70,18 @@ class CreateExercise extends React.Component {
     };
     onPick(image) {
         this.setState({image});
+        this.setState({exercise:{exercise_img_url: image.src}})
+        console.log('image1', image.src)
     };
     render() {
         const {classes} = this.props;
         const {exercise} = this.state;
+        console.log(exercise);
         return (
             <div className="App">
                 <body> 
                     <section class="mbr-section form1 cid-rGoqoMJvGK mbr-parallax-background" id="form1-3">
-                        <div class="mbr-overlay" style={{opacity: 0.7, backgroundColor: "#c1c1c1"}}/>
+                        <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#c1c1c1"}}/>
                         <div class="container">
                             <div class="row justify-content-center">
                                 <h2 class="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-1" >CREATE AN EXERCISE</h2>
@@ -131,10 +107,10 @@ class CreateExercise extends React.Component {
                                                 <label class="form-control-label mbr-fonts-style display-7">Type</label>
                                                 <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('exercise_type', e)}>
                                                     <option disabled selected>Select type of exercise</option>
-                                                    <option>AEROBIC</option>
-                                                    <option>BALANCE</option>
-                                                    <option>STRENGTHENING</option>
-                                                    <option>STRETCHING</option>
+                                                    <option value="AEROBIC">Aerobic</option>
+                                                    <option value="BALANCE">Balance</option>
+                                                    <option value="STRENGTHENING">Strengthening</option>
+                                                    <option value="STRETCHING">Stretching</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4  form-group">
@@ -146,56 +122,72 @@ class CreateExercise extends React.Component {
                                                 <textarea name="message" onChange={(e) => this.handleChange('description', e)} data-form-field="Message" class="form-control display-7" id="message-form1-3"></textarea>
                                             </div>
                                             <div class="col-md-3  form-group" data-for="set_break">
+                                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Type of exercise</label>
+                                                <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('set_type', e)}>
+                                                    <option disabled selected>Select type of exercise</option>
+                                                    <option value="TIME">Time</option>
+                                                    <option value='REPETITION'>Repetition</option>
+                                                    <option value='TIME_REPETITION'>Time repetition</option>
+                                                </select>
+                                            </div>
+                                            {
+                                                exercise && (exercise.set_type === "REPETITION" || exercise.set_type === "TIME_REPETITION" || exercise.set_type === "TIME")  ?
+                                                <div class="col-md-3  form-group" data-for="sets">
+                                                    <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Number of sets</label>
+                                                    <input type="number" onChange={(e) => this.handleChange('sets', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
+                                                </div>
+                                                : null
+                                            }
+                                            {
+                                                exercise && (exercise.set_type === "REPETITION" || exercise.set_type === "TIME_REPETITION")  ?
+                                                <div class="col-md-3  form-group" data-for="repetition">
+                                                    <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Number of repetition</label>
+                                                    <input type="number" onChange={(e) => this.handleChange('repetition', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
+                                                </div>
+                                                : null
+                                            }
+                                            {
+                                                exercise && (exercise.set_type === "TIME" || exercise.set_type === "TIME_REPETITION") ?
+                                                <div class="col-md-3  form-group" data-for="repetition">
+                                                    <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Estimated time</label>
+                                                    <input type="number" onChange={(e) => this.handleChange('exercise_est_duration', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
+                                                </div>
+                                                : null
+                                            }
+                                            <div class="col-md-3  form-group" data-for="set_break">
                                                 <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Set breaks</label>
                                                 <input type="number" onChange={(e) => this.handleChange('set_break', e)} placeholder="in seconds"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
                                             </div>
-                                            <div class="col-md-3  form-group" data-for="set_break">
-                                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Set breaks</label>
-                                                <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('exercise_type', e)}>
-                                                    <option disabled selected>Select type of exercise</option>
-                                                    <option value="time">TIME</option>
-                                                    <option value='repetition'>REPETITION</option>
-                                                    <option value='time_repetition'>TIME_REPETITION</option>
-                                                </select>
+                                            <div class=" col-md-6  form-group" >
+                                                <label class="form-control-label mbr-fonts-style display-7">Link to the video</label>
+                                                <input type="text" name="equipment" placeholder = 'Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ' data-form-field="equipment" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('video_url', e)}/>
                                             </div>
-                                            <div class="col-md-3  form-group" data-for="sets">
-                                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Number of sets</label>
-                                                <input type="number" onChange={(e) => this.handleChange('sets', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
-                                            </div>
-                                            <div class="col-md-3  form-group" data-for="repetition">
-                                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Number of repetition</label>
-                                                <input type="number" onChange={(e) => this.handleChange('repetition', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
-                                            </div>
-                                            <div class="col-md-3  form-group" data-for="repetition">
-                                                <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Estimated time</label>
-                                                <input type="number" onChange={(e) => this.handleChange('exercise_est_duration', e)} placeholder="0"  data-form-field="Name" required="required" class="form-control display-7" required pattern="^[0-9]+:[0|1|2|3|4|5][0-9]" id="name-form1-5" />
-                                            </div>
-                                            <button type="button" class="btn btn-primary col-md-6" data-toggle="modal" data-target="#exampleModalLong">
-                                                Add picture
-                                            </button>
-                                            <div onClick={() => console.log(this.state.image)}>
+                                            {/*<div onClick={() => console.log(this.state.image)}>
                                                 <ImagePicker
-                                                    images={imageList.map((image, i) => ({src: image, value: i}))}
+                                                    images={imageList.map((image, i) => 
+                                                        ({src: image, value: i}))}
                                                     onPick={this.onPick}
                                                     />
-                                                <button type="button" onClick={() => console.log(this.state.image)}>OK</button>
-                                            </div>
-                                            <div class="col-md-12 input-group-btn align-center"/>
-                                            <button type="submit" class="btn btn-form btn-warning display-4" onClick={this.handleSubmit}>
+                                                    </div>*/}
+                                        <div class="col-md-12 input-group-btn">
+                                            <button type="submit" class="btn btn-form btn-warning " onClick={this.handleSubmit}>
                                                 CREATE
                                             </button>
                                         </div>
+                                        <div class="col-md-12 input-group-btn aling-right">
+                                            <button type="submit" class="btn btn-form btn-warning " onClick={this.handleClickBack}>
+                                                Back
+                                            </button>
+                                        </div>     
+                                        </div>                        
                                     </form>
                                 </div>
-                            </div>
-                            <div class="align-right">
-                                <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleClickBack}><span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"></span> Back</button>
                             </div>
                         </div>
                     </section>
                 </body>
             </div>
-                );
+        );
     }
 }
 
