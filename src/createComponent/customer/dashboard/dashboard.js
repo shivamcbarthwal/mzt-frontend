@@ -13,6 +13,7 @@ import '../../../assets/mobirise/css/mbr-additional.css';
 import Background from '../../../assets/images/bk_hp.jpg';
 import CanvasJSReact from '../../../assets/canvas/canvasjs.react';
 import moment from 'moment';
+import { Badge } from '@material-ui/core';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var Logo = require('../../../assets/images/logo-mzt.png');
 
@@ -26,18 +27,37 @@ class Dashboard extends React.Component {
             "totalPoints": null,
             "totalEarned": null,
             "totalRedeemed": null
-        }
+        },
+        badges:null
+    
     };
     
     handleClickBack = () => {
         this.props.history.push('/Homepage');
     }
     componentDidMount(){
+        axios.get(`http://localhost:8080/performance/getPerformanceIndicators/`+this.state.customer)
+    .then(res => {
+        const badges = res.data;
+        console.log(badges);
+        if (!badges) {
+            console.log("HERE");
+            this.setState({ open: true });
+        } 
+        else {
+            console.log('badges: '+badges);
+            this.setState({ badges });
+        }
+    })
+    .catch(e => {
+        console.log(e);
+    });
+    
     axios.get(`http://localhost:8080/program/getProgramByCustomerId/`+this.state.customer)
         .then(res => {
             const programs = res.data;
             console.log(programs);
-            if (!programs) {
+            if (!programs.length) {
                 console.log("HERE");
                 this.setState({ open: true });
             } 
@@ -66,10 +86,12 @@ class Dashboard extends React.Component {
             const points = res.data;
             this.setState({points});
         });
+    
     };
+    
 
     render() {
-        const { customers, open, measurements } = this.state;
+        const { customers, open, measurements, badges } = this.state;
         console.log(open);
         const programList1 = [];
         const programList2 = [];
@@ -88,6 +110,22 @@ class Dashboard extends React.Component {
                 programList2.push(Program);
             }
         });
+        
+        var test = [];
+        console.log('badges: '+badges);
+        //badges.map((Badge, index) => {
+          //  
+        //})
+        if(badges){
+            console.log('badges CntSession: '+badges.cntSession.displayIndc);
+            if(badges.cntSession.displayIndc === "TRUE"){
+                test.push(badges.cntSession.msg);
+            }
+            if(badges.dicksonIndcImprove.displayIndc === "TRUE"){
+                test.push(badges.dicksonIndcImprove.msg);
+            }
+        }
+        
 
         var measurementsData = [];
         if(measurements){
@@ -306,7 +344,13 @@ class Dashboard extends React.Component {
         </div>      
     
     <br/><br/>
-    <div class="card-box centerize" style={{height:"150px"}} >
+    <div>
+            <h5 style={{color:"#FFFFFF"}}>{test}</h5> 
+    <br/>
+            
+    </div>
+
+    <div class="card-box centerize"  >
         
             <h5 style={{color:"#FFFFFF"}}>You currently have {this.state.points.totalPoints} points!</h5> 
             <br/>
