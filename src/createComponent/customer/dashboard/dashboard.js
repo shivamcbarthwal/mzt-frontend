@@ -21,7 +21,12 @@ class Dashboard extends React.Component {
         customer:'5dc541fb717676384459fe66',
         programs: [],
         measurements: [],
-        dickson: []
+        dickson: [],
+        points: {
+            "totalPoints": null,
+            "totalEarned": null,
+            "totalRedeemed": null
+        }
     };
     
     handleClickBack = () => {
@@ -56,6 +61,11 @@ class Dashboard extends React.Component {
             this.setState({ measurements });
           }
         )
+    axios.get(`http://localhost:8080/offerTransaction/getTotalPoints/`+this.state.customer)
+        .then(res => {
+            const points = res.data;
+            this.setState({points});
+        });
     };
 
     render() {
@@ -296,10 +306,15 @@ class Dashboard extends React.Component {
         </div>      
     
     <br/><br/>
-    <div class="card-box centerize" style={{backgroundColor: "#FFFFFF",height:"150px"}} >
-        <div class="row">
-            <h1 style={{marginLeft:"15px"}}>Reward section (Challenges)</h1>
-        </div>
+    <div class="card-box centerize" style={{height:"150px"}} >
+        
+            <h5 style={{color:"#FFFFFF"}}>You currently have {this.state.points.totalPoints} points!</h5> 
+            <br/>
+            <button type="button" class="btn " role="button" aria-pressed="true" style={{color:"#FFFFFF", backgroundColor:"#E7505A"}}>
+            <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
+            Check your challenge page !
+            </button>
+        
     </div>
     <br/><br/>
     <div class="align-right">
