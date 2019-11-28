@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell } from 'semantic-ui-react';
+import { Table, Button, TableBody, TableCell, Modal, ModalHeader, ModalContent } from 'semantic-ui-react';
 import _ from 'lodash';
 import Select, { components } from 'react-select';
 import Background from '../../assets/images/prog_bk.jpg';
@@ -11,6 +11,10 @@ class VisualizeProgram extends Component {
         column: null,
         programs: [],
         direction: null
+    };
+    fixBody() {
+        const anotherModal = document.getElementsByClassName('ui page modals').length;
+        if (anotherModal > 0) document.body.classList.add('scrolling', 'dimmable', 'dimmed');
     };
     // Sort the table according to header
     handleSort = (clickedColumn) => () => {
@@ -27,7 +31,7 @@ class VisualizeProgram extends Component {
             programs: programs.reverse(),
             direction: direction === 'ascending' ? 'descending' : 'ascending',
         });
-    }
+    };
     handleClickBack = () => {
         this.props.history.push('/');
     };
@@ -41,12 +45,40 @@ class VisualizeProgram extends Component {
     render() {
         this.handleSort('status');
         var optionProgram = [];
-        var optionSession = [];
         const { column, direction, programs } = this.state;
-        Object.keys(programs).map((Program,index) => { 
-            optionSession.push(
-                <p>{String(programs[Program].sessions[Program].name)}</p>
-            )
+        Object.keys(programs).map((Program,index) => {
+            var optionSession = [];
+            programs[Program].sessions.map((Session, index) => {
+                var optionExercise1 = [];
+                var optionExercise2 = [];
+                Session.exercises.map((Exercise, index) => {
+                    optionExercise1.push(
+                            <TableCell><strong>Exercise {index + 1}</strong></TableCell>
+                    );
+                    optionExercise2.push(
+                            <TableCell>{String(Exercise.name)}</TableCell>
+                    );
+                });
+                optionSession.push(
+                        <Table.Row>
+                            <TableCell><strong>Session {index + 1}</strong></TableCell>
+                            <TableCell>{String(Session.name)}</TableCell>
+                            <TableCell>
+                                <Modal trigger={<Button primary size="small">See details</Button>} closeIcon size='fullscreen' centered={false}>
+                                    <ModalHeader style={{textAlign:'center'}}>{String(programs[Program].title)}</ModalHeader>
+                                    <ModalContent scrolling={true}>
+                                        <Table>
+                                            <TableBody>
+                                                <Table.Row>{optionExercise1}</Table.Row>
+                                                <Table.Row>{optionExercise2}</Table.Row>
+                                            </TableBody>
+                                        </Table>
+                                    </ModalContent>
+                                </Modal>
+                            </TableCell>
+                        </Table.Row>
+                );
+            });
             optionProgram.push(
                 <Table.Row>
                     <Table.Cell><strong>{String(programs[Program].title)}</strong></Table.Cell>
@@ -54,15 +86,12 @@ class VisualizeProgram extends Component {
                     <Table.Cell>{String(programs[Program].type)}</Table.Cell>
                     <Table.Cell>{String(programs[Program].duration)} weeks</Table.Cell>
                     <Table.Cell singleLine>       
-                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                        <Modal trigger={<Button primary size="small">See details</Button>} closeIcon size='fullscreen' centered={false}>
                             <ModalHeader style={{textAlign:'center'}}>{String(programs[Program].title)}</ModalHeader>
-                            <ModalContent>
+                            <ModalContent scrolling={true}>
                                 <Table>
                                     <TableBody>
-                                        <Table.Row>
-                                            <TableCell><strong>Sessions</strong></TableCell>
-                                            <TableCell>{optionSession}</TableCell>
-                                        </Table.Row>
+                                        {optionSession}
                                     </TableBody>
                                 </Table>
                             </ModalContent>
