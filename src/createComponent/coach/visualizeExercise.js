@@ -10,6 +10,7 @@ class VisualizeExercise extends Component {
     state = {
         column: null,
         exercises: [],
+        original_exercises: [],
         direction: null
     };
     // Sort the table according to header
@@ -35,9 +36,19 @@ class VisualizeExercise extends Component {
         axios.get('http://localhost:8080/exercise/getAllExercises')
         .then(res => {
             const exercises = res.data;
-            this.setState({exercises});
+            this.setState({exercises, original_exercises: exercises});
         });
     };
+
+    handleFilter = value => {
+        const {original_exercises} = this.state;
+        let exercises = original_exercises;
+        if (value) {
+            exercises = original_exercises.filter(exercises => new RegExp(`.*${value}.*`, "i").test(exercises.name));
+        }
+        this.setState({exercises});
+    }
+    
     render() {  
         this.handleSort('status');
         var optionsExercise = [];
@@ -124,7 +135,7 @@ class VisualizeExercise extends Component {
                             <a class="align-center col-md-3 btn btn-orange-outline " href='/createExercise' style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
                                 NEW EXERCISE</a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
-                            <input class="col-md-4" default="search" />
+                            <input class="col-md-4" default="search" onChange={e => this.handleFilter(e.target.value)}/>
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br /><br/>

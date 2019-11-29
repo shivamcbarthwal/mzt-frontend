@@ -5,21 +5,26 @@ import Select, { components } from 'react-select';
 class CreateSession extends React.Component {
     state = {
         session: {
-            session_name: "",
+            name: "",
             session_type: "",
-            session_coach_notes: "",
+            session_status: "",
             session_duration: "",
-            exercise_tag: [],
-            coach_id: "5dc2f70414b9e52a30d6620e"
+            session_coach_notes: "",
+            session_customer_feedback: "",
+            exercises: [],
+            session_tag: [],
+            measurement_date: "",
+            program_template_id: ""
         },
         programs: [],
-        customers: []
+        exercises: [],
+        session_temp: []
     };
     componentDidMount() {
-        axios.get('http://localhost:8080/program/getAllPrograms')
+        axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
         .then(res => {
-            const programs = res.data;
-            this.setState({programs});
+            const session_temp = res.data;
+            this.setState({session_temp});
         });
         axios.get('http://localhost:8080/customer/getAllCustomers')
         .then(res => {
@@ -58,19 +63,15 @@ class CreateSession extends React.Component {
         return await response.json(); // parses JSON response into native JavaScript objects
     };
     render() {
-        const {programs} = this.state.programs;
-        const {customers} = this.state.customers;
-        var optionsProgram = [];
-        this.state.programs.map((programId) => {
-            optionsProgram.push(
-                <option label = {programId.title} >{programId._id}</option>
+        const {session_temp} = this.state.session_temp;
+        var optionsTemp = [];
+        var optionsName = [];
+
+        this.state.session_temp.map((tempID, i) => {
+            optionsTemp.push(
+                <option label = {tempID.name} >{tempID._id}</option>
             );
-        });
-        var optionsCustomers = [];
-        this.state.customers.map((customerId) => {
-            optionsCustomers.push(
-                <option label = {customerId.first_name} >{customerId._id}</option>
-            );
+            optionsName.push(tempID._id);
         });
         return (
             <body>
@@ -100,13 +101,12 @@ class CreateSession extends React.Component {
                                     <div class="dragArea row">
                                         <div class="col-md-6  form-group" data-for="name">
                                             <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Name</label>
-                                            <input type="text" name="name" data-form-field="Name" required="required" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('session_name', e)} />
+                                            <input type="text" name="name" data-form-field="Name" required="required" value={optionsName} class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('session_name', e)} />
                                         </div>
                                         <div class="col-md-6  form-group" data-for="muscles_targeted">
                                             <label for="name-form1-5" class="form-control-label mbr-fonts-style display-7">Session type</label><br />
                                             <select class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('session_type', e)}>
-                                                <option>Focus Session</option>
-                                                <option>Regular Session</option>
+                                            {optionsTemp}
                                             </select>
                                         </div>
                                         <div data-for="message" class="col-md-12 form-group">

@@ -10,6 +10,7 @@ class VisualizeSession extends Component {
     state = {
         column: null,
         sessions: [],
+        original_sessions: [],
         direction: null
     };
      // Sort the table according to header
@@ -28,17 +29,29 @@ class VisualizeSession extends Component {
             direction: direction === 'ascending' ? 'descending' : 'ascending',
         });
     }
-    handleClickBack = () => {
-        this.props.history.push('/');
-    };
+    
     componentDidMount() {
-        
         axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
         .then(res => {
             const sessions = res.data;
-            this.setState({sessions});
+            this.setState({sessions, original_sessions: sessions});
+            console.log(sessions)
         });
     };
+
+    handleFilter = value => {
+        const {original_sessions} = this.state;
+        let sessions = original_sessions;
+        if (value) {
+            sessions = original_sessions.filter(sessions => new RegExp(`.*${value}.*`, "i").test(sessions.name));
+        }
+        this.setState({sessions});
+    }
+
+    handleClickBack = () => {
+        this.props.history.push('/');
+    };
+
     render() {
         this.handleSort('status');
         var optionsSession = [];
@@ -111,7 +124,7 @@ class VisualizeSession extends Component {
                                 NEW SESSION
                             </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
-                            <input class="col-md-4" default="search"/>
+                            <input class="col-md-4" default="search" onChange={e => this.handleFilter(e.target.value)}/>
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br/><br/>

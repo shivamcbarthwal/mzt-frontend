@@ -5,11 +5,13 @@ import { Table, Button, TableBody, TableCell, Modal, ModalHeader, ModalContent }
 import _ from 'lodash';
 import Select, { components } from 'react-select';
 import Background from '../../assets/images/prog_bk.jpg';
+import { program } from '@babel/template';
 
 class VisualizeProgram extends Component {
     state = {
         column: null,
         programs: [],
+        original_programs: [],
         direction: null
     };
     fixBody() {
@@ -39,9 +41,21 @@ class VisualizeProgram extends Component {
         axios.get('http://localhost:8080/programTemplate/getAllProgramTemps')
         .then(res => {
             const programs = res.data;
-            this.setState({programs});
+            this.setState({programs, original_programs: programs});
         });
     };
+
+    handleFilter = value => {
+        const {original_programs} = this.state;
+
+        let programs = original_programs;
+
+        if (value) {
+            programs = original_programs.filter(program => new RegExp(`.*${value}.*`, "i").test(program.title));
+        }
+
+        this.setState({programs});
+    }
     render() {
         this.handleSort('status');
         var optionProgram = [];
@@ -113,7 +127,7 @@ class VisualizeProgram extends Component {
                                 NEW PROGRAM
                             </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search :  </label>
-                            <input class="col-md-4" default="search" />
+                            <input class="col-md-4" default="search" onChange={e => this.handleFilter(e.target.value)} />
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                         </div>
                         <br/><br/>
