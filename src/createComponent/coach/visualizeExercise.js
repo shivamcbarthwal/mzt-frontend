@@ -127,7 +127,7 @@ class VisualizeExercise extends Component {
         return (
             <body>
                 <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
-                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
+                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#000000"}}/>
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Exercises</h2> <br/>
                             

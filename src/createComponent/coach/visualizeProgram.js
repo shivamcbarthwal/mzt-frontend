@@ -118,8 +118,8 @@ class VisualizeProgram extends Component {
         });
         return (
             <body>
-                <section class=" mbr-parallax-background mbr-fullscreen" id="services6-7">
-                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
+                <section class=" mbr-parallax-background mbr-fullscreen" style={{backgroundImage: `url(${Background})`}} id="services6-7">
+                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#000000"}}/>
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Programs</h2> <br/>
                         <div>

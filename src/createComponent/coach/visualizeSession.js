@@ -34,7 +34,8 @@ class VisualizeSession extends Component {
         axios.get('http://localhost:8080/sessionTemplate/getAllSessionTemps')
         .then(res => {
             const sessions = res.data;
-            this.setState({sessions, original_sessions: sessions});
+            this.setState({sessions, original_sessions
+                : sessions});
             console.log(sessions)
         });
     };
@@ -115,7 +116,7 @@ class VisualizeSession extends Component {
         return (
             <body>
                 <section class=" cid-rGowQrNiDe mbr-parallax-background" id="services6-7">
-                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#635a51"}}/>
+                    <div class="mbr-overlay" style= {{opacity: 0.6, backgroundColor: "#000000"}}/>
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Sessions</h2>
                         <br/>
