@@ -231,18 +231,17 @@ class FocusSessionStartExercise extends React.Component {
                               {exercises[exerciseN].description}
                             </p>
                         </div>
-                            {timer}
-                        <div id='result' hidden class="mbr-section-text mbr-white pb-3">
+                        <div id='result' class="mbr-section-text mbr-white pb-3">
                             <p class="mbr-text mbr-fonts-style display-5">
                                 Your result:
                             </p>
-                            <input data-form-field="result" type="number" placeholder='0' required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
+                            <input data-form-field="result" type="number" placeholder={exercises[exerciseN].repetition} required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
                         </div>
                     </div>
-                    <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                    <div class="mbr-figure" style={{width: '145%'}} id='video'>
                         <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>                      
                 </div>

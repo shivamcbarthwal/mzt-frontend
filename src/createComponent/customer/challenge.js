@@ -214,7 +214,7 @@ class Challenge extends React.Component {
                         Challenge yourself and earn points
                     </h2> 
                     <br/><br/>
-                    <h2 class="mbr-white">Try a new challenge!</h2>
+                    <h2 class="mbr-white align-center">Try a new challenge!</h2>
                     <div style={{
                         justifyContent:"center",
                         alignContent:"center",
