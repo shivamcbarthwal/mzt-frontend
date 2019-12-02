@@ -128,6 +128,13 @@ class CustomerModal extends Component {
         ]});
     }
 
+    handleProgramUpdate = () => {
+        const programUpdated = this.state.programs[0];
+        axios.post('http://localhost:8080/program/updateProgram', {
+            programUpdated
+        })
+    }
+
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -1037,6 +1044,7 @@ class CustomerModal extends Component {
             }
             {programLists}
             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
+            <Button secondary onClick = {this.handleProgramUpdate} floated='right'>Validate</Button>
                     </div>
                     </section>
                 </body>
