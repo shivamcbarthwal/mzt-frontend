@@ -17,7 +17,7 @@ class Challenge extends React.Component {
             "totalPoints": null,
             "totalEarned": null,
             "totalRedeemed": null
-          },
+        },
         transactions: [],
         challenges: [],
         text: []
@@ -28,9 +28,9 @@ class Challenge extends React.Component {
         const { column, transactions, direction } = this.state;
         if (column !== clickedColumn) {
             this.setState({
-              column: clickedColumn,
-              transactions: _.sortBy(transactions, [clickedColumn]),
-              direction: 'ascending',
+                column: clickedColumn,
+                transactions: _.sortBy(transactions, [clickedColumn]),
+                direction: 'ascending',
             });
             return;
         }
@@ -177,50 +177,50 @@ class Challenge extends React.Component {
         }
         return (
             <body>
-              <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
-                <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                  <div class="menu-logo">
-                      <div class="navbar-brand">
-                          <span class="navbar-logo">
-                              <a href="/homepage">
-                                  <img src={Logo} alt="MZT fitness" />
-                              </a>
-                          </span>
-                          <span class="navbar-caption-wrap">
-                              <a class="navbar-caption text-white display-4" href="/homepage">
-                                  MZT FITNESS
-                              </a>
-                          </span>
-                      </div>
-                  </div>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                          <li class="nav-item">
-                              <a class="nav-link link text-white display-4" href="/homepage">
-                                  <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                                  Home page
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </nav>
-            </section>
+                <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
+                    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+                        <div class="menu-logo">
+                            <div class="navbar-brand">
+                                <span class="navbar-logo">
+                                <a href="/homepage">
+                                    <img src={Logo} alt="MZT fitness" />
+                                </a>
+                                </span>
+                                <span class="navbar-caption-wrap">
+                                    <a class="navbar-caption text-white display-4" href="/homepage">
+                                        MZT FITNESS
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                <li class="nav-item">
+                                    <a class="nav-link link text-white display-4" href="/homepage">
+                                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                        Home page
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </section>
 
-            <section class="header10 cid-rFCyM8AuwD mbr-fullscreen mbr-parallax-background" id="header10-o">
-                <div class="mbr-overlay"> 
-                </div>
-                <div class="container">
-                    <h2 class="mbr-white mbr-fonts-style m-0 display-1 align-center">
-                        Challenge yourself and earn points
-                    </h2> 
-                    <br/><br/>
-                    <h2 class="mbr-white">Try a new challenge!</h2>
-                    <div style={{
-                        justifyContent:"center",
-                        alignContent:"center",
-                        display:"flex"
-                    }} hidden id='wheel-div'>
-                        {wheel}
+                <section class="header10 cid-rFCyM8AuwD mbr-fullscreen mbr-parallax-background" id="header10-o">
+                    <div class="mbr-overlay"> 
+                    </div>
+                    <div class="container">
+                        <h2 class="mbr-white mbr-fonts-style m-0 display-1 align-center">
+                            Challenge yourself and earn points
+                        </h2> 
+                        <br/><br/>
+                        <h2 class="mbr-white">Try a new challenge!</h2>
+                        <div style={{
+                            justifyContent:"center",
+                            alignContent:"center",
+                            display:"flex"
+                        }} hidden id='wheel-div'>
+                            {wheel}
                     </div>
                     <div id='confirm'>
                         {confirm}
@@ -234,78 +234,59 @@ class Challenge extends React.Component {
                     </div>
                     <br/><br/>
                     <div hidden id='challenge'>
-                    <h2 class="mbr-white mbr-fonts-style m-0 display-5">
-                        Challenges History
-                    </h2>
-                    <Table sortable celled structured>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell colSpan='2'>
-                                    CHALLENGE
-                                </Table.HeaderCell>
-                                <Table.HeaderCell colSpan='1'>
-                                    POINTS
-                                </Table.HeaderCell>
-                                <Table.HeaderCell colSpan='1'
-                                  sorted={column == 'transaction_type' ? direction : null}
-                                  onClick={this.handleSort('transaction_type')}
-                                >
-                                    STATUS
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body textAlign='center'>
-                            {transactionProgress}
-                            {transactionDone}
-                            {transactionFail}
-                        </Table.Body>
-                        <Table.Footer>
-                            <Table.Row>
-                                <Table.Cell><strong>RESULT</strong></Table.Cell>
-                                <Table.Cell positive>
-                                    <strong>{pointEarn} Points Earned</strong>
-                                </Table.Cell>
-                                <Table.Cell warning>
-                                    <strong>{pointProgress} Points In Progress</strong>
-                                </Table.Cell>
-                                <Table.Cell negative>
-                                    <strong>{pointFail} Points Failed</strong>
-                                </Table.Cell>
-                            </Table.Row>
-                        </Table.Footer>
-                    </Table>
-                    </div>
-                    <br/><br/>
-                    <div hidden id='point'>
-                    <h2 class="mbr-white mbr-fonts-style m-0 display-5">
-                        Points Spent History
-                    </h2>
-                    <Table sortable celled structured>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>
-                                    BRAND
-                                </Table.HeaderCell>
-                                <Table.HeaderCell>
-                                    OFFER
-                                </Table.HeaderCell>
-                                <Table.HeaderCell>
-                                    POINTS
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body textAlign='center'>
-                            {transactionSpent}
-                        </Table.Body>
-                        <Table.Footer>
-                            <Table.Row>
-                                <Table.Cell><strong>RESULT</strong></Table.Cell>
-                                <Table.Cell warning colSpan='2' textAlign='center' verticalAlign='middle'>
-                                    <strong>{pointSpent} Points Spent</strong>
-                                </Table.Cell>
-                            </Table.Row>
-                        </Table.Footer>
-                    </Table>
+                        <h2 class="mbr-white mbr-fonts-style m-0 display-5">
+                            Challenges History
+                        </h2>
+                        <Table sortable celled structured>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell colSpan='2'>
+                                        CHALLENGE
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell colSpan='1'>
+                                        POINTS
+                                    </Table.HeaderCell>
+                                    <Table.HeaderCell colSpan='1' sorted={column == 'transaction_type' ? direction : null} onClick={this.handleSort('transaction_type')} > STATUS </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body textAlign='center'>
+                                {transactionProgress}
+                                {transactionDone}
+                                {transactionFail}
+                            </Table.Body>
+                            <Table.Footer>
+                                <Table.Row>
+                                    <Table.Cell><strong>RESULT</strong></Table.Cell>
+                                    <Table.Cell positive> <strong>{pointEarn} Points Earned</strong> </Table.Cell>
+                                    <Table.Cell warning> <strong>{pointProgress} Points In Progress</strong> </Table.Cell>
+                                    <Table.Cell negative> <strong>{pointFail} Points Failed</strong> </Table.Cell>
+                                </Table.Row>
+                            </Table.Footer>
+                        </Table>
+                            </div>
+                                <br/><br/>
+                                <div hidden id='point'>
+                                    <h2 class="mbr-white mbr-fonts-style m-0 display-5">
+                                        Points Spent History
+                                    </h2>
+                        <Table sortable celled structured>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell> BRAND </Table.HeaderCell>
+                                    <Table.HeaderCell> OFFER </Table.HeaderCell>
+                                    <Table.HeaderCell> POINTS </Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body textAlign='center'>
+                                {transactionSpent}
+                            </Table.Body>
+                            <Table.Footer>
+                                <Table.Row>
+                                    <Table.Cell><strong>RESULT</strong></Table.Cell>
+                                    <Table.Cell warning colSpan='2' textAlign='center' verticalAlign='middle'> <strong>{pointSpent} Points Spent</strong> </Table.Cell>
+                                </Table.Row>
+                            </Table.Footer>
+                        </Table>
                     </div>
                 </div>  
             </section>

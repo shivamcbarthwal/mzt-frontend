@@ -66,8 +66,8 @@ class VisualizeExercise extends Component {
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
                     <Table.Cell singleLine>
                         <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
-                            <ModalHeader style={{textAlign:'center'}}>{Exercise.name}</ModalHeader>
-                            <ModalContent>
+                        <ModalHeader style={{textAlign:'center'}}>{Exercise.name}</ModalHeader>
+                        <ModalContent>
                                 <Table>
                                     <TableBody>
                                         <Table.Row>
@@ -116,8 +116,8 @@ class VisualizeExercise extends Component {
                                         </Table.Row>
                                     </TableBody>
                                 </Table>
-                            </ModalContent>
-                        </Modal>
+                        </ModalContent>
+                    </Modal>
                         <Button primary size="small">Update</Button>
                         <Button primary size="small">Delete</Button>
                     </Table.Cell>
@@ -142,33 +142,11 @@ class VisualizeExercise extends Component {
                         <Table sortable celled structured>
                             <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell
-                                      sorted={column === 'name' ? direction : null}
-                                      onClick={this.handleSort('name')}
-                                    >
-                                        NAME
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell
-                                      sorted={column == 'exercise_type' ? direction : null}
-                                      onClick={this.handleSort('exercise_type')}
-                                    >
-                                        TYPE
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell
-                                      sorted={column == 'muscles_targeted' ? direction : null}
-                                      onClick={this.handleSort('muscles_targeted')}
-                                    >
-                                        MUSCLES TARGETED
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell
-                                      sorted={column == 'equipment_required' ? direction : null}
-                                      onClick={this.handleSort('equipment_required')}
-                                    >
-                                        EQUIPEMENT
-                                    </Table.HeaderCell>
-                                    <Table.HeaderCell>
-                                        OPERATIONS
-                                    </Table.HeaderCell>
+                                    <Table.HeaderCell sorted={column === 'name' ? direction : null} onClick={this.handleSort('name')}> NAME </Table.HeaderCell>
+                                    <Table.HeaderCell sorted={column == 'exercise_type' ? direction : null} onClick={this.handleSort('exercise_type')}> TYPE </Table.HeaderCell>
+                                    <Table.HeaderCell sorted={column == 'muscles_targeted' ? direction : null} onClick={this.handleSort('muscles_targeted')} > MUSCLES TARGETED </Table.HeaderCell>
+                                    <Table.HeaderCell sorted={column == 'equipment_required' ? direction : null} onClick={this.handleSort('equipment_required')} > EQUIPEMENT </Table.HeaderCell>
+                                    <Table.HeaderCell> OPERATIONS </Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body textAlign='center'>

@@ -127,8 +127,7 @@ class FocusSessionForm extends React.Component {
                                     <form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="xBwRiT6nXeo2bF/dVu2/EBCkac7IluadHt0cFITc55G/p30tWqG8gXHl+mdGmsQsN5AatHpswIJCwifAAt0I4mc5f88/NG2BbOC/6ksvRyy5bygRgspSSl6a6sqj6PLA" />
                                         <div class="row">
                                             <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
-                                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
-                                            </div>
+                                            <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12"> </div>
                                         </div>
                                         <div class="dragArea row">
                                             <div data-for="message" class="col-md-12  form-group">

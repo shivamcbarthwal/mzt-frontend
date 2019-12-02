@@ -161,13 +161,7 @@ class CreateExercise extends React.Component {
                                                 <label class="form-control-label mbr-fonts-style display-7">Link to the video</label>
                                                 <input type="text" name="equipment" placeholder = 'Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ' data-form-field="equipment" class="form-control display-7" id="name-form1-5" onChange={(e) => this.handleChange('video_url', e)}/>
                                             </div>
-                                            {/*<div onClick={() => console.log(this.state.image)}>
-                                                <ImagePicker
-                                                    images={imageList.map((image, i) => 
-                                                        ({src: image, value: i}))}
-                                                    onPick={this.onPick}
-                                                    />
-                                                    </div>*/}
+                                            {}
                                         <div class="col-md-12 input-group-btn">
                                             <button type="submit" class="btn btn-form btn-warning " onClick={this.handleSubmit}>
                                                 CREATE

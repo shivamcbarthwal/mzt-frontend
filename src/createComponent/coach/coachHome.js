@@ -138,8 +138,8 @@ class CoachHome extends Component {
         const Icon = variantIcon["warning"];
         return (
             <SnackbarProvider>
-                <div className="App">  
-                <body>
+        <div className="App">  
+            <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
                     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -176,8 +176,8 @@ class CoachHome extends Component {
                         </div>
                     </nav>
                 </section>
-                    <section class="cid-rFCUpdpwBS mbr-fullscreen">
-                        <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                <section class="cid-rFCUpdpwBS mbr-fullscreen">
+                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
                         <div class="container align-center">
                             <div class="mbr-white centerize">
                                 <br/><br/><br/>
@@ -190,10 +190,10 @@ class CoachHome extends Component {
 
                             </div>
                         </div>    
-                    </section>
-                </body>
-            </div>
-            </SnackbarProvider>
+                </section>
+            </body>
+        </div>
+        </SnackbarProvider>
         );
     };
 };

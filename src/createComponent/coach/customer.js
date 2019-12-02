@@ -111,48 +111,28 @@ export default class Customer extends Component {
                     </nav>
                 </section>
                 <section class="cid-rFCUpdpwBS mbr-fullscreen">
-                <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
-                <div class="container align-center">
-                <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
-                    Customer List
-                </h2>
-                <Table sortable celled fixed>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell
-                              sorted={column === 'first_name' ? direction : null}
-                              onClick={this.handleSort('first_name')}
-                            >
-                                NAME
-                            </Table.HeaderCell>
-                            <Table.HeaderCell
-                              sorted={column == 'goal' ? direction : null}
-                              onClick={this.handleSort('goal')}
-                            >
-                                GOAL
-                            </Table.HeaderCell>
-                            <Table.HeaderCell
-                              sorted={column == 'activity_level' ? direction : null}
-                              onClick={this.handleSort('activity_level')}
-                            >
-                                LEVEL
-                            </Table.HeaderCell>
-                            <Table.HeaderCell
-                            sorted={column == 'status' ? direction : null}
-                            onClick={this.handleSort('status')}
-                            >
-                                STATUS
-                            </Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {optionsCustomer}
-                    </Table.Body>
-                </Table>
-                <div class="align-right">
-                <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
-                </div>
-                </div>
+                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                        <div class="container align-center">
+                            <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+                                Customer List
+                            </h2>
+                            <Table sortable celled fixed>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell sorted={column === 'first_name' ? direction : null} onClick={this.handleSort('first_name')}>NAME </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'goal' ? direction : null} onClick={this.handleSort('goal')}> GOAL </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'activity_level' ? direction : null} onClick={this.handleSort('activity_level')} > LEVEL </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'status' ? direction : null} onClick={this.handleSort('status')}> STATUS </Table.HeaderCell>
+                                    </Table.Row>
+                                </Table.Header>
+                                <Table.Body>
+                                    {optionsCustomer}
+                                </Table.Body>
+                            </Table>
+                            <div class="align-right">
+                                <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
+                            </div>
+                        </div>
                 </section>
             </body>
         )
