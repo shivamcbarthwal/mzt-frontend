@@ -128,11 +128,17 @@ class CustomerModal extends Component {
         ]});
     }
 
-    handleProgramUpdate = () => {
+    handleProgramUpdate = async event => {
         const programUpdated = this.state.programs[0];
-        axios.post('http://localhost:8080/program/updateProgram', {
-            programUpdated
-        })
+        const response = await fetch(`http://localhost:8080/program/updateProgram`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(programUpdated) // body data type must match "Content-Type" header
+        });
+        return await response.json();
     }
 
     componentDidMount(){
