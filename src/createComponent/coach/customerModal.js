@@ -115,6 +115,19 @@ class CustomerModal extends Component {
 
     }
 
+    handleRemoveSession = (event, index) => {
+        const {sessions} = this.state.programs[0];
+        sessions.splice(index, 1);
+        console.log(sessions);
+        const newProgram = {
+            ...this.state.programs[0],
+            sessions
+        };
+        this.setState({programs: [
+            newProgram
+        ]});
+    }
+
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -328,10 +341,11 @@ class CustomerModal extends Component {
                                                             SessionCustomizedList.push(
                                                                 <Table.Row>
                                                                     <Table.Cell>{session.name}</Table.Cell>
-                                                                    <Table.Cell>
+                                                                    <Table.Cell singleLine>
                                                                         <Button primary size="small" onClick={this.handleClickChangeSessionOrder}>
                                                                             Change Order
                                                                         </Button>
+                                                                        <Button primary size="small" onClick={(e)=>this.handleRemoveSession(e, index1)}>Remove Session</Button>
                                                                         {this.state.dropDownOpen && (
                                                                             <div class="dropdown">
                                                                                 <select onChange={(e)=>this.handleReorder(e, index1)}>
