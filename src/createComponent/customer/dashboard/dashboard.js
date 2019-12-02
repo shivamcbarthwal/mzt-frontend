@@ -19,7 +19,7 @@ var Logo = require('../../../assets/images/logo-mzt.png');
 
 class Dashboard extends React.Component {
     state = {
-        customer:'5dc541fb717676384459fe66',
+        customer:'5dc53fb7717676384459fe63',
         programs: [],
         measurements: [],
         dickson: [],
@@ -123,6 +123,27 @@ class Dashboard extends React.Component {
             }
             if(badges.dicksonIndcImprove.displayIndc === "TRUE"){
                 test.push(badges.dicksonIndcImprove.msg);
+            }
+            if(badges.planksImprove.displayIndc === "TRUE"){
+                test.push(badges.planksImprove.msg);
+            }
+            if(badges.lungesImprove.displayIndc === "TRUE"){
+                test.push(badges.lungesImprove.msg);
+            }
+            if(badges.crunchesImprove.displayIndc === "TRUE"){
+                test.push(badges.crunchesImprove.msg);
+            }
+            if(badges.pushupsImprove.displayIndc === "TRUE"){
+                test.push(badges.pushupsImprove.msg);
+            }
+            if(badges.squatsImprove.displayIndc === "TRUE"){
+                test.push(badges.squatsImprove.msg);
+            }
+            if(badges.tricepsImprove.displayIndc === "TRUE"){
+                test.push(badges.tricepsImprove.msg);
+            }
+            if(badges.lastChallengePtsEarned.displayIndc === "TRUE"){
+                test.push(badges.lastChallengePtsEarned.msg);
             }
         }
         
@@ -344,11 +365,31 @@ class Dashboard extends React.Component {
         </div>      
     
     <br/><br/>
-    <div>
-            <h5 style={{color:"#FFFFFF"}}>{test}</h5> 
-    <br/>
+   
+
+    <div class="card-box" style={{}} >
+            <h1 style={{color:"#FFFFFF", marginTop:'5px', marginLeft:'5px', marginRight:'5px', width:"300%"}}>BE PROUD</h1>
             
+
+            {test.map((badges) => {
+                    test.push(
+                    	<div class="display-inline row"	>
+                            <div class="card" style={{backgroundColor: "#E76642",marginLeft:'20px', width:"100px"}}>
+                                <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{badges.msg}</p>
+                            </div>
+                        </div> 
+                    )}) 
+            }
+            <div class="display-inline row"	>
+                            <div class="card" style={{backgroundColor: "#E76642",marginLeft:'20px', width:"100px"}}>
+                                <p style={{color:"#FFFFFF", marginLeft:'5px'}}>{test}</p>
+                            </div>
+            </div> 
+
+
+			
     </div>
+
 
     <div class="card-box centerize"  >
         
