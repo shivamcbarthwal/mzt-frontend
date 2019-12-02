@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import clsx from 'clsx';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import PropTypes from 'prop-types';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
 import { amber, green } from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core';
 import 'semantic-ui-css/semantic.min.css';
 import { Progress, Button, Table, Header, TableHeader, TableHeaderCell, TableBody, TableFooter, Modal, ModalHeader, ModalContent, Segment, Image } from 'semantic-ui-react';
 import moment from 'moment';
-import { program } from '@babel/types';
-import { textAlign } from '@material-ui/system';
 import CanvasJSReact from '../../assets/canvas/canvasjs.react';
 const coach_id = "5dc2f70414b9e52a30d6620e";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -64,20 +55,28 @@ class CustomerModal extends Component {
         programs: [],
         optionResult: [],
         open: false,
-        setOpen: false
+        setOpen: false,
+        dropDownOpen: false
     };
+
+    // Event handler method to perform requests and Actions
+
     handleClose = () => {
         this.setState({ open: false});
     };
+
     showSpinner = () => {
         this.setState({ open: true});
     };
+
     handleClickAssignProgram = () => {
         this.props.history.push('/AssignPtoC');
     };
+
     handleClickBack = () => {
         this.props.history.push('/customerList');
     };
+
     handleClickActiveSession = (progId, index) => () =>{
         axios.post('http://localhost:8080/program/coachUpdateSessionStatus',{
             program_id: progId,
@@ -85,12 +84,37 @@ class CustomerModal extends Component {
         });
         window.location.href='/CustomersDetail/'+this.props.match.params.customerID;
     };
+
     handleClickCancelProgram = (progId) => () =>{
         axios.post('http://localhost:8080/program/coachUpdateProgramStatus',{
             program_id: progId
         });
         window.location.href='/CustomersDetail/'+this.props.match.params.customerID;
     }
+
+    handleClickChangeSessionOrder = () => {
+        this.setState( {dropDownOpen: true});
+
+    }
+
+    handleReorder = (event, index) => {
+        const newIndex = event.nativeEvent.target.selectedIndex;
+        const {sessions} = this.state.programs[0];
+
+        const session = sessions.splice(index, 1);
+        sessions.splice(newIndex, 0, session[0]);
+        console.log(sessions);
+        const newProgram = {
+            ...this.state.programs[0],
+            sessions
+        };
+        this.setState({programs: [
+            newProgram
+        ]});
+        
+
+    }
+
     componentDidMount(){
         axios.get(`http://localhost:8080/customer/getCustomerById/${this.props.match.params.customerID}`)
         .then(res => {
@@ -192,6 +216,7 @@ class CustomerModal extends Component {
         var SessionList1 = [];
         var SessionList2 = [];
         var SessionRes = [];
+        var SessionCustomizedList = [];
         if (customers){
             return (
                 <body>
@@ -271,6 +296,7 @@ class CustomerModal extends Component {
                 {programAssigned.map((program) => {
                     ResultList1 = [];
                     SessionList1 = [];
+                    SessionCustomizedList = [];
                     programLists.push(
                     <div class="card px-3 col-12">
                         <div class="card-wrapper media-container-row media-container-row">
@@ -286,6 +312,44 @@ class CustomerModal extends Component {
                                             <Button primary size="medium" onClick={this.handleClickCancelProgram(program._id)}>
                                                 Cancel the Program
                                             </Button>
+
+                                                <Modal trigger={<Button primary size="small">Customize Program</Button>} closeIcon size='fullscreen' centered={false}>
+                                                 <ModalHeader style={{textAlign:'center'}}>Customize {program.title}</ModalHeader>
+                                                   <ModalContent scrolling={true}>
+                                                   <Table structured celled>
+                                                       <TableHeader>
+                                                            <Table.Row>
+                                                                <TableHeaderCell>Session</TableHeaderCell>
+                                                                <TableHeaderCell>Operation</TableHeaderCell>
+                                                            </Table.Row>
+                                                        </TableHeader>
+                                                        <TableBody>
+                                                        {program.sessions.map((session, index1) => {
+                                                            SessionCustomizedList.push(
+                                                                <Table.Row>
+                                                                    <Table.Cell>{session.name}</Table.Cell>
+                                                                    <Table.Cell>
+                                                                        <Button primary size="small" onClick={this.handleClickChangeSessionOrder}>
+                                                                            Change Order
+                                                                        </Button>
+                                                                        {this.state.dropDownOpen && (
+                                                                            <div class="dropdown">
+                                                                                <select onChange={(e)=>this.handleReorder(e, index1)}>
+                                                                                {program.sessions.map((session, index2) => 
+                                                                                <option value={index2}>{index2} ) {session.name}</option>
+                                                                                )}
+                                                                                </select>
+                                                                                </div>
+                                                                            )}
+                                                                    </Table.Cell>
+                                                                </Table.Row>
+                                                            )
+                                                        })}
+                                                        {SessionCustomizedList}
+                                                        </TableBody>
+                                                        </Table>
+                                                   </ModalContent>
+                                                </Modal>
                                         </div>
                                 </div>
                                 <div class="bottom-line">
