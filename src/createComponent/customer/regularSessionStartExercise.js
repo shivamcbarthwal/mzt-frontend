@@ -279,73 +279,74 @@ class RegularSessionStartExercise extends React.Component {
                           </div>
                       </div>
                       );
-              optionsExercise.push(
+                optionsExercise.push(
                         <div class="media-container-row">
                             <div class="media-content align-center media-container-column">
                                 <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
                                     {exercises[exerciseN].name}
                                 </h1>
-                              <div class="mbr-section-text mbr-white pb-3">
+                                <div class="mbr-section-text mbr-white pb-3">
                                     <p class="mbr-text mbr-fonts-style display-5">
                                       {exercises[exerciseN].description}
                                     </p>
                                     {timer}
-                                <div id='result' hidden>
-                                    <p class="mbr-text mbr-fonts-style display-5">
-                                        How do you feel?
-                                    </p>
-                                    <div class="mbr-section-btn">
-                                        <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
-                                            <a onClick={() => this.toggleNext(angry)} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext(neutral)} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
-                                            <a onClick={() => this.toggleNext(happy)} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                    <div id='result' hidden>
+                                        <p class="mbr-text mbr-fonts-style display-5">
+                                            How do you feel?
                                         </p>
+                                        <div class="mbr-section-btn">
+                                            <p class="align-center mbr-text pb-3 mbr-fonts-style display-5">
+                                                <a onClick={() => this.toggleNext(angry)} ><img src={angry} alt="Angry"  style={{height: 70}}/></a>
+                                                <a onClick={() => this.toggleNext(neutral)} ><img src={neutral} alt="Neutral" style={{height: 70}}/></a>
+                                                <a onClick={() => this.toggleNext(happy)} ><img src={happy} alt="Happy" style={{height: 70}}/></a>          
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
-                        <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                            <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
                             <ReactPlayer
                                 url={exercises[exerciseN].video_url}
                             />    
+                            </div>
+                        </div>
+                );
+            }
+            if (exercises[exerciseN].set_type === 'TIME_REPETITION') {
+                optionsInfo.push(
+                    <div class="container align-items-center">
+                        <div class="row justify-content-md-center">
+                            <div class="mbr-white col-md-10">
+                                <h1 class="mbr-text pb-3 mbr-fonts-style display-5">
+                                    <br/> 
+                                    {exercises[exerciseN].name}
+                                </h1>
+                                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                    <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                    <span style={{marginLeft: '1em'}}>
+                                        Repetition: {exercises[exerciseN].time}sec x{exercises[exerciseN].repetition}
+                                    </span>
+                                </p>
+                                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                    <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                    <span style={{marginLeft: '1em'}}>
+                                        Sets: {exercises[exerciseN].sets}
+                                    </span>
+                                </p>
+                                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                                    <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
+                                    <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
+                                        Coach advice: {exercises[exerciseN].description}
+                                    </span>
+                                </p>
+                                <div class="mbr-section-btn">
+                                    <a class="btn btn-md btn-secondary display-4" onClick={this.toggle} >GO</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 );
-             }
-             if (exercises[exerciseN].set_type === 'TIME_REPETITION') {
-              optionsInfo.push(
-                      <div class="container align-items-center">
-                          <div class="row justify-content-md-center">
-                              <div class="mbr-white col-md-10">
-                                  <h1 class="mbr-text pb-3 mbr-fonts-style display-5">
-                                      <br /> {exercises[exerciseN].name}
-                                  </h1>
-                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                      <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                      <span style={{marginLeft: '1em'}}>
-                                        Repetition: {exercises[exerciseN].time}sec x{exercises[exerciseN].repetition}
-                                      </span>
-                                  </p>
-                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                      <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                      <span style={{marginLeft: '1em'}}>
-                                          Sets: {exercises[exerciseN].sets}
-                                      </span>
-                                  </p>
-                                  <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                      <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                      <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
-                                          Coach advice: {exercises[exerciseN].description}
-                                      </span>
-                                  </p>
-                                  <div class="mbr-section-btn">
-                                      <a class="btn btn-md btn-secondary display-4" onClick={this.toggle} >GO</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      );
-              optionsExercise.push(
+                optionsExercise.push(
                     <div class="media-container-row">
                         <div class="media-content align-center media-container-column">
                             <h1 class="mbr-section-title mbr-white pb-3 mbr-fonts-style display-1">
@@ -417,33 +418,31 @@ class RegularSessionStartExercise extends React.Component {
                             </div>
                         </nav>
                     </section>
-                    {this.state.offInfo && (
-                                            <div>
-                                                <section class="engine"><a href="https://mobirise.info/p">site templates free download</a></section>
-                                                <section class="mbr-fullscreen mbr-parallax-background" id="header2-j" style={{backgroundImage: `url(${Background})`}}>
-                                                    <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: '#232323'}}>
-                                                    </div>
-                                                    {optionsInfo}
-                                                </section>
-                                            </div>
-                                        )
-                    }
-                    {this.state.onExercise && (
-                                    <section class="header7 cid-rH9xttLmcq mbr-fullscreen mbr-parallax-background" id="header7-b" style={{backgroundImage: `url(${Background})`}}>
-                                
-                                
-                                
+                    {
+                        this.state.offInfo && (
+                            <div>
+                                <section class="engine"><a href="https://mobirise.info/p">site templates free download</a></section>
+                                <section class="mbr-fullscreen mbr-parallax-background" id="header2-j" style={{backgroundImage: `url(${Background})`}}>
                                         <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: '#232323'}}>
                                         </div>
-                                
-                                        <div class="container">
-                                            {optionsExercise}
-                                        </div>
-                                    </section>
-                                )
+                                        {optionsInfo}
+                                </section>
+                            </div>
+                        )
+                    }
+                    {
+                        this.state.onExercise && (
+                            <section class="header7 cid-rH9xttLmcq mbr-fullscreen mbr-parallax-background" id="header7-b" style={{backgroundImage: `url(${Background})`}}>
+                                <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: '#232323'}}>
+                                </div>
+                                <div class="container">
+                                    {optionsExercise}
+                                </div>
+                            </section>
+                        )
                     }
                 </body>
-                );
+        );
     }
 }
 

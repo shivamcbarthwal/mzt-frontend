@@ -201,29 +201,29 @@ class CustomerModal extends Component {
             if(Program.status == "IN_PROGRESS"){
                 programInprogress.push(Program);
                 Program.sessions.map((Session,index) =>{
-                    if(Session.session_status == 'COMPLETED'){
-                        console.log('index: '+index);
-                        console.log('length: '+Program.sessions.length);
-                        console.log('percent: '+ (index+1)/Program.sessions.length)
-                        if(Program.sessions[index+1].session_status == 'OPENED'){
+                if(Session.session_status == 'COMPLETED'){
+                    console.log('index: '+index);
+                    console.log('length: '+Program.sessions.length);
+                    console.log('percent: '+ (index+1)/Program.sessions.length)
+                    if(Program.sessions[index+1].session_status == 'OPENED'){
+                        progress.push(
+                            <Segment>
+                                <Progress color='olive' value={index+1} total={Program.sessions.length} active/>
+                                    Finish the session {Session.name}. The next session is {Program.sessions[index+1].name}
+                            </Segment>
+                        )
+                    }
+                    if(Program.sessions[index+1].session_status == 'CLOSED'){
+                        if(Program.sessions[index+1].session_type == 'focus'){
                             progress.push(
                                 <Segment>
-                                    <Progress color='olive' value={index+1} total={Program.sessions.length} active/>
-                                    Finish the session {Session.name}. The next session is {Program.sessions[index+1].name}
+                                    <Progress error value={index+1} total={Program.sessions.length} active/>
+                                        There is an approaching focus session
                                 </Segment>
                             )
                         }
-                        if(Program.sessions[index+1].session_status == 'CLOSED'){
-                            if(Program.sessions[index+1].session_type == 'focus'){
-                                progress.push(
-                                    <Segment>
-                                        <Progress error value={index+1} total={Program.sessions.length} active/>
-                                        There is an approaching focus session
-                                    </Segment>
-                                )
-                            }
-                        }
                     }
+                }
                 });
             }
             if(Program.status == "COMPLETED"){
@@ -283,8 +283,7 @@ class CustomerModal extends Component {
                     </nav>
                 </section>
                 <div>
-                    <h1></h1>
-                    <h1></h1>
+                    <br/><br/>
                 </div>
                     <section class="services5 cid-rHakXOOQSN" id="services5-c" style={{padding: "25px"}}>  
                         <div class="container">
@@ -329,7 +328,7 @@ class CustomerModal extends Component {
                             <div class="card-box">
                                 <div class="top-line pb-3">
                                     <h4 class="card-title mbr-fonts-style display-5">
-                                    {program.title}
+                                        {program.title}
                                     </h4>
                                     <div class="mbr-text align-left display-5" style={{width:'50%'}}>{program.goal}</div>
                                         <div class="mbr-text align-right display-5" style={{width:'50%'}}>

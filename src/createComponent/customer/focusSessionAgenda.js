@@ -157,12 +157,14 @@ class FocusSessionAgenda extends React.Component {
                 </div>
             )
         }
-        //!!!!!!!!!!!!!!! NEED TO CREATE A LOOP
+        
         var optionsExercise = [];
         console.log('ex',exercises)
         if(exercises){
             this.state.exercises.map((exerciseId) => {
-                optionsExercise.push(<li>{exerciseId.repetition} x {exerciseId.sets} for {exerciseId.time}sec: {exerciseId.name}</li>)
+                optionsExercise.push(
+                    <li>{exerciseId.repetition} x {exerciseId.sets} for {exerciseId.time}sec: {exerciseId.name}</li>
+                )
             });
         }
         return (
@@ -252,7 +254,7 @@ class FocusSessionAgenda extends React.Component {
                         </div>
                     </section>
                 </body>
-                );
+            );
     }
 }
 

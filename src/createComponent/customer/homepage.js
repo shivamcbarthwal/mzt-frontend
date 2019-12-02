@@ -122,84 +122,49 @@ class Homepage extends React.Component {
         const icon = variantIcon["warning"];
         return (
             <SnackbarProvider>
-            <div className="App">
-                <body>
-                    <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
-                    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                        <div class="menu-logo">
-                             <div class="navbar-brand">
-                              <span class="navbar-logo">
-                                  <a href="/homepage">
-                                      <img src={Logo} alt="MZT fitness" title="" />
-                                  </a>
-                              </span>
-                              <span class="navbar-caption-wrap">
-                                  <a class="navbar-caption text-white display-4" href="/homepage">
-                                      MZT FITNESS
-                                  </a>
-                              </span>
-                          </div>
-                      </div>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                              <li class="nav-item">
-                                  <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+customer_Id)}>
-                                      <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                      Challenge
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
-                  </nav>
-                </section>
-                    <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
-                        <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
-                        <div class="container align-center">
-                        <button class="btn btn-white-outline pull-right" onClick={this.handleClickNotif}>NOTIFICATIONS ({notifications.length})</button>
-                            <div class="mbr-white centerize">
-                                <a class="btn btn-white-outline" href="listOfPrograms">WORKOUT</a> 
-                                <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
-                                <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
-                            </div>
-                        </div> 
-                        {/*notifications.map((notification) => 
-                            <Snackbar
-                                anchorOrigin={{
-                                    vertical: 'center',
-                                    horizontal: 'center',
-                                }}
-                                open={this.state.open}
-                                autoHideDuration={6000}
-                                onClose={this.handleClose}
-                            >
-                            {<MySnackbarContentWrapper
-                            variant="info"
-                            className={classes.margin}
-                            message="The customer does not have an active Program!"
-                            />}
-
-                                <SnackbarContent
-                                    className={clsx(classes["warning"], className)}
-                                    aria-describedby="client-snackbar"
-                                    variant="warning" 
-                                    message={
-                                    <span id="client-snackbar" className={classes.message}>
-                                        <Icon className={clsx(classes.icon, classes.iconVariant)} />
-                                        {notification.message}
+                <div className="App">
+                    <body>
+                        <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a"> 
+                            <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+                            <div class="menu-logo">
+                                <div class="navbar-brand">
+                                    <span class="navbar-logo">
+                                        <a href="/homepage">
+                                            <img src={Logo} alt="MZT fitness" title="" />
+                                        </a>
                                     </span>
-                                    }
-                                    action={[
-                                    <IconButton key="close" aria-label="close" color="inherit" onClick={this.handleClose}>
-                                        <CloseIcon className={classes.icon} />
-                                    </IconButton>,
-                                    ]}
-                                />
-
-                            </Snackbar>  
-                                )*/} 
-                    </section>
-                </body>
-            </div>
+                                    <span class="navbar-caption-wrap">
+                                        <a class="navbar-caption text-white display-4" href="/homepage">
+                                            MZT FITNESS
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push('/challenge/'+customer_Id)}>
+                                            <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                                Challenge
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </nav>
+                        </section>
+                        <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
+                            <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
+                                <div class="container align-center">
+                                    <button class="btn btn-white-outline pull-right" onClick={this.handleClickNotif}>NOTIFICATIONS ({notifications.length})</button>
+                                    <div class="mbr-white centerize">
+                                        <a class="btn btn-white-outline" href="listOfPrograms">WORKOUT</a> 
+                                        <p class="">LET'S START NOW !&nbsp;<br/>REACH YOUR GOALS</p>  
+                                        <a class="btn btn-white-outline" href="dashboard">DASHBOARD</a>
+                                    </div>
+                                </div> 
+                        </section>
+                    </body>
+                </div>
             </SnackbarProvider>
         );
     };

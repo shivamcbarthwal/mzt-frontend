@@ -76,48 +76,48 @@ class Sponsor extends React.Component {
             <body>
                 <section class="menu cid-rFxS6PmLUN" once="menu" id="menu1-a">
                         <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-                        <div class="menu-logo">
-                             <div class="navbar-brand">
-                              <span class="navbar-logo">
-                                  <a href="/homepage">
-                                      <img src={Logo} alt="MZT fitness" title="" />
-                                  </a>
-                              </span>
-                              <span class="navbar-caption-wrap">
-                                  <a class="navbar-caption text-white display-4" href="/homepage">
-                                      MZT FITNESS
-                                  </a>
-                              </span>
-                          </div>
-                      </div>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                                <li class="nav-item">
-                                    <a class="nav-link link text-white display-4" href="/homepage">
-                                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
-                                        Home page
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push(`/challenge/${this.props.match.params.customerID}`)}>
-                                        <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
-                                        Challenge
-                                    </a>
-                                </li>
-                          </ul>
-                      </div>
-                  </nav>
+                            <div class="menu-logo">
+                                <div class="navbar-brand">
+                                    <span class="navbar-logo">
+                                        <a href="/homepage">
+                                            <img src={Logo} alt="MZT fitness" title="" />
+                                        </a>
+                                    </span>
+                                    <span class="navbar-caption-wrap">
+                                        <a class="navbar-caption text-white display-4" href="/homepage">
+                                            MZT FITNESS
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" href="/homepage">
+                                            <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                            Home page
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link link text-white display-4" onClick={()=>this.props.history.push(`/challenge/${this.props.match.params.customerID}`)}>
+                                            <span class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>
+                                            Challenge
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
                 </section>
                 
                 <section class=" mbr-fullscreen" style={{backgroundImage: `url(${Background})`}}>
                     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}>
                     </div>
-
                     <div class="container">
                         <h2 class="mbr-bold mbr-white mbr-fonts-style display-1">Gifts</h2> <br/>   
                         <div>
                             <a class="align-center col-md-3 btn btn-orange-outline " onClick = {this.handleClickChallenge} style={{color: "#FFFFFF", backgroundColor: "#C4643B"}}>
-                                Check the challenge page!</a>
+                                Check the challenge page!
+                            </a>
                             <label class="form-control-label mbr-fonts-style " style={{color: "#ffffff", fontWeight: "bold"}}>Search a brand:  </label>
                             <input class="col-md-4" default="search" />
                         </div>
@@ -163,9 +163,8 @@ class Sponsor extends React.Component {
                         <Button secondary onClick = {this.handleClickBack} floated='right'>Home</Button>
                     </div>
                 </section>
-                </body>
-            );
-        }       
+            </body>
+        );}       
     };
 
 export default Sponsor;

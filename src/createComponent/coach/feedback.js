@@ -38,8 +38,8 @@ class Feedback extends Component {
         return(
             <Form onSubmit={this.handleSubmit}>
                 <Form.Field>
-                <label>Feedback</label>
-                <textarea placeholder="Feedback" value={this.state.feedback} onChange={this.handleChange}/>
+                    <label>Feedback</label>
+                    <textarea placeholder="Feedback" value={this.state.feedback} onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Button content='Submit' />
             </Form>

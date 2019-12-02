@@ -134,38 +134,14 @@ class VisualizeProgram extends Component {
                             <Table sortable celled structured>
                                 <Table.Header>
                                     <Table.Row>
-                                        <Table.HeaderCell
-                                          sorted={column === 'title' ? direction : null}
-                                          onClick={this.handleSort('title')}
-                                        >
-                                            TITLE
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell
-                                          sorted={column == 'description' ? direction : null}
-                                          onClick={this.handleSort('description')}
-                                        >
-                                            DESCRIPTION
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell
-                                          sorted={column == 'type' ? direction : null}
-                                          onClick={this.handleSort('type')}
-                                        >
-                                            TYPE
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell
-                                          sorted={column == 'duration' ? direction : null}
-                                          onClick={this.handleSort('duration')}
-                                        >
-                                            DURATION
-                                        </Table.HeaderCell>
-                                        <Table.HeaderCell>
-                                            OPERATIONS
-                                        </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column === 'title' ? direction : null} onClick={this.handleSort('title')} > TITLE </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'description' ? direction : null} onClick={this.handleSort('description')} > DESCRIPTION </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'type' ? direction : null} onClick={this.handleSort('type')} > TYPE </Table.HeaderCell>
+                                        <Table.HeaderCell sorted={column == 'duration' ? direction : null} onClick={this.handleSort('duration')} > DURATION </Table.HeaderCell>
+                                        <Table.HeaderCell> OPERATIONS </Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
-                                <Table.Body textAlign='center'>
-                                    {optionProgram}
-                                </Table.Body>
+                                <Table.Body textAlign='center'> {optionProgram} </Table.Body>
                             </Table>
                             <Button secondary onClick = {this.handleClickBack} floated='right'>Back</Button>
                     </div>

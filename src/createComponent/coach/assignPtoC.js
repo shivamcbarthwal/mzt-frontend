@@ -40,29 +40,6 @@ class AssignPtoC extends React.Component {
             });
     };
 
-   // Notify handler for sending notifications
-    // handleNotify = async() => {
-    //     const { program } = this.state;
-    //     const notification = {
-    //         customer_id: program.customer_id,
-    //         coach_id: program.coach_id,
-    //         notify_for: "COACH",
-    //         notify_type: "FOCUS_SESSION_COMPELETED",
-    //         msg: `A client of yours has compeleted a Focus session.`
-    //     }
-        
-    //     const response = await fetch(`http://localhost:8080/notification/activate`, {
-    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //                     // 'Content-Type': 'application/x-www-form-urlencoded',
-    //         },
-    //         body: JSON.stringify(notification) // body data type must match "Content-Type" header
-    //     });
-    //     return await response.json();
-    // }
-    // Submit the data to backend 
     handleSubmit = async event => {
         const {program} = this.state;
         const response = await fetch(`http://localhost:8080/program/assignProgramTemplate`, {
@@ -90,31 +67,31 @@ class AssignPtoC extends React.Component {
             <body>
                 <section class="mbr-fullscreen centerize align-center" style={{backgroundImage: `url(${Background})`}}>
                     <div class="mbr-overlay" style={{opacity: 0.8, backgroundColor: "#232323"}}/>
-                    <div class="container align-center media-container-colomn">
-                        <h2 class="mbr-bold mbr-white display-2">Assign a Program to {cust.first_name + " "+cust.last_name}</h2> 
-                        <br/>
-                        <div class="table-wrapper">
-                            <div class="container scroll mbr-white display-4" style={{width: "50%"}}>
-                                <table class="table">
-                                    <tr class="body-item mbr-fonts-style display-7">
-                                        <td>Age</td>
-                                        <td>{((new Date()).getFullYear()-(new Date(cust.dob)).getFullYear())}</td>
-                                    </tr>
-                                    <tr class="body-item mbr-fonts-style display-7">
-                                        <td>Gender</td>
-                                        <td>{cust.gender}</td>
-                                    </tr>
-                                    <tr class="body-item mbr-fonts-style display-7">
-                                        <td>Goal</td>
-                                        <td>{cust.goal}</td>
-                                    </tr>
-                                    <tr class="body-item mbr-fonts-style display-7">
-                                        <td>Availability</td>
-                                        <td>{cust.availability}</td>
-                                    </tr>
-                                </table>
+                        <div class="container align-center media-container-colomn">
+                            <h2 class="mbr-bold mbr-white display-2">Assign a Program to {cust.first_name + " "+cust.last_name}</h2> 
+                            <br/>
+                            <div class="table-wrapper">
+                                <div class="container scroll mbr-white display-4" style={{width: "50%"}}>
+                                    <table class="table">
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Age</td>
+                                            <td>{((new Date()).getFullYear()-(new Date(cust.dob)).getFullYear())}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Gender</td>
+                                            <td>{cust.gender}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Goal</td>
+                                            <td>{cust.goal}</td>
+                                        </tr>
+                                        <tr class="body-item mbr-fonts-style display-7">
+                                            <td>Availability</td>
+                                            <td>{cust.availability}</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
                         <div><br/></div>
                         <div class="custom-select container" style={{width: "50%"}}>
                             <select onChange={(e) => this.handleChange('program_template_id', e)} style={{width: "100%"}}>
@@ -134,13 +111,7 @@ class AssignPtoC extends React.Component {
                                 Back
                             </button>
                         </div>
-
-                        {/* <div class="align-right">
-                            <button type="button" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onClick = {this.handleNotify}>
-                                <span class="mbrib-arrow-prev mbr-iconfont mbr-iconfont-btn"/>
-                                Notify COACH
-                            </button>
-                        </div> */}
+                        {}
                     </div>
                 </section>
             </body>
