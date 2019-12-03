@@ -192,48 +192,17 @@ class CustomerModal extends Component {
         const programDone = [];
         const programCanceled = [];
         const programLists = [];
-        const progress = [];
-        const progressDone = [];
+        var progress = [];
+        var progressDone = [];
         this.state.programs.map(Program =>{
-            if(Program.status == "ASSIGNED"){
+            if(Program.status === "ASSIGNED"){
                 programAssigned.push(Program);
             }
-            if(Program.status == "IN_PROGRESS"){
+            if(Program.status === "IN_PROGRESS"){
                 programInprogress.push(Program);
-                Program.sessions.map((Session,index) =>{
-                if(Session.session_status == 'COMPLETED'){
-                    console.log('index: '+index);
-                    console.log('length: '+Program.sessions.length);
-                    console.log('percent: '+ (index+1)/Program.sessions.length)
-                    if(Program.sessions[index+1].session_status == 'OPENED'){
-                        progress.push(
-                            <Segment>
-                                <Progress color='olive' value={index+1} total={Program.sessions.length} active/>
-                                    Finish the session {Session.name}. The next session is {Program.sessions[index+1].name}
-                            </Segment>
-                        )
-                    }
-                    if(Program.sessions[index+1].session_status == 'CLOSED'){
-                        if(Program.sessions[index+1].session_type == 'focus'){
-                            progress.push(
-                                <Segment>
-                                    <Progress error value={index+1} total={Program.sessions.length} active/>
-                                        There is an approaching focus session
-                                </Segment>
-                            )
-                        }
-                    }
-                }
-                });
             }
-            if(Program.status == "COMPLETED"){
+            if(Program.status === "COMPLETED"){
                 programDone.push(Program);
-                    progressDone.push(
-                        <Progress percent={100} success>
-                            The progress was successful
-                        </Progress>
-                    )
-                
             }
             if(Program.status == "CANCELED"){
                 programCanceled.push(Program);
@@ -464,6 +433,32 @@ class CustomerModal extends Component {
                 {programInprogress.map((program) => {
                     ResultList1 = [];
                     SessionList1 = [];
+                    progress = [];
+                    program.sessions.map((Session,index) =>{
+                        if(Session.session_status === 'COMPLETED'){
+                            console.log('index: '+index);
+                            console.log('length: '+program.sessions.length);
+                            console.log('percent: '+ (index+1)/program.sessions.length)
+                            if(program.sessions[index+1].session_status == 'OPENED'){
+                                progress.push(
+                                    <Segment>
+                                        <Progress color='olive' value={index+1} total={program.sessions.length} active/>
+                                            Finish the session {Session.name}. The next session is {program.sessions[index+1].name}
+                                    </Segment>
+                                )
+                            }
+                            if(program.sessions[index+1].session_status == 'CLOSED'){
+                                if(program.sessions[index+1].session_type == 'focus'){
+                                    progress.push(
+                                        <Segment>
+                                            <Progress error value={index+1} total={program.sessions.length} active/>
+                                                There is an approaching focus session
+                                        </Segment>
+                                    )
+                                }
+                            }
+                        }
+                    });
                     var measurementsData = [];
                 this.state.optionResult.map((res,index)=>{
                     if(res.program_id === program._id){
@@ -746,6 +741,12 @@ class CustomerModal extends Component {
             {programDone.map((program) => {
                 ResultList2 = [];
                 SessionList2 = [];
+                progressDone = [];
+                progressDone.push(
+                    <Progress percent={100} success>
+                        The progress was successful
+                    </Progress>
+                )
                 var measurementsData = [];
                 this.state.optionResult.map((res,index)=>{
                     if(res.program_id === program._id){

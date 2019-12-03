@@ -39,7 +39,7 @@ class RegularSessionStartExercise extends React.Component {
             sessionNumber : Number(this.props.location.search.slice(1).split("=")[1]),
             exerciseNumber : exerciseN,
             exerciseResult : result
-        });
+        }).then( res => {
         if (exercises.length === (exerciseN+1)) {
             axios.post('http://localhost:8080/program/customerUpdateSessionStatus',{
                 program_id: this.props.match.params.programID,
@@ -67,6 +67,7 @@ class RegularSessionStartExercise extends React.Component {
             });
             console.log("exerciseN ",exerciseN)
         }
+    });
     }
     ;
     componentDidMount() {
