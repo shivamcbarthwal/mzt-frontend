@@ -45,13 +45,13 @@ class RegularSessionResult extends React.Component {
         var optionsExercise = [];
         if(exercises){
             exercises.map((exerciseId) => {
-                if(exerciseId.result==='Angry'){
+                if(exerciseId.result===angry){
                     optionsExercise.push(<li><img src={angry} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
                 }
-                if(exerciseId.result==='Neutral'){
+                if(exerciseId.result===neutral){
                     optionsExercise.push(<li><img src={neutral} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
                 }
-                if(exerciseId.result==='Happy'){
+                if(exerciseId.result===happy){
                     optionsExercise.push(<li><img src={happy} style={{height: 30}}/>{exerciseId.name}: {exerciseId.repetition} x {exerciseId.sets} sets for {exerciseId.time}s</li>)
                 }
             });

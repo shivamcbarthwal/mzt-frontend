@@ -58,6 +58,7 @@ class VisualizeExercise extends Component {
             Exercise.exercise_tag.map(tag=>{
                 tags.push(tag + "; ");
             })
+            console.log("url: "+Exercise.exercise_img_url);
            optionsExercise.push(
                 <Table.Row>
                     <Table.Cell><strong>{Exercise.name}</strong></Table.Cell>
@@ -65,9 +66,9 @@ class VisualizeExercise extends Component {
                     <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
                     <Table.Cell singleLine>
-                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                        <Modal centered trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'200px'}} closeIcon>
                         <ModalHeader style={{textAlign:'center'}}>{Exercise.name}</ModalHeader>
-                        <ModalContent>
+                        <ModalContent scrolling>
                                 <Table>
                                     <TableBody>
                                         <Table.Row>
@@ -112,7 +113,7 @@ class VisualizeExercise extends Component {
                                         </Table.Row>
                                         <Table.Row>
                                             <TableCell><strong>Image</strong></TableCell>
-                                            <TableCell><Image src={Exercise.exercise_img_url}></Image></TableCell>
+                                            <TableCell><Image src={Exercise.exercise_img_url} /></TableCell>
                                         </Table.Row>
                                     </TableBody>
                                 </Table>

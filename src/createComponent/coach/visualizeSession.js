@@ -78,9 +78,9 @@ class VisualizeSession extends Component {
                     <Table.Cell><strong>{Session.name}</strong></Table.Cell>
                     <Table.Cell>{Session.session_coach_notes}</Table.Cell>
                     <Table.Cell singleLine>
-                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'300px'}} closeIcon>
+                        <Modal trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'200px'}} closeIcon>
                             <ModalHeader style={{textAlign:'center'}}>{Session.name}</ModalHeader>
-                            <ModalContent>
+                            <ModalContent scrolling>
                                 <Table>
                                     <TableBody>
                                         <Table.Row>

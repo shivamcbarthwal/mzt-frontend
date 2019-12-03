@@ -57,7 +57,7 @@ class FocusSessionStartExercise extends React.Component {
                 });
             }
             const index = Number(this.props.location.search.slice(1).split("=")[1]);
-            this.props.history.push(`/focusSessionResult/${this.props.match.params.programID}?sessionIndex=${index}`)
+            window.location.href = '/focusSessionResult/'+ this.props.match.params.programID + "?sessionIndex=" + index;
             console.log("finished");
             
         } else {
@@ -135,18 +135,6 @@ class FocusSessionStartExercise extends React.Component {
                                 <br /> {exercises[exerciseN].name}
                             </h1>
                             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                <span style={{marginLeft: '1em'}}>
-                                    {exercises[exerciseN].time} seconds
-                                </span>
-                            </p>
-                            <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                <span style={{marginLeft: '1em'}}>
-                                    {exercises[exerciseN].sets} sets
-                                </span>
-                            </p>
-                            <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                 <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                 <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
                                     Coach advice: {exercises[exerciseN].description}
@@ -196,18 +184,6 @@ class FocusSessionStartExercise extends React.Component {
                                 <br /> {exercises[exerciseN].name}
                             </h1>
                             <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                <span style={{marginLeft: '1em'}}>
-                                  Repetition: {exercises[exerciseN].repetition}
-                                </span>
-                            </p>
-                            <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                <span style={{marginLeft: '1em'}}>
-                                    Sets: {exercises[exerciseN].sets}
-                                </span>
-                            </p>
-                            <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                 <img src={image3} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                 <span style={{marginLeft: '1em', fontStyle: 'italic'}}>
                                     Coach advice: {exercises[exerciseN].description}
@@ -231,17 +207,18 @@ class FocusSessionStartExercise extends React.Component {
                               {exercises[exerciseN].description}
                             </p>
                         </div>
-                        <div id='result' class="mbr-section-text mbr-white pb-3">
+                        {timer}
+                        <div id='result' class="mbr-section-text mbr-white pb-3" hidden>
                             <p class="mbr-text mbr-fonts-style display-5">
                                 Your result:
                             </p>
-                            <input data-form-field="result" type="number" placeholder={exercises[exerciseN].repetition} required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
+                            <input data-form-field="result" type="number" placeholder="0" required="required" class="form-control display-7 col-md-12" id="email-form1-2" onChange={(e) => this.handleChange('result', e)}/>
                             <div class="mbr-section-btn">
                                 <a onClick={this.toggleNext} class="btn btn-md btn-white-outline display-4" >Go next</a>
                             </div>
                         </div>
                     </div>
-                    <div class="mbr-figure" style={{width: '145%'}} id='video'>
+                    <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
                         <iframe class="mbr-embedded-video" src={exercises[exerciseN].video_url} width= "1280" height="360" frameborder="0" allowfullscreen></iframe>
                     </div>                      
                 </div>
@@ -258,13 +235,7 @@ class FocusSessionStartExercise extends React.Component {
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                                     <img src={image1} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
                                     <span style={{marginLeft: '1em'}}>
-                                      Repetition: {exercises[exerciseN].time}sec x{exercises[exerciseN].repetition}
-                                    </span>
-                                </p>
-                                <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                                    <img src={image2} style={{marginLeft: '10px', width: "10%", height: "10%"}} />
-                                    <span style={{marginLeft: '1em'}}>
-                                        Sets: {exercises[exerciseN].sets}
+                                      Time: {exercises[exerciseN].time}sec
                                     </span>
                                 </p>
                                 <p class="mbr-text pb-3 mbr-fonts-style display-5">

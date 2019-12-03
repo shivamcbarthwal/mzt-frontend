@@ -289,8 +289,7 @@ class RegularSessionStartExercise extends React.Component {
                                     <p class="mbr-text mbr-fonts-style display-5">
                                       {exercises[exerciseN].description}
                                     </p>
-                                    {timer}
-                                    <div id='result' hidden>
+                                    <div id='result'>
                                         <p class="mbr-text mbr-fonts-style display-5">
                                             How do you feel?
                                         </p>
@@ -304,7 +303,7 @@ class RegularSessionStartExercise extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div class="mbr-figure" style={{width: '145%'}} id='video' hidden>
+                            <div class="mbr-figure" style={{width: '145%'}} id='video'>
                             <ReactPlayer
                                 url={exercises[exerciseN].video_url}
                             />    

@@ -508,7 +508,7 @@ class CustomerModal extends Component {
                                             <Button primary size="medium" onClick={this.handleClickCancelProgram(program._id)}>
                                                 Cancel the Program
                                             </Button>
-                                            <Modal trigger={<Button primary size="medium">Show Results</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                            <Modal trigger={<Button primary size="medium">Show Results</Button>} size="fullscreen" closeIcon>
                                                 <ModalHeader style={{textAlign:'center'}}>Show Results of {program.title}</ModalHeader>
                                                 <ModalContent>
                                                     <CanvasJSChart options = {options} />
@@ -667,7 +667,7 @@ class CustomerModal extends Component {
                                                     <Table.Cell>{session.name}</Table.Cell>
                                                     <Table.Cell>{session.session_status}</Table.Cell>
                                                     <Table.Cell>
-                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} size="fullscreen" closeIcon>
                                                             <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
                                                             <ModalContent>
                                                                 {SessionRes}
@@ -711,7 +711,7 @@ class CustomerModal extends Component {
                                                     <Table.Cell>{session.name}</Table.Cell>
                                                     <Table.Cell>{session.session_status}</Table.Cell>
                                                     <Table.Cell>
-                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                        <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} size="fullscreen" closeIcon>
                                                             <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
                                                             <ModalContent>
                                                                 {SessionRes}
@@ -788,7 +788,7 @@ class CustomerModal extends Component {
                                     <div class="mbr-text align-right display-5" style={{width:'50%'}}>
                                         {program.status}
                                         <br/>
-                                        <Modal trigger={<Button primary size="medium">Show Results</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                        <Modal trigger={<Button primary size="medium">Show Results</Button>} size="fullscreen" closeIcon>
                                             <ModalHeader style={{textAlign:'center'}}>Show Results of {program.title}</ModalHeader>
                                             <ModalContent>
                                                 <CanvasJSChart options = {options} />
@@ -919,7 +919,7 @@ class CustomerModal extends Component {
                                                 <Table.Cell>{session.name}</Table.Cell>
                                                 <Table.Cell>{session.session_status}</Table.Cell>
                                                 <Table.Cell>
-                                                    <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                    <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} size="fullscreen" closeIcon>
                                                         <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
                                                         <ModalContent>
                                                             {SessionRes}
@@ -963,7 +963,7 @@ class CustomerModal extends Component {
                                                 <Table.Cell>{session.name}</Table.Cell>
                                                 <Table.Cell>{session.session_status}</Table.Cell>
                                                 <Table.Cell>
-                                                    <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} style={{marginLeft:'300px'}} closeIcon>
+                                                    <Modal trigger={<Button primary size="medium">Show Result of Session</Button>} size="fullscreen" closeIcon>
                                                         <ModalHeader style={{textAlign:'center'}}>Show Result of {session.name}</ModalHeader>
                                                         <ModalContent>
                                                             {SessionRes}
