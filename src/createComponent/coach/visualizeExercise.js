@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import { Table, Button, Modal, ModalHeader, ModalContent, TableBody, TableCell, Image } from 'semantic-ui-react';
 import _ from 'lodash';
+import Img from 'react-image';
 import Select, { components } from 'react-select';
 
 
@@ -62,13 +63,14 @@ class VisualizeExercise extends Component {
            optionsExercise.push(
                 <Table.Row>
                     <Table.Cell><strong>{Exercise.name}</strong></Table.Cell>
+                    <Table.Cell><Image size="tiny" src={Exercise.exercise_img_url} /></Table.Cell>
                     <Table.Cell>{Exercise.exercise_type}</Table.Cell>
                     <Table.Cell>{Exercise.muscles_targeted}</Table.Cell>
                     <Table.Cell>{Exercise.equipment_required}</Table.Cell>
                     <Table.Cell singleLine>
                         <Modal centered trigger={<Button primary size="small">See details</Button>} style={{marginLeft:'200px'}} closeIcon>
                         <ModalHeader style={{textAlign:'center'}}>{Exercise.name}</ModalHeader>
-                        <ModalContent scrolling>
+                        <ModalContent scrolling image={true}>
                                 <Table>
                                     <TableBody>
                                         <Table.Row>
@@ -111,10 +113,6 @@ class VisualizeExercise extends Component {
                                             <TableCell><strong>Estimated Duration</strong></TableCell>
                                             <TableCell>{Exercise.exercise_est_duration}</TableCell>
                                         </Table.Row>
-                                        <Table.Row>
-                                            <TableCell><strong>Image</strong></TableCell>
-                                            <TableCell><Image src={Exercise.exercise_img_url} /></TableCell>
-                                        </Table.Row>
                                     </TableBody>
                                 </Table>
                         </ModalContent>
@@ -144,6 +142,7 @@ class VisualizeExercise extends Component {
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell sorted={column === 'name' ? direction : null} onClick={this.handleSort('name')}> NAME </Table.HeaderCell>
+                                    <Table.HeaderCell>IMAGE</Table.HeaderCell>
                                     <Table.HeaderCell sorted={column == 'exercise_type' ? direction : null} onClick={this.handleSort('exercise_type')}> TYPE </Table.HeaderCell>
                                     <Table.HeaderCell sorted={column == 'muscles_targeted' ? direction : null} onClick={this.handleSort('muscles_targeted')} > MUSCLES TARGETED </Table.HeaderCell>
                                     <Table.HeaderCell sorted={column == 'equipment_required' ? direction : null} onClick={this.handleSort('equipment_required')} > EQUIPEMENT </Table.HeaderCell>
